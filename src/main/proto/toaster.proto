@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+
+package toaster;
+
+option java_multiple_files = true;
+option java_package = "org.example.toaster";
+option java_outer_classname = "ToasterProto";
+import "google/protobuf/empty.proto";
+
+
+service ToasterService {
+    // Unary
+    rpc ToasterStatus(StateRequest) returns (StateResponse) {};
+    rpc ToasterStatusOff(StateRequest) returns (StateResponse) {};
+
+//client streaming
+   rpc AddBread(stream BreadRequest) returns (BreadResponse) {};
+//server streaming
+    rpc ToastingBread(google.protobuf.Empty) returns (stream ToastLevel) {}
+
+}
+
+message Toasting {
+    string on = 1;
+    string off = 2;
+}
+
+message Bread {
+    string toastbread = 1;
+   
+}
+
+message StateRequest {
+    Toasting toasting = 1;
+}
+
+
+message StateResponse {
+    string state = 1;
+}
+
+
+message BreadRequest{
+    Bread bread = 1;
+
+}
+
+message BreadResponse{
+ string breadadded = 1;
+}
+
+message ToastLevel {
+    int32 toastCooked = 1;
+}
+

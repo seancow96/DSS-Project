@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+
+package speaker;
+
+option java_multiple_files = true;
+option java_package = "org.example.speaker";
+option java_outer_classname = "SpeakerProto";
+
+
+// The speaker service definition.
+service SpeakerService {
+//uranary
+    rpc SpeakerOn(SpeakerRequest) returns (SpeakerResponse) {};
+    rpc SpeakerOff(SpeakerRequest) returns (SpeakerResponse) {};
+//client streaming
+    rpc ConnectDevice(stream DeviceRequest) returns (DeviceResponse){};
+//client streaming
+   rpc AverageViews(stream AverageRequest) returns (AverageResponse){};
+
+    //server streaming
+rpc FindMaximumViews(stream FindMaximumRequest) returns (stream FindMaximumResponse) {};
+
+
+}
+ 
+//uranary Turn speaker on and off
+message Speaker {
+    string turnspeakeron = 1;
+    string turnspeakeroff = 2;
+    string connectspeaker = 3;
+}
+
+message SpeakerRequest {
+    Speaker speaker = 1;
+}
+
+
+message SpeakerResponse {
+    string speakerstate = 1;
+}
+
+//Client streaming
+
+message DeviceRequest {
+    Speaker speaker = 1;
+}
+
+message DeviceResponse {
+    string connected = 1;
+}
+
+// Clientstream average
+
+message AverageRequest {
+    int32 first_song = 1;
+    int32 second_song = 2;
+    int32 third_song = 3;
+}
+
+message AverageResponse {
+    double average = 1;
+}
+
+message FindMaximumRequest {
+    int32 number = 1;
+}
+
+message FindMaximumResponse {
+    int32 maximum = 1;
+}
+
