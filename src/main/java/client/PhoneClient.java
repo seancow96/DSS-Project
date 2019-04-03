@@ -261,11 +261,11 @@ public class PhoneClient implements ServiceObserver {
 
         requestObserver.onCompleted();
 
-        try {
-            latch.await(3, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+          try {
+                         Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
     }
     
     
@@ -316,11 +316,11 @@ public class PhoneClient implements ServiceObserver {
         // we tell the server that the client is done sending data
         requestObserver.onCompleted();
 
-        try {
-            latch.await(3L, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+   try {
+                         Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
     }
 
     
@@ -422,7 +422,7 @@ public class PhoneClient implements ServiceObserver {
                             .setNumber(number)
                             .build());
                     try {
-                        Thread.sleep(100);
+                        Thread.sleep(600);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
