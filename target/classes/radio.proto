@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+
+package radio;
+
+option java_multiple_files = true;
+option java_package = "org.example.radio";
+option java_outer_classname = "RadioProto";
+
+
+// The speaker service definition.
+service RadioService {
+//uranary
+    rpc RadioOn(RadioRequest) returns (RadioResponse) {};
+    rpc RadioOff(RadioRequest) returns (RadioResponse) {};
+    rpc VolumeUp(stream VolumeRequest) returns (VolumeResponse){};
+
+}
+
+
+ message VolumeRequest {
+   int32 number = 1;
+}
+
+message VolumeResponse {
+    double currentvolume = 1;
+}
+
+
+//uranary Turn speaker on and off
+message Radio {
+    string turnradioon = 1;
+    string turnradiooff = 2;
+}
+
+message RadioRequest {
+    Radio radio = 1;
+}
+
+
+message RadioResponse {
+    string radiostate = 1;
+}

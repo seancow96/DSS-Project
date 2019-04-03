@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+
+package phone;
+
+option java_multiple_files = true;
+option java_package = "org.example.phone";
+option java_outer_classname = "PhoneProto";
+import "google/protobuf/empty.proto";
+
+
+
+// The speaker service definition.
+service PhoneService {
+//uranary
+    rpc PhoneOn(PhoneRequest) returns (PhoneResponse) {};
+    rpc PhoneOff(PhoneRequest) returns (PhoneResponse) {};
+    rpc ConnectDevice(stream DeviceRequest) returns (DeviceResponse){};
+    rpc getAllSongs(google.protobuf.Empty) returns (PlaylistSongs) {}
+//client streaming
+   rpc AverageViews(stream AverageRequest) returns (AverageResponse){};
+
+    //server streaming
+rpc FindMaximumViews(stream FindMaximumRequest) returns (stream FindMaximumResponse) {};
+
+
+
+ }
+
+
+
+//uranary Turn speaker on and off
+message Phone {
+    string turnphoneon = 1;
+    string turnphoneoff = 2;
+    string connectspeaker = 3;
+
+}
+
+message PhoneRequest {
+    Phone phone = 1;
+}
+
+message PhoneResponse {
+    string phonestate = 1;
+}
+
+
+message DeviceRequest {
+    Phone phone = 1;
+}
+
+message DeviceResponse {
+    string connected = 1;
+}
+
+message PlaylistSongs {
+  repeated Song songs = 1;
+}
+
+message Song {
+    string artist = 1;
+    string genre = 2;
+}
+
+// Clientstream average
+
+message AverageRequest {
+    int32 first_song = 1;
+    int32 second_song = 2;
+    int32 third_song = 3;
+}
+
+message AverageResponse {
+    double average = 1;
+}
+
+message FindMaximumRequest {
+    int32 number = 1;
+}
+
+message FindMaximumResponse {
+    int32 maximum = 1;
+}
