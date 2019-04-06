@@ -55,7 +55,7 @@ public class PhoneClient implements ServiceObserver {
      * Constructor.
      */
     public PhoneClient() {
-        serviceType = "_radio._udp.local.";
+        serviceType = "_phone._udp.local.";
         name = "Seans";
         jmDNSServiceTracker clientManager = jmDNSServiceTracker.getInstance();
         clientManager.register(this);
@@ -110,7 +110,7 @@ public class PhoneClient implements ServiceObserver {
     public void getAllSongs() {
       
             Empty request = Empty.newBuilder().build();
-            System.out.println("Get Song");
+            System.out.println("Playing song");
             PlaylistSongs usermusic = blockingStub2.getAllSongs(request);
             List<Song> usermusicSongs = usermusic.getSongsList();
             for (Song son : usermusicSongs) {
@@ -225,8 +225,8 @@ public class PhoneClient implements ServiceObserver {
         StreamObserver<VolumeRequest> requestObserver = asyncClient.volumeUp(new StreamObserver<VolumeResponse>() {
             @Override
             public void onNext(VolumeResponse value) {
-                System.out.println("Received a response from the server");
-                System.out.println("The average number of views 67,12,38 is" );
+                System.out.println("Incease volume");
+                System.out.println("The volume is now" );
                 System.out.println( value.getCurrentvolume());
                 ui.append("Received a response from the server");
                 ui.append("The average number of views 67,12,38 is");
@@ -261,11 +261,7 @@ public class PhoneClient implements ServiceObserver {
 
         requestObserver.onCompleted();
 
-          try {
-                         Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+       
     }
     
     
@@ -324,123 +320,7 @@ public class PhoneClient implements ServiceObserver {
     }
 
     
-         
-     public void averageViews(){
-        PhoneServiceGrpc.PhoneServiceStub asyncClient = PhoneServiceGrpc.newStub(channel);
-
-        final CountDownLatch latch = new CountDownLatch(1);
-
-        StreamObserver<AverageRequest> requestObserver = asyncClient.averageViews(new StreamObserver<AverageResponse>() {
-            @Override
-            public void onNext(AverageResponse value) {
-                System.out.println("Received a response from the server");
-                System.out.println("The average number of views 67,12,38 is" );
-                System.out.println( value.getAverage());
-                ui.append("Received a response from the server");
-                ui.append("The average number of views 67,12,38 is");
-                ui.append(value.toString());
-
-
-
-                
-            }
-
-            @Override
-            public void onError(Throwable t) {
-
-            }
-
-            @Override
-            public void onCompleted() {
-                System.out.println("Server has completed sending us data");
-                ui.append("Server has completed sending us data");
-
-                
-                 latch.countDown();
-            }
-        });
-       
-        requestObserver.onNext(AverageRequest.newBuilder()
-        .setFirstSong(20)
-        .build());
         
-              
-        requestObserver.onNext(AverageRequest.newBuilder()
-        .setSecondSong(12)
-        .build());
-        
-              
-        requestObserver.onNext(AverageRequest.newBuilder()
-        .setThirdSong(38)
-        .build());
-              
-
-
-        requestObserver.onCompleted();
-
-        try {
-            latch.await(3, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-     
-     
-         //does a bidirectional call  
-     public void findMaximum(){
-        PhoneServiceGrpc.PhoneServiceStub asyncClient = PhoneServiceGrpc.newStub(channel);
-
-        final CountDownLatch latch = new CountDownLatch(1);
-
-
-
-        StreamObserver<FindMaximumRequest> requestObserver = asyncClient.findMaximumViews(new StreamObserver<FindMaximumResponse>() {
-            @Override    //anytime we receieve a response from the client we say
-            public void onNext(FindMaximumResponse value) {
-                //gets new maximum from server
-                System.out.println("Got new Maximum Viewed Song from Server: " + value.getMaximum());
-            }
-
-            @Override
-            public void onError(Throwable t) {
-                latch.countDown();
-            }
-
-            @Override
-            //server completes sending messages
-            public void onCompleted() {
-                System.out.println("Views sending is completed");
-            }
-        });
-
-//sending data to the request observer
-
-        Arrays.asList(3, 5, 17).forEach(
-                number -> {
-                    System.out.println("Sending views : " + number);
-                    requestObserver.onNext(FindMaximumRequest.newBuilder()
-                            .setNumber(number)
-                            .build());
-                    try {
-                        Thread.sleep(600);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-        );
-
-        requestObserver.onCompleted();
-
-        try {
-            latch.await(3, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-     
-     
-     
-    
     
     public void switchService(String name) {
         // TODO

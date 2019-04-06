@@ -8,37 +8,47 @@ public interface DaysRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int32 monday = 1;</code>
+   * <code>double monday = 1;</code>
    */
-  int getMonday();
+  double getMonday();
 
   /**
-   * <code>int32 tuesday = 2;</code>
+   * <code>double tuesday = 2;</code>
    */
-  int getTuesday();
+  double getTuesday();
 
   /**
-   * <code>int32 wednesday = 3;</code>
+   * <code>double wednesday = 3;</code>
    */
-  int getWednesday();
+  double getWednesday();
 
   /**
-   * <code>int32 thursday = 4;</code>
+   * <code>double thursday = 4;</code>
    */
-  int getThursday();
+  double getThursday();
 
   /**
-   * <code>int32 friday = 5;</code>
+   * <code>double friday = 5;</code>
    */
-  int getFriday();
+  double getFriday();
 
   /**
-   * <code>int32 saturday = 6;</code>
+   * <code>double saturday = 6;</code>
    */
-  int getSaturday();
+  double getSaturday();
 
   /**
-   * <code>int32 sunday = 7;</code>
+   * <code>double sunday = 7;</code>
    */
-  int getSunday();
+  double getSunday();
+
+  /**
+   * <code>int32 mpg = 8;</code>
+   */
+  int getMpg();
+
+  /**
+   * <code>double price = 9;</code>
+   */
+  double getPrice();
 }

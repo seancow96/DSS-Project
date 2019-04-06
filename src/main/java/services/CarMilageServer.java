@@ -12,11 +12,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Logger;
 import org.example.milage.AverageMilesResponse;
+import org.example.milage.CostResponse;
 import org.example.milage.DaysRequest;
 import org.example.milage.MilageServiceGrpc;
 import org.example.milage.TotalResponse;
-import org.example.phone.FindMaximumRequest;
-import org.example.phone.FindMaximumResponse;
+import org.example.milage.Welcome;
+import org.example.milage.WelcomeRequest;
+import org.example.milage.WelcomeResponse;
 import serviceui.Printer;
 import serviceui.ServiceUI;
 
@@ -28,7 +30,7 @@ public class CarMilageServer {
     private static final Logger logger = Logger.getLogger(CarMilageServer.class.getName());
 
     /* The port on which the server should run */
-    private int port = 50056;
+    private int port = 50055;
     private Server server;
 
     private void start() throws Exception {
@@ -91,6 +93,31 @@ public class CarMilageServer {
 
              
  }
+            
+   
+    @Override
+    public void welcome(WelcomeRequest request, StreamObserver<WelcomeResponse> responseObserver) {
+        // extract the fields we need
+        Welcome welcome = request.getWelcome(); 
+        String GreetUser = welcome.getGreetuser();
+
+        // creates the response to the user
+        String greeteduser = "Welcome to the milage service " + GreetUser;
+        WelcomeResponse response = WelcomeResponse.newBuilder()
+                .setGreeteduser(greeteduser)
+                .build();
+                 ui.append("Welcome to the milage service");
+
+        // sends the response
+        responseObserver.onNext(response);
+
+        // complete the RPC call
+        responseObserver.onCompleted();
+    }   
+          
+          //https://learn.eartheasy.com/guides/how-to-calculate-gas-mileage/ ---formula for milages service
+          //http://fuel-economy.co.uk/calc.html
+          
           
   //uranary
    @Override
@@ -98,17 +125,23 @@ public class CarMilageServer {
         
 
         TotalResponse totalResponse = TotalResponse.newBuilder()
-        // gets 1st, 2nd ,3rd and 4th number from request and add them up
-                .setResult(req.getMonday() + req.getTuesday() + req.getWednesday() + req.getThursday())
+        // Gets the sum of all the miles driven per week by the car
+                .setResult(req.getMonday() + req.getTuesday() + req.getWednesday() + req.getThursday()
+                          + req.getFriday())
                 .build();
+        
+        //sends the response
 
         responseObserver.onNext(totalResponse);
 
+        // rpc call is completed
         responseObserver.onCompleted();
 
     }
     
-
+    
+    
+//client streaming 
         
              @Override
     public StreamObserver<DaysRequest> averageMiles(final StreamObserver<AverageMilesResponse> responseObserver) {
@@ -138,6 +171,7 @@ public class CarMilageServer {
 
             @Override
             public void onError(Throwable t) {
+                
 
             }
 
@@ -149,63 +183,49 @@ public class CarMilageServer {
                 responseObserver.onNext(
                         AverageMilesResponse.newBuilder().setAverage(average)
                                 .build());
-                                //tell the client we are done
+                                //tells the client we are done 
                 responseObserver.onCompleted();
             }
         };
 
         return requestObserver;
     }
-     
     
-       public StreamObserver<FindMaximumRequest> findMaximumViews(final StreamObserver<FindMaximumResponse> responseObserver) {
+    
+    
+    
+    
+    //uranary
+   @Override
+    public void calculateCost(DaysRequest req, StreamObserver<CostResponse> responseObserver) {
+        
 
-        return new StreamObserver<FindMaximumRequest>() {
-            // current maximum is zero - assumes the number is positive 
-            int currentMaximum = 0;
+        CostResponse costResponse = CostResponse.newBuilder()
+        // Gets the sum of all the miles driven per week by the car
+                .setCost(req.getMonday() + req.getTuesday() + req.getWednesday() + req.getThursday()
+                          + req.getFriday() / req.getMpg())
+                .build();
+        
+        //sends the response
 
-            @Override
-            public void onNext(FindMaximumRequest value) {
-                int currentNumber = value.getNumber();
-                 //if new number is great than current maxium
-                if (currentNumber > currentMaximum) {
-                    // current maxium has a new value
-                    currentMaximum = currentNumber;
-                    responseObserver.onNext(
-                            FindMaximumResponse.newBuilder()
-                                    .setMaximum(currentNumber)
-                                    .build()
-                                    // anytime we recieve a current number that is greater than current maximum
-                                    //we will increase the current maximum and send back the response
-                    );
-                } else {
-                }
-            }
+        responseObserver.onNext(costResponse);
 
-            @Override //close request
-            public void onError(Throwable t) {
-                responseObserver.onCompleted();
-            }
-
-            @Override
-            public void onCompleted() {
-                // send the current last maximum
-                responseObserver.onNext(
-                        FindMaximumResponse.newBuilder()
-                                .setMaximum(currentMaximum)
-                                .build());
-            
-                //send the last current maxium
-                // the server is done sending data
-                responseObserver.onCompleted();
-            }
-        };
+        // rpc call is completed
+        responseObserver.onCompleted();
 
     }
-  
-     
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
         }
-  
     
 }   

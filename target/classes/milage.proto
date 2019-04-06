@@ -12,25 +12,45 @@ option java_outer_classname = "MilageProto";
 // The speaker service definition.
 service MilageService {    
 //uranary
+   rpc  Welcome (WelcomeRequest) returns (WelcomeResponse){};
    rpc TotalMiles (DaysRequest) returns (TotalResponse) {};
+//client streaming
    rpc AverageMiles(stream DaysRequest) returns (AverageMilesResponse){};
-  //server streaming
+  //bidi streaming
    rpc FindMaxMilesTravelled(stream MaxMileRequest) returns (stream MaxMileResponse) {};
-  
+   rpc CalculateCost(DaysRequest) returns ( CostResponse) {};
 
  }
+
+
+//uranary 
+message Welcome {
+    string greetuser = 1;
+   
+}
+
+message WelcomeRequest {
+    Welcome welcome = 1;
+}
+
+message WelcomeResponse {
+    string greeteduser = 1;
+}
+
 
 
 // Clientstream average
 
 message DaysRequest {
-    int32 monday = 1;
-    int32 tuesday = 2;
-    int32 wednesday = 3;
-    int32 thursday = 4;
-    int32 friday = 5;
-    int32 saturday = 6;
-    int32 sunday = 7;
+    double monday = 1;
+    double tuesday = 2;
+    double wednesday = 3;
+    double thursday = 4;
+    double friday = 5;
+    double saturday = 6;
+    double sunday = 7;
+    int32 mpg = 8;
+    double price = 9;
 
 }
 
@@ -48,4 +68,9 @@ message MaxMileRequest {
 
 message MaxMileResponse {
     int32 maxmiles = 1;
+}
+
+
+message CostResponse{
+   double cost =1;
 }

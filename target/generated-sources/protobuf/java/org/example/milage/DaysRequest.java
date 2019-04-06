@@ -16,13 +16,15 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private DaysRequest() {
-    monday_ = 0;
-    tuesday_ = 0;
-    wednesday_ = 0;
-    thursday_ = 0;
-    friday_ = 0;
-    saturday_ = 0;
-    sunday_ = 0;
+    monday_ = 0D;
+    tuesday_ = 0D;
+    wednesday_ = 0D;
+    thursday_ = 0D;
+    friday_ = 0D;
+    saturday_ = 0D;
+    sunday_ = 0D;
+    mpg_ = 0;
+    price_ = 0D;
   }
 
   @java.lang.Override
@@ -49,39 +51,49 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 8: {
+          case 9: {
 
-            monday_ = input.readInt32();
+            monday_ = input.readDouble();
             break;
           }
-          case 16: {
+          case 17: {
 
-            tuesday_ = input.readInt32();
+            tuesday_ = input.readDouble();
             break;
           }
-          case 24: {
+          case 25: {
 
-            wednesday_ = input.readInt32();
+            wednesday_ = input.readDouble();
             break;
           }
-          case 32: {
+          case 33: {
 
-            thursday_ = input.readInt32();
+            thursday_ = input.readDouble();
             break;
           }
-          case 40: {
+          case 41: {
 
-            friday_ = input.readInt32();
+            friday_ = input.readDouble();
             break;
           }
-          case 48: {
+          case 49: {
 
-            saturday_ = input.readInt32();
+            saturday_ = input.readDouble();
             break;
           }
-          case 56: {
+          case 57: {
 
-            sunday_ = input.readInt32();
+            sunday_ = input.readDouble();
+            break;
+          }
+          case 64: {
+
+            mpg_ = input.readInt32();
+            break;
+          }
+          case 73: {
+
+            price_ = input.readDouble();
             break;
           }
           default: {
@@ -117,66 +129,84 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int MONDAY_FIELD_NUMBER = 1;
-  private int monday_;
+  private double monday_;
   /**
-   * <code>int32 monday = 1;</code>
+   * <code>double monday = 1;</code>
    */
-  public int getMonday() {
+  public double getMonday() {
     return monday_;
   }
 
   public static final int TUESDAY_FIELD_NUMBER = 2;
-  private int tuesday_;
+  private double tuesday_;
   /**
-   * <code>int32 tuesday = 2;</code>
+   * <code>double tuesday = 2;</code>
    */
-  public int getTuesday() {
+  public double getTuesday() {
     return tuesday_;
   }
 
   public static final int WEDNESDAY_FIELD_NUMBER = 3;
-  private int wednesday_;
+  private double wednesday_;
   /**
-   * <code>int32 wednesday = 3;</code>
+   * <code>double wednesday = 3;</code>
    */
-  public int getWednesday() {
+  public double getWednesday() {
     return wednesday_;
   }
 
   public static final int THURSDAY_FIELD_NUMBER = 4;
-  private int thursday_;
+  private double thursday_;
   /**
-   * <code>int32 thursday = 4;</code>
+   * <code>double thursday = 4;</code>
    */
-  public int getThursday() {
+  public double getThursday() {
     return thursday_;
   }
 
   public static final int FRIDAY_FIELD_NUMBER = 5;
-  private int friday_;
+  private double friday_;
   /**
-   * <code>int32 friday = 5;</code>
+   * <code>double friday = 5;</code>
    */
-  public int getFriday() {
+  public double getFriday() {
     return friday_;
   }
 
   public static final int SATURDAY_FIELD_NUMBER = 6;
-  private int saturday_;
+  private double saturday_;
   /**
-   * <code>int32 saturday = 6;</code>
+   * <code>double saturday = 6;</code>
    */
-  public int getSaturday() {
+  public double getSaturday() {
     return saturday_;
   }
 
   public static final int SUNDAY_FIELD_NUMBER = 7;
-  private int sunday_;
+  private double sunday_;
   /**
-   * <code>int32 sunday = 7;</code>
+   * <code>double sunday = 7;</code>
    */
-  public int getSunday() {
+  public double getSunday() {
     return sunday_;
+  }
+
+  public static final int MPG_FIELD_NUMBER = 8;
+  private int mpg_;
+  /**
+   * <code>int32 mpg = 8;</code>
+   */
+  public int getMpg() {
+    return mpg_;
+  }
+
+  public static final int PRICE_FIELD_NUMBER = 9;
+  private double price_;
+  /**
+   * <code>double price = 9;</code>
+   */
+  public double getPrice() {
+    return price_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -193,26 +223,32 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (monday_ != 0) {
-      output.writeInt32(1, monday_);
+    if (monday_ != 0D) {
+      output.writeDouble(1, monday_);
     }
-    if (tuesday_ != 0) {
-      output.writeInt32(2, tuesday_);
+    if (tuesday_ != 0D) {
+      output.writeDouble(2, tuesday_);
     }
-    if (wednesday_ != 0) {
-      output.writeInt32(3, wednesday_);
+    if (wednesday_ != 0D) {
+      output.writeDouble(3, wednesday_);
     }
-    if (thursday_ != 0) {
-      output.writeInt32(4, thursday_);
+    if (thursday_ != 0D) {
+      output.writeDouble(4, thursday_);
     }
-    if (friday_ != 0) {
-      output.writeInt32(5, friday_);
+    if (friday_ != 0D) {
+      output.writeDouble(5, friday_);
     }
-    if (saturday_ != 0) {
-      output.writeInt32(6, saturday_);
+    if (saturday_ != 0D) {
+      output.writeDouble(6, saturday_);
     }
-    if (sunday_ != 0) {
-      output.writeInt32(7, sunday_);
+    if (sunday_ != 0D) {
+      output.writeDouble(7, sunday_);
+    }
+    if (mpg_ != 0) {
+      output.writeInt32(8, mpg_);
+    }
+    if (price_ != 0D) {
+      output.writeDouble(9, price_);
     }
     unknownFields.writeTo(output);
   }
@@ -223,33 +259,41 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (monday_ != 0) {
+    if (monday_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(1, monday_);
+        .computeDoubleSize(1, monday_);
     }
-    if (tuesday_ != 0) {
+    if (tuesday_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(2, tuesday_);
+        .computeDoubleSize(2, tuesday_);
     }
-    if (wednesday_ != 0) {
+    if (wednesday_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(3, wednesday_);
+        .computeDoubleSize(3, wednesday_);
     }
-    if (thursday_ != 0) {
+    if (thursday_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(4, thursday_);
+        .computeDoubleSize(4, thursday_);
     }
-    if (friday_ != 0) {
+    if (friday_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(5, friday_);
+        .computeDoubleSize(5, friday_);
     }
-    if (saturday_ != 0) {
+    if (saturday_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(6, saturday_);
+        .computeDoubleSize(6, saturday_);
     }
-    if (sunday_ != 0) {
+    if (sunday_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(7, sunday_);
+        .computeDoubleSize(7, sunday_);
+    }
+    if (mpg_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(8, mpg_);
+    }
+    if (price_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(9, price_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -267,20 +311,40 @@ private static final long serialVersionUID = 0L;
     org.example.milage.DaysRequest other = (org.example.milage.DaysRequest) obj;
 
     boolean result = true;
-    result = result && (getMonday()
-        == other.getMonday());
-    result = result && (getTuesday()
-        == other.getTuesday());
-    result = result && (getWednesday()
-        == other.getWednesday());
-    result = result && (getThursday()
-        == other.getThursday());
-    result = result && (getFriday()
-        == other.getFriday());
-    result = result && (getSaturday()
-        == other.getSaturday());
-    result = result && (getSunday()
-        == other.getSunday());
+    result = result && (
+        java.lang.Double.doubleToLongBits(getMonday())
+        == java.lang.Double.doubleToLongBits(
+            other.getMonday()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getTuesday())
+        == java.lang.Double.doubleToLongBits(
+            other.getTuesday()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getWednesday())
+        == java.lang.Double.doubleToLongBits(
+            other.getWednesday()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getThursday())
+        == java.lang.Double.doubleToLongBits(
+            other.getThursday()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getFriday())
+        == java.lang.Double.doubleToLongBits(
+            other.getFriday()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getSaturday())
+        == java.lang.Double.doubleToLongBits(
+            other.getSaturday()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getSunday())
+        == java.lang.Double.doubleToLongBits(
+            other.getSunday()));
+    result = result && (getMpg()
+        == other.getMpg());
+    result = result && (
+        java.lang.Double.doubleToLongBits(getPrice())
+        == java.lang.Double.doubleToLongBits(
+            other.getPrice()));
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -293,19 +357,31 @@ private static final long serialVersionUID = 0L;
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + MONDAY_FIELD_NUMBER;
-    hash = (53 * hash) + getMonday();
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getMonday()));
     hash = (37 * hash) + TUESDAY_FIELD_NUMBER;
-    hash = (53 * hash) + getTuesday();
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getTuesday()));
     hash = (37 * hash) + WEDNESDAY_FIELD_NUMBER;
-    hash = (53 * hash) + getWednesday();
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getWednesday()));
     hash = (37 * hash) + THURSDAY_FIELD_NUMBER;
-    hash = (53 * hash) + getThursday();
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getThursday()));
     hash = (37 * hash) + FRIDAY_FIELD_NUMBER;
-    hash = (53 * hash) + getFriday();
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getFriday()));
     hash = (37 * hash) + SATURDAY_FIELD_NUMBER;
-    hash = (53 * hash) + getSaturday();
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getSaturday()));
     hash = (37 * hash) + SUNDAY_FIELD_NUMBER;
-    hash = (53 * hash) + getSunday();
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getSunday()));
+    hash = (37 * hash) + MPG_FIELD_NUMBER;
+    hash = (53 * hash) + getMpg();
+    hash = (37 * hash) + PRICE_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getPrice()));
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -439,19 +515,23 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      monday_ = 0;
+      monday_ = 0D;
 
-      tuesday_ = 0;
+      tuesday_ = 0D;
 
-      wednesday_ = 0;
+      wednesday_ = 0D;
 
-      thursday_ = 0;
+      thursday_ = 0D;
 
-      friday_ = 0;
+      friday_ = 0D;
 
-      saturday_ = 0;
+      saturday_ = 0D;
 
-      sunday_ = 0;
+      sunday_ = 0D;
+
+      mpg_ = 0;
+
+      price_ = 0D;
 
       return this;
     }
@@ -486,6 +566,8 @@ private static final long serialVersionUID = 0L;
       result.friday_ = friday_;
       result.saturday_ = saturday_;
       result.sunday_ = sunday_;
+      result.mpg_ = mpg_;
+      result.price_ = price_;
       onBuilt();
       return result;
     }
@@ -534,26 +616,32 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(org.example.milage.DaysRequest other) {
       if (other == org.example.milage.DaysRequest.getDefaultInstance()) return this;
-      if (other.getMonday() != 0) {
+      if (other.getMonday() != 0D) {
         setMonday(other.getMonday());
       }
-      if (other.getTuesday() != 0) {
+      if (other.getTuesday() != 0D) {
         setTuesday(other.getTuesday());
       }
-      if (other.getWednesday() != 0) {
+      if (other.getWednesday() != 0D) {
         setWednesday(other.getWednesday());
       }
-      if (other.getThursday() != 0) {
+      if (other.getThursday() != 0D) {
         setThursday(other.getThursday());
       }
-      if (other.getFriday() != 0) {
+      if (other.getFriday() != 0D) {
         setFriday(other.getFriday());
       }
-      if (other.getSaturday() != 0) {
+      if (other.getSaturday() != 0D) {
         setSaturday(other.getSaturday());
       }
-      if (other.getSunday() != 0) {
+      if (other.getSunday() != 0D) {
         setSunday(other.getSunday());
+      }
+      if (other.getMpg() != 0) {
+        setMpg(other.getMpg());
+      }
+      if (other.getPrice() != 0D) {
+        setPrice(other.getPrice());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -584,184 +672,236 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int monday_ ;
+    private double monday_ ;
     /**
-     * <code>int32 monday = 1;</code>
+     * <code>double monday = 1;</code>
      */
-    public int getMonday() {
+    public double getMonday() {
       return monday_;
     }
     /**
-     * <code>int32 monday = 1;</code>
+     * <code>double monday = 1;</code>
      */
-    public Builder setMonday(int value) {
+    public Builder setMonday(double value) {
       
       monday_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 monday = 1;</code>
+     * <code>double monday = 1;</code>
      */
     public Builder clearMonday() {
       
-      monday_ = 0;
+      monday_ = 0D;
       onChanged();
       return this;
     }
 
-    private int tuesday_ ;
+    private double tuesday_ ;
     /**
-     * <code>int32 tuesday = 2;</code>
+     * <code>double tuesday = 2;</code>
      */
-    public int getTuesday() {
+    public double getTuesday() {
       return tuesday_;
     }
     /**
-     * <code>int32 tuesday = 2;</code>
+     * <code>double tuesday = 2;</code>
      */
-    public Builder setTuesday(int value) {
+    public Builder setTuesday(double value) {
       
       tuesday_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 tuesday = 2;</code>
+     * <code>double tuesday = 2;</code>
      */
     public Builder clearTuesday() {
       
-      tuesday_ = 0;
+      tuesday_ = 0D;
       onChanged();
       return this;
     }
 
-    private int wednesday_ ;
+    private double wednesday_ ;
     /**
-     * <code>int32 wednesday = 3;</code>
+     * <code>double wednesday = 3;</code>
      */
-    public int getWednesday() {
+    public double getWednesday() {
       return wednesday_;
     }
     /**
-     * <code>int32 wednesday = 3;</code>
+     * <code>double wednesday = 3;</code>
      */
-    public Builder setWednesday(int value) {
+    public Builder setWednesday(double value) {
       
       wednesday_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 wednesday = 3;</code>
+     * <code>double wednesday = 3;</code>
      */
     public Builder clearWednesday() {
       
-      wednesday_ = 0;
+      wednesday_ = 0D;
       onChanged();
       return this;
     }
 
-    private int thursday_ ;
+    private double thursday_ ;
     /**
-     * <code>int32 thursday = 4;</code>
+     * <code>double thursday = 4;</code>
      */
-    public int getThursday() {
+    public double getThursday() {
       return thursday_;
     }
     /**
-     * <code>int32 thursday = 4;</code>
+     * <code>double thursday = 4;</code>
      */
-    public Builder setThursday(int value) {
+    public Builder setThursday(double value) {
       
       thursday_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 thursday = 4;</code>
+     * <code>double thursday = 4;</code>
      */
     public Builder clearThursday() {
       
-      thursday_ = 0;
+      thursday_ = 0D;
       onChanged();
       return this;
     }
 
-    private int friday_ ;
+    private double friday_ ;
     /**
-     * <code>int32 friday = 5;</code>
+     * <code>double friday = 5;</code>
      */
-    public int getFriday() {
+    public double getFriday() {
       return friday_;
     }
     /**
-     * <code>int32 friday = 5;</code>
+     * <code>double friday = 5;</code>
      */
-    public Builder setFriday(int value) {
+    public Builder setFriday(double value) {
       
       friday_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 friday = 5;</code>
+     * <code>double friday = 5;</code>
      */
     public Builder clearFriday() {
       
-      friday_ = 0;
+      friday_ = 0D;
       onChanged();
       return this;
     }
 
-    private int saturday_ ;
+    private double saturday_ ;
     /**
-     * <code>int32 saturday = 6;</code>
+     * <code>double saturday = 6;</code>
      */
-    public int getSaturday() {
+    public double getSaturday() {
       return saturday_;
     }
     /**
-     * <code>int32 saturday = 6;</code>
+     * <code>double saturday = 6;</code>
      */
-    public Builder setSaturday(int value) {
+    public Builder setSaturday(double value) {
       
       saturday_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 saturday = 6;</code>
+     * <code>double saturday = 6;</code>
      */
     public Builder clearSaturday() {
       
-      saturday_ = 0;
+      saturday_ = 0D;
       onChanged();
       return this;
     }
 
-    private int sunday_ ;
+    private double sunday_ ;
     /**
-     * <code>int32 sunday = 7;</code>
+     * <code>double sunday = 7;</code>
      */
-    public int getSunday() {
+    public double getSunday() {
       return sunday_;
     }
     /**
-     * <code>int32 sunday = 7;</code>
+     * <code>double sunday = 7;</code>
      */
-    public Builder setSunday(int value) {
+    public Builder setSunday(double value) {
       
       sunday_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 sunday = 7;</code>
+     * <code>double sunday = 7;</code>
      */
     public Builder clearSunday() {
       
-      sunday_ = 0;
+      sunday_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private int mpg_ ;
+    /**
+     * <code>int32 mpg = 8;</code>
+     */
+    public int getMpg() {
+      return mpg_;
+    }
+    /**
+     * <code>int32 mpg = 8;</code>
+     */
+    public Builder setMpg(int value) {
+      
+      mpg_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int32 mpg = 8;</code>
+     */
+    public Builder clearMpg() {
+      
+      mpg_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private double price_ ;
+    /**
+     * <code>double price = 9;</code>
+     */
+    public double getPrice() {
+      return price_;
+    }
+    /**
+     * <code>double price = 9;</code>
+     */
+    public Builder setPrice(double value) {
+      
+      price_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>double price = 9;</code>
+     */
+    public Builder clearPrice() {
+      
+      price_ = 0D;
       onChanged();
       return this;
     }

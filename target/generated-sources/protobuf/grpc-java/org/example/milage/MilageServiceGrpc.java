@@ -30,6 +30,38 @@ public final class MilageServiceGrpc {
   public static final String SERVICE_NAME = "milage.MilageService";
 
   // Static method descriptors that strictly reflect the proto.
+  private static volatile io.grpc.MethodDescriptor<org.example.milage.WelcomeRequest,
+      org.example.milage.WelcomeResponse> getWelcomeMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "Welcome",
+      requestType = org.example.milage.WelcomeRequest.class,
+      responseType = org.example.milage.WelcomeResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<org.example.milage.WelcomeRequest,
+      org.example.milage.WelcomeResponse> getWelcomeMethod() {
+    io.grpc.MethodDescriptor<org.example.milage.WelcomeRequest, org.example.milage.WelcomeResponse> getWelcomeMethod;
+    if ((getWelcomeMethod = MilageServiceGrpc.getWelcomeMethod) == null) {
+      synchronized (MilageServiceGrpc.class) {
+        if ((getWelcomeMethod = MilageServiceGrpc.getWelcomeMethod) == null) {
+          MilageServiceGrpc.getWelcomeMethod = getWelcomeMethod = 
+              io.grpc.MethodDescriptor.<org.example.milage.WelcomeRequest, org.example.milage.WelcomeResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "milage.MilageService", "Welcome"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.example.milage.WelcomeRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.example.milage.WelcomeResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new MilageServiceMethodDescriptorSupplier("Welcome"))
+                  .build();
+          }
+        }
+     }
+     return getWelcomeMethod;
+  }
+
   private static volatile io.grpc.MethodDescriptor<org.example.milage.DaysRequest,
       org.example.milage.TotalResponse> getTotalMilesMethod;
 
@@ -126,6 +158,38 @@ public final class MilageServiceGrpc {
      return getFindMaxMilesTravelledMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<org.example.milage.DaysRequest,
+      org.example.milage.CostResponse> getCalculateCostMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "CalculateCost",
+      requestType = org.example.milage.DaysRequest.class,
+      responseType = org.example.milage.CostResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<org.example.milage.DaysRequest,
+      org.example.milage.CostResponse> getCalculateCostMethod() {
+    io.grpc.MethodDescriptor<org.example.milage.DaysRequest, org.example.milage.CostResponse> getCalculateCostMethod;
+    if ((getCalculateCostMethod = MilageServiceGrpc.getCalculateCostMethod) == null) {
+      synchronized (MilageServiceGrpc.class) {
+        if ((getCalculateCostMethod = MilageServiceGrpc.getCalculateCostMethod) == null) {
+          MilageServiceGrpc.getCalculateCostMethod = getCalculateCostMethod = 
+              io.grpc.MethodDescriptor.<org.example.milage.DaysRequest, org.example.milage.CostResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "milage.MilageService", "CalculateCost"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.example.milage.DaysRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.example.milage.CostResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new MilageServiceMethodDescriptorSupplier("CalculateCost"))
+                  .build();
+          }
+        }
+     }
+     return getCalculateCostMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -161,12 +225,22 @@ public final class MilageServiceGrpc {
      *uranary
      * </pre>
      */
+    public void welcome(org.example.milage.WelcomeRequest request,
+        io.grpc.stub.StreamObserver<org.example.milage.WelcomeResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getWelcomeMethod(), responseObserver);
+    }
+
+    /**
+     */
     public void totalMiles(org.example.milage.DaysRequest request,
         io.grpc.stub.StreamObserver<org.example.milage.TotalResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getTotalMilesMethod(), responseObserver);
     }
 
     /**
+     * <pre>
+     *client streaming
+     * </pre>
      */
     public io.grpc.stub.StreamObserver<org.example.milage.DaysRequest> averageMiles(
         io.grpc.stub.StreamObserver<org.example.milage.AverageMilesResponse> responseObserver) {
@@ -175,7 +249,7 @@ public final class MilageServiceGrpc {
 
     /**
      * <pre>
-     *server streaming
+     *bidi streaming
      * </pre>
      */
     public io.grpc.stub.StreamObserver<org.example.milage.MaxMileRequest> findMaxMilesTravelled(
@@ -183,8 +257,22 @@ public final class MilageServiceGrpc {
       return asyncUnimplementedStreamingCall(getFindMaxMilesTravelledMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void calculateCost(org.example.milage.DaysRequest request,
+        io.grpc.stub.StreamObserver<org.example.milage.CostResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getCalculateCostMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+          .addMethod(
+            getWelcomeMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                org.example.milage.WelcomeRequest,
+                org.example.milage.WelcomeResponse>(
+                  this, METHODID_WELCOME)))
           .addMethod(
             getTotalMilesMethod(),
             asyncUnaryCall(
@@ -206,6 +294,13 @@ public final class MilageServiceGrpc {
                 org.example.milage.MaxMileRequest,
                 org.example.milage.MaxMileResponse>(
                   this, METHODID_FIND_MAX_MILES_TRAVELLED)))
+          .addMethod(
+            getCalculateCostMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                org.example.milage.DaysRequest,
+                org.example.milage.CostResponse>(
+                  this, METHODID_CALCULATE_COST)))
           .build();
     }
   }
@@ -236,6 +331,14 @@ public final class MilageServiceGrpc {
      *uranary
      * </pre>
      */
+    public void welcome(org.example.milage.WelcomeRequest request,
+        io.grpc.stub.StreamObserver<org.example.milage.WelcomeResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getWelcomeMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
     public void totalMiles(org.example.milage.DaysRequest request,
         io.grpc.stub.StreamObserver<org.example.milage.TotalResponse> responseObserver) {
       asyncUnaryCall(
@@ -243,6 +346,9 @@ public final class MilageServiceGrpc {
     }
 
     /**
+     * <pre>
+     *client streaming
+     * </pre>
      */
     public io.grpc.stub.StreamObserver<org.example.milage.DaysRequest> averageMiles(
         io.grpc.stub.StreamObserver<org.example.milage.AverageMilesResponse> responseObserver) {
@@ -252,13 +358,21 @@ public final class MilageServiceGrpc {
 
     /**
      * <pre>
-     *server streaming
+     *bidi streaming
      * </pre>
      */
     public io.grpc.stub.StreamObserver<org.example.milage.MaxMileRequest> findMaxMilesTravelled(
         io.grpc.stub.StreamObserver<org.example.milage.MaxMileResponse> responseObserver) {
       return asyncBidiStreamingCall(
           getChannel().newCall(getFindMaxMilesTravelledMethod(), getCallOptions()), responseObserver);
+    }
+
+    /**
+     */
+    public void calculateCost(org.example.milage.DaysRequest request,
+        io.grpc.stub.StreamObserver<org.example.milage.CostResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getCalculateCostMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -288,9 +402,23 @@ public final class MilageServiceGrpc {
      *uranary
      * </pre>
      */
+    public org.example.milage.WelcomeResponse welcome(org.example.milage.WelcomeRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getWelcomeMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
     public org.example.milage.TotalResponse totalMiles(org.example.milage.DaysRequest request) {
       return blockingUnaryCall(
           getChannel(), getTotalMilesMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public org.example.milage.CostResponse calculateCost(org.example.milage.DaysRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getCalculateCostMethod(), getCallOptions(), request);
     }
   }
 
@@ -320,16 +448,34 @@ public final class MilageServiceGrpc {
      *uranary
      * </pre>
      */
+    public com.google.common.util.concurrent.ListenableFuture<org.example.milage.WelcomeResponse> welcome(
+        org.example.milage.WelcomeRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getWelcomeMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
     public com.google.common.util.concurrent.ListenableFuture<org.example.milage.TotalResponse> totalMiles(
         org.example.milage.DaysRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getTotalMilesMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<org.example.milage.CostResponse> calculateCost(
+        org.example.milage.DaysRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getCalculateCostMethod(), getCallOptions()), request);
+    }
   }
 
-  private static final int METHODID_TOTAL_MILES = 0;
-  private static final int METHODID_AVERAGE_MILES = 1;
-  private static final int METHODID_FIND_MAX_MILES_TRAVELLED = 2;
+  private static final int METHODID_WELCOME = 0;
+  private static final int METHODID_TOTAL_MILES = 1;
+  private static final int METHODID_CALCULATE_COST = 2;
+  private static final int METHODID_AVERAGE_MILES = 3;
+  private static final int METHODID_FIND_MAX_MILES_TRAVELLED = 4;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -348,9 +494,17 @@ public final class MilageServiceGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_WELCOME:
+          serviceImpl.welcome((org.example.milage.WelcomeRequest) request,
+              (io.grpc.stub.StreamObserver<org.example.milage.WelcomeResponse>) responseObserver);
+          break;
         case METHODID_TOTAL_MILES:
           serviceImpl.totalMiles((org.example.milage.DaysRequest) request,
               (io.grpc.stub.StreamObserver<org.example.milage.TotalResponse>) responseObserver);
+          break;
+        case METHODID_CALCULATE_COST:
+          serviceImpl.calculateCost((org.example.milage.DaysRequest) request,
+              (io.grpc.stub.StreamObserver<org.example.milage.CostResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -419,9 +573,11 @@ public final class MilageServiceGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new MilageServiceFileDescriptorSupplier())
+              .addMethod(getWelcomeMethod())
               .addMethod(getTotalMilesMethod())
               .addMethod(getAverageMilesMethod())
               .addMethod(getFindMaxMilesTravelledMethod())
+              .addMethod(getCalculateCostMethod())
               .build();
         }
       }

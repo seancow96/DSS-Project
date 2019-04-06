@@ -36,9 +36,9 @@ import serviceui.ServiceUI;
 /**
  * Server that manages startup/shutdown of a {@code Greeter} server.
  */
-public class PhoneServer {
+public class PhoneServiceBack {
 
-    private static final Logger logger = Logger.getLogger(PhoneServer.class.getName());
+    private static final Logger logger = Logger.getLogger(PhoneServiceBack.class.getName());
 
     /* The port on which the server should run */
     private int port = 50056;
@@ -47,10 +47,11 @@ public class PhoneServer {
     private void start() throws Exception {
         server = ServerBuilder.forPort(port)
                 .addService(new PhoneServiceImpl())
+                .addService(new RadioServiceImpl())
                 .build()
                 .start();
-        JmDNSRegistrationHelper helper2 = new JmDNSRegistrationHelper("Seans", "_phone._udp.local.", "", port);
-      // JmDNSRegistrationHelper helper2 = new JmDNSRegistrationHelper("Seans", "_radio._udp.local.", "", port);
+        JmDNSRegistrationHelper helper = new JmDNSRegistrationHelper("Seans", "_phone._udp.local.", "", port);
+        JmDNSRegistrationHelper helper2 = new JmDNSRegistrationHelper("Seans", "_radio._udp.local.", "", port);
 
 
 
@@ -61,7 +62,7 @@ public class PhoneServer {
             public void run() {
                 // Use stderr here since the logger may have been reset by its JVM shutdown hook.
                 System.err.println("*** shutting down gRPC server since JVM is shutting down");
-                PhoneServer.this.stop();
+                PhoneServiceBack.this.stop();
                 System.err.println("*** server shut down");
             }
         });
@@ -87,7 +88,7 @@ public class PhoneServer {
      * Main launches the server from the command line.
      */
     public static void main(String[] args) throws Exception {
-        final PhoneServer server = new PhoneServer();
+        final PhoneServiceBack server = new PhoneServiceBack();
         server.start();
         server.blockUntilShutdown();
     }
@@ -96,7 +97,8 @@ public class PhoneServer {
         private class PhoneServiceImpl extends PhoneServiceGrpc.PhoneServiceImplBase {
             
             
-   
+        String nextStation;
+        String previousStation;
         private List<Song> songs;
         private Printer ui;
         
@@ -209,6 +211,109 @@ public class PhoneServer {
   
         }
     
+    
+
+    private class RadioServiceImpl extends RadioServiceGrpc.RadioServiceImplBase {
+
+        private Printer ui;
+        private int count;
+       
+
+        public RadioServiceImpl() {
+         
+            String name = "Seans";
+            String serviceType = "_radio._udp.local.";
+            ui = new ServiceUI(name + serviceType);
+           
+
+        }
+
+
+         @Override
+    public void radioOn(RadioRequest request, StreamObserver<RadioResponse> responseObserver) {
+        // extract the fields we need
+        Radio radio = request.getRadio(); 
+        String TurnRadioOn = radio.getTurnradioon();
+
+        // create the response
+        String radiostate = "The radio is " + TurnRadioOn;
+        RadioResponse response = RadioResponse.newBuilder()
+                .setRadiostate(radiostate)
+                .build();
+                 ui.append(response.toString());
+
+        // send the response
+        responseObserver.onNext(response);
+
+        // complete the RPC call
+        responseObserver.onCompleted();
+    }
+    
+           @Override
+    public void radioOff(RadioRequest request, StreamObserver<RadioResponse> responseObserver) {
+        // extract the fields we need
+        Radio radio = request.getRadio(); 
+        String TurnRadioOff = radio.getTurnradiooff();
+
+        // create the response
+        String radiostate = "The radio is " + TurnRadioOff;
+        RadioResponse response = RadioResponse.newBuilder()
+                .setRadiostate(radiostate)
+                .build();
+                 ui.append(response.toString());
+
+        // send the response
+        responseObserver.onNext(response);
+
+        // complete the RPC call
+        responseObserver.onCompleted();
+    }
+    
+    
+       @Override
+    public StreamObserver<VolumeRequest> volumeUp(final StreamObserver<VolumeResponse> responseObserver) {
+
+        StreamObserver<VolumeRequest> requestObserver = new StreamObserver<VolumeRequest>() {
+            // run sum and count
+            // everytime we recieve a request we increment the sum and the count
+            int sum = 0;
+            int count = 0;
+      //for every message we get, we get the sum and the count and increment it 
+            @Override
+            public void onNext(VolumeRequest value) {
+                // increments the sum
+               sum += value.getNumber();
+               
+               if (sum < 10) {
+                   sum += 1;
+            }
+            }
+           
+
+            @Override
+            public void onError(Throwable t) {
+
+            }
+
+            @Override
+            public void onCompleted() {
+                // computes average sum divided by count
+                double currentvolume =  sum+=1 ;
+                //computed average and send the response
+                responseObserver.onNext(
+                        VolumeResponse.newBuilder().setCurrentvolume(currentvolume)
+                                .build());
+                                //tell the client we are done
+                responseObserver.onCompleted();
+            }
+        };
+
+        return requestObserver;
+    }
+    
+ 
+
    
+}
     
 }

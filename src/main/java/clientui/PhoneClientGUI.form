@@ -23,41 +23,35 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="358" max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" max="32767" attributes="0"/>
+              <Component id="PlaySong" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="PhoneOn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="ConnectSpeaker" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="IncreaseVolume" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jScrollPane1" min="-2" pref="358" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <Component id="jPanel1" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="PhoneOff" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="RadioOn" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="DecreaseVolume" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                          <Component id="PlaySong" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="RadioOff" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="RandomStation" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="PhoneOn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="ConnectSpeaker" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="RadioOn" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="PhoneOff" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="RadioOff" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="15" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -71,21 +65,17 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="PhoneOn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="RadioOn" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="ConnectSpeaker" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="IncreaseVolume" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="PhoneOff" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="DecreaseVolume" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="RadioOn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="RadioOff" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="RadioOff" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="PlaySong" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="RandomStation" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="PlaySong" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -103,7 +93,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -143,31 +133,15 @@
     </Component>
     <Component class="javax.swing.JButton" name="ConnectSpeaker">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Connect Radio"/>
+        <Property name="text" type="java.lang.String" value="TurnBluetoothOn"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ConnectSpeakerActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="IncreaseVolume">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Volume Up"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="IncreaseVolumeActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="DecreaseVolume">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Volume Down"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DecreaseVolumeActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="PlaySong">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Play Song"/>
+        <Property name="text" type="java.lang.String" value="Play MP3"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PlaySongActionPerformed"/>
@@ -189,13 +163,10 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RadioOffActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="RandomStation">
+    <Component class="javax.swing.JButton" name="jButton3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Random Station"/>
+        <Property name="text" type="java.lang.String" value="Connect"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RandomStationActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>
