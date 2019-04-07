@@ -1,19 +1,23 @@
 package client;
 
-
+import javax.swing.JPanel;
+import clientui.PhoneClientGUI;
+import clientui.MilageGUI;
+import com.google.protobuf.Empty;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.example.milage.AverageMilesResponse;
 import org.example.milage.CostResponse;
 import org.example.milage.DaysRequest;
-import org.example.milage.MaxMileRequest;
-import org.example.milage.MaxMileResponse;
 import org.example.milage.MilageServiceGrpc;
 import org.example.milage.TotalResponse;
 import org.example.milage.Welcome;
@@ -24,34 +28,33 @@ import org.example.milage.WelcomeResponse;
 
 
 
-public class CarMilageClient implements ServiceObserver {
+public class MilageClient implements ServiceObserver {
 
+    protected MilageGUI ui;
     protected ServiceDescription current;
     private final String serviceType;
     private final String name;
+    private static final Logger logger = Logger.getLogger(MilageClient.class.getName());
     private ManagedChannel channel;
-    private MilageServiceGrpc.MilageServiceBlockingStub blockingStub;
+    private MilageServiceGrpc.MilageServiceBlockingStub blockingStub2;
 
 
 
     /**
      * Constructor.
      */
-      public CarMilageClient() {
-        serviceType = "_milage._udp.local.";
+    public MilageClient() {
+        serviceType = "_mile._udp.local.";
         name = "Seans";
         jmDNSServiceTracker clientManager = jmDNSServiceTracker.getInstance();
         clientManager.register(this);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-          
-           
+             //   ui = new TestServerGUI(TestClient.this);
+              //  ui.setVisible(true);
             }
         });
     }
-      
-     
-    
 
     String getServiceType() {
         return serviceType;
@@ -68,16 +71,17 @@ public class CarMilageClient implements ServiceObserver {
     }
 
     public void serviceAdded(ServiceDescription service) {
-          channel = ManagedChannelBuilder.forAddress(service.getAddress(), service.getPort())
-                .usePlaintext(true)
-                .build();
-        blockingStub = MilageServiceGrpc.newBlockingStub(channel);
+        
+        channel = ManagedChannelBuilder.forAddress(service.getAddress(), service.getPort())
+        .usePlaintext(true)
+        .build();
+        blockingStub2 = MilageServiceGrpc.newBlockingStub(channel);
+        //runs the channels
         welcome();
         totalMiles();
         averageMiles();
+        calculateCost();
       
-      
-        
     }
     public boolean interested(String type) {
         return serviceType.equals(type);
@@ -90,8 +94,11 @@ public class CarMilageClient implements ServiceObserver {
     public void shutdown() throws InterruptedException {
         channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
     }
- 
-      public void welcome() {
+
+  
+    
+    
+    public void welcome() {
 
          
         // created a protocol buffer greeting message
@@ -105,7 +112,7 @@ public class CarMilageClient implements ServiceObserver {
                 .build();
 
         // call the RPC and get back a GreetResponse (protocol buffers)
-            WelcomeResponse welcomeResponse = blockingStub.welcome(welcomeRequest);
+            WelcomeResponse welcomeResponse = blockingStub2.welcome(welcomeRequest);
         // call the RPC and get back a GreetResponse (protocol buffers)
         
         System.out.println(welcomeResponse.getGreeteduser());
@@ -241,16 +248,15 @@ public class CarMilageClient implements ServiceObserver {
 
     }
     
-     
-     
-    
+ 
+        
+ 
     public void switchService(String name) {
         // TODO
     }
 
     public static void main(String[] args) {
-        new CarMilageClient();
-
+        new MilageClient();
     }
 
 }

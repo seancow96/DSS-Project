@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import java.util.logging.Logger;
 import org.example.milage.AverageMilesResponse;
 import org.example.milage.CostResponse;
@@ -25,12 +26,12 @@ import serviceui.ServiceUI;
 /**
  * Server that manages startup/shutdown of a {@code Greeter} server.
  */
-public class CarMilageServer {
+public class MilageServer {
 
-    private static final Logger logger = Logger.getLogger(CarMilageServer.class.getName());
+    private static final Logger logger = Logger.getLogger(MilageServer.class.getName());
 
     /* The port on which the server should run */
-    private int port = 50055;
+    private int port = 50056;
     private Server server;
 
     private void start() throws Exception {
@@ -38,8 +39,10 @@ public class CarMilageServer {
                 .addService(new MilageServiceImpl())
                 .build()
                 .start();
-        JmDNSRegistrationHelper helper = new JmDNSRegistrationHelper("Seans", "_milage._udp.local.", "", port);
- 
+        //jdns
+        JmDNSRegistrationHelper helper2 = new JmDNSRegistrationHelper("Seans", "_mile._udp.local.", "", port);
+    
+
 
 
 
@@ -49,7 +52,7 @@ public class CarMilageServer {
             public void run() {
                 // Use stderr here since the logger may have been reset by its JVM shutdown hook.
                 System.err.println("*** shutting down gRPC server since JVM is shutting down");
-                CarMilageServer.this.stop();
+                MilageServer.this.stop();
                 System.err.println("*** server shut down");
             }
         });
@@ -75,7 +78,7 @@ public class CarMilageServer {
      * Main launches the server from the command line.
      */
     public static void main(String[] args) throws Exception {
-        final CarMilageServer server = new CarMilageServer();
+        final MilageServer server = new MilageServer();
         server.start();
         server.blockUntilShutdown();
     }
@@ -83,19 +86,21 @@ public class CarMilageServer {
     
         private class MilageServiceImpl extends MilageServiceGrpc.MilageServiceImplBase {
             
-
+            
+   //jdns
         private Printer ui;
         
           public MilageServiceImpl() {
           String name = "Seans";
-            String serviceType = "_milage._udp.local.";
+            String serviceType = "_mile._udp.local.";
             ui = new ServiceUI(name + serviceType);
-
+           
+            
              
  }
-            
-   
-    @Override
+
+         
+   @Override
     public void welcome(WelcomeRequest request, StreamObserver<WelcomeResponse> responseObserver) {
         // extract the fields we need
         Welcome welcome = request.getWelcome(); 
@@ -117,7 +122,8 @@ public class CarMilageServer {
           
           //https://learn.eartheasy.com/guides/how-to-calculate-gas-mileage/ ---formula for milages service
           //http://fuel-economy.co.uk/calc.html
-          
+    
+    
           
   //uranary
    @Override
@@ -133,7 +139,7 @@ public class CarMilageServer {
         //sends the response
 
         responseObserver.onNext(totalResponse);
-
+         ui.append(totalResponse.toString());
         // rpc call is completed
         responseObserver.onCompleted();
 
@@ -142,7 +148,7 @@ public class CarMilageServer {
     
     
 //client streaming 
-        
+       
              @Override
     public StreamObserver<DaysRequest> averageMiles(final StreamObserver<AverageMilesResponse> responseObserver) {
 
@@ -209,23 +215,13 @@ public class CarMilageServer {
         //sends the response
 
         responseObserver.onNext(costResponse);
+        ui.append(costResponse.toString());
 
         // rpc call is completed
         responseObserver.onCompleted();
 
     }
-   
+
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        }
-    
-}   
+}
+}

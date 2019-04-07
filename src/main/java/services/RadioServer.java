@@ -131,48 +131,7 @@ public class RadioServer {
         responseObserver.onCompleted();
     }
     
-    
-       @Override
-    public StreamObserver<VolumeRequest> volumeUp(final StreamObserver<VolumeResponse> responseObserver) {
-
-        StreamObserver<VolumeRequest> requestObserver = new StreamObserver<VolumeRequest>() {
-            // run sum and count
-            // everytime we recieve a request we increment the sum and the count
-            int sum = 0;
-            int count = 0;
-      //for every message we get, we get the sum and the count and increment it 
-            @Override
-            public void onNext(VolumeRequest value) {
-                // increments the sum
-               sum += value.getNumber();
-               
-               if (sum < 10) {
-                   sum += 1;
-            }
-            }
-           
-
-            @Override
-            public void onError(Throwable t) {
-
-            }
-
-            @Override
-            public void onCompleted() {
-                // computes average sum divided by count
-                double currentvolume =  sum+=1;
-                //computed average and send the response
-                responseObserver.onNext(
-                        VolumeResponse.newBuilder().setCurrentvolume(currentvolume)
-                                .build());
-                                //tell the client we are done
-                responseObserver.onCompleted();
-            }
-        };
-
-        return requestObserver;
-    }
-    
+   
  
 
    

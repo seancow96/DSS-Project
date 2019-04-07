@@ -266,10 +266,6 @@ public class PhoneClient implements ServiceObserver {
     
     
     
-    
-    
-    
-    
      public void connectdevice() {
         // create an asynchronous client
         PhoneServiceGrpc.PhoneServiceStub asyncClient = PhoneServiceGrpc.newStub(channel);
