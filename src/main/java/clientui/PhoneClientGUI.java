@@ -20,18 +20,13 @@ public class PhoneClientGUI extends javax.swing.JFrame implements Printer {
         this();
         this.client = aThis;
         PhoneOn.setEnabled(true);
-        PhoneOn.setForeground(Color.RED);
         PhoneOff.setEnabled(false);
-        PhoneOff.setForeground(Color.RED);
         PlaySong.setEnabled(false);
-        PlaySong.setForeground(Color.RED);
-        ConnectSpeaker.setEnabled(false);
-        ConnectSpeaker.setForeground(Color.ORANGE);
-        RadioOn.setEnabled(true);
-        RadioOn.setForeground(Color.ORANGE);
-        RadioOff.setEnabled(false);
-        RadioOff.setForeground(Color.ORANGE);
-      
+        Pause.setEnabled(false);
+        VolumeUp.setEnabled(false);
+        VolumeDown.setEnabled(false);
+
+
 
 
     }
@@ -53,13 +48,10 @@ public class PhoneClientGUI extends javax.swing.JFrame implements Printer {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         PhoneOff = new javax.swing.JButton();
-        ConnectSpeaker = new javax.swing.JButton();
         PlaySong = new javax.swing.JButton();
-        RadioOn = new javax.swing.JButton();
-        RadioOff = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Pause = new javax.swing.JButton();
+        VolumeUp = new javax.swing.JButton();
+        VolumeDown = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,13 +84,6 @@ public class PhoneClientGUI extends javax.swing.JFrame implements Printer {
             }
         });
 
-        ConnectSpeaker.setText("TurnBluetoothOn");
-        ConnectSpeaker.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConnectSpeakerActionPerformed(evt);
-            }
-        });
-
         PlaySong.setText("Play MP3");
         PlaySong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,38 +91,31 @@ public class PhoneClientGUI extends javax.swing.JFrame implements Printer {
             }
         });
 
-        RadioOn.setText("Radio On");
-        RadioOn.addActionListener(new java.awt.event.ActionListener() {
+        Pause.setText("Pause");
+        Pause.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RadioOnActionPerformed(evt);
+                PauseActionPerformed(evt);
             }
         });
 
-        RadioOff.setText("Radio Off");
-        RadioOff.addActionListener(new java.awt.event.ActionListener() {
+        VolumeUp.setText("volume up");
+        VolumeUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RadioOffActionPerformed(evt);
+                VolumeUpActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Connect");
-
-        jButton1.setText("Previous Channel");
-
-        jButton2.setText("Change Channel");
+        VolumeDown.setText("volume down");
+        VolumeDown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VolumeDownActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(PlaySong)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,18 +124,20 @@ public class PhoneClientGUI extends javax.swing.JFrame implements Printer {
                         .addGap(28, 28, 28)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(PhoneOn)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(PhoneOn)
+                            .addComponent(VolumeUp))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ConnectSpeaker)
-                        .addGap(18, 18, 18)
-                        .addComponent(RadioOn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(PhoneOff)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(RadioOff)
-                        .addContainerGap())))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(VolumeDown)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Pause))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(PhoneOff)
+                                .addGap(18, 18, 18)
+                                .addComponent(PlaySong)))
+                        .addContainerGap(102, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,20 +149,14 @@ public class PhoneClientGUI extends javax.swing.JFrame implements Printer {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(PhoneOn)
-                            .addComponent(RadioOn)
-                            .addComponent(ConnectSpeaker))
+                            .addComponent(PhoneOff)
+                            .addComponent(PlaySong))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(PhoneOff)
-                            .addComponent(RadioOff)
-                            .addComponent(jButton3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(PlaySong)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton1)
-                                .addComponent(jButton2)))
-                        .addGap(13, 13, 13))
+                            .addComponent(Pause)
+                            .addComponent(VolumeUp)
+                            .addComponent(VolumeDown))
+                        .addGap(48, 48, 48))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -192,11 +166,15 @@ public class PhoneClientGUI extends javax.swing.JFrame implements Printer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void PhoneOnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PhoneOnActionPerformed
+             
+        
         client.turnphoneon();
+        PhoneOn.setEnabled(false);
         PhoneOff.setEnabled(true);
-        ConnectSpeaker.setEnabled(false);
-        RadioOff.setEnabled(false);
         PlaySong.setEnabled(true);
+        Pause.setEnabled(false);
+        VolumeUp.setEnabled(true);
+        VolumeDown.setEnabled(true);
    
 
 
@@ -205,54 +183,33 @@ public class PhoneClientGUI extends javax.swing.JFrame implements Printer {
     private void PhoneOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PhoneOffActionPerformed
         client.turnphoneoff();
         PhoneOff.setEnabled(false);
-        ConnectSpeaker.setEnabled(false);
-        RadioOn.setEnabled(true);
-        RadioOff.setEnabled(false);
         PlaySong.setEnabled(false);
       
         // TODO add your handling code here:
     }//GEN-LAST:event_PhoneOffActionPerformed
 
-    private void ConnectSpeakerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConnectSpeakerActionPerformed
-        PhoneOff.setEnabled(true);
-        ConnectSpeaker.setEnabled(true);
-        RadioOn.setEnabled(false);
-        RadioOff.setEnabled(false);
-        PlaySong.setEnabled(false);
-    
-
-    
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ConnectSpeakerActionPerformed
-
-    private void RadioOnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioOnActionPerformed
-        client.turnradioon();
-        ConnectSpeaker.setEnabled(true);
-        RadioOn.setEnabled(false);
-        RadioOff.setEnabled(true);
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RadioOnActionPerformed
-
-    private void RadioOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioOffActionPerformed
-        client.turntheradiooff();
-        client.turnradioon();
-        PhoneOff.setEnabled(true);
-        ConnectSpeaker.setEnabled(false);
-        RadioOn.setEnabled(true);
-        RadioOff.setEnabled(false);
-        PlaySong.setEnabled(false);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RadioOffActionPerformed
-
     private void PlaySongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlaySongActionPerformed
-
+      client.getAllSongs();
        PhoneOff.setEnabled(false);
-        ConnectSpeaker.setEnabled(false);
-        RadioOn.setEnabled(true);
-        RadioOff.setEnabled(false);
         PlaySong.setEnabled(false);
+        
     }//GEN-LAST:event_PlaySongActionPerformed
+
+    private void PauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PauseActionPerformed
+   client.pause();
+   
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PauseActionPerformed
+
+    private void VolumeUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolumeUpActionPerformed
+  client.volumeUp();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_VolumeUpActionPerformed
+
+    private void VolumeDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolumeDownActionPerformed
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_VolumeDownActionPerformed
 
     /**
      * @param args the command line arguments
@@ -305,15 +262,12 @@ public class PhoneClientGUI extends javax.swing.JFrame implements Printer {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ConnectSpeaker;
+    private javax.swing.JButton Pause;
     private javax.swing.JButton PhoneOff;
     private javax.swing.JButton PhoneOn;
     private javax.swing.JButton PlaySong;
-    private javax.swing.JButton RadioOff;
-    private javax.swing.JButton RadioOn;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton VolumeDown;
+    private javax.swing.JButton VolumeUp;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;

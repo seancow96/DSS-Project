@@ -36,4 +36,24 @@ public interface PhoneOrBuilder extends
    */
   com.google.protobuf.ByteString
       getConnectspeakerBytes();
+
+  /**
+   * <code>string bluetooth = 4;</code>
+   */
+  java.lang.String getBluetooth();
+  /**
+   * <code>string bluetooth = 4;</code>
+   */
+  com.google.protobuf.ByteString
+      getBluetoothBytes();
+
+  /**
+   * <code>string pause = 5;</code>
+   */
+  java.lang.String getPause();
+  /**
+   * <code>string pause = 5;</code>
+   */
+  com.google.protobuf.ByteString
+      getPauseBytes();
 }

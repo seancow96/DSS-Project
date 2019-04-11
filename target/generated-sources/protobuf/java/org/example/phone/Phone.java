@@ -23,6 +23,8 @@ private static final long serialVersionUID = 0L;
     turnphoneon_ = "";
     turnphoneoff_ = "";
     connectspeaker_ = "";
+    bluetooth_ = "";
+    pause_ = "";
   }
 
   @java.lang.Override
@@ -65,6 +67,18 @@ private static final long serialVersionUID = 0L;
             java.lang.String s = input.readStringRequireUtf8();
 
             connectspeaker_ = s;
+            break;
+          }
+          case 34: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            bluetooth_ = s;
+            break;
+          }
+          case 42: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            pause_ = s;
             break;
           }
           default: {
@@ -201,6 +215,74 @@ private static final long serialVersionUID = 0L;
     }
   }
 
+  public static final int BLUETOOTH_FIELD_NUMBER = 4;
+  private volatile java.lang.Object bluetooth_;
+  /**
+   * <code>string bluetooth = 4;</code>
+   */
+  public java.lang.String getBluetooth() {
+    java.lang.Object ref = bluetooth_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      bluetooth_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string bluetooth = 4;</code>
+   */
+  public com.google.protobuf.ByteString
+      getBluetoothBytes() {
+    java.lang.Object ref = bluetooth_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      bluetooth_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int PAUSE_FIELD_NUMBER = 5;
+  private volatile java.lang.Object pause_;
+  /**
+   * <code>string pause = 5;</code>
+   */
+  public java.lang.String getPause() {
+    java.lang.Object ref = pause_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      pause_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string pause = 5;</code>
+   */
+  public com.google.protobuf.ByteString
+      getPauseBytes() {
+    java.lang.Object ref = pause_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      pause_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -224,6 +306,12 @@ private static final long serialVersionUID = 0L;
     if (!getConnectspeakerBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 3, connectspeaker_);
     }
+    if (!getBluetoothBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 4, bluetooth_);
+    }
+    if (!getPauseBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 5, pause_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -241,6 +329,12 @@ private static final long serialVersionUID = 0L;
     }
     if (!getConnectspeakerBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, connectspeaker_);
+    }
+    if (!getBluetoothBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, bluetooth_);
+    }
+    if (!getPauseBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, pause_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -264,6 +358,10 @@ private static final long serialVersionUID = 0L;
         .equals(other.getTurnphoneoff());
     result = result && getConnectspeaker()
         .equals(other.getConnectspeaker());
+    result = result && getBluetooth()
+        .equals(other.getBluetooth());
+    result = result && getPause()
+        .equals(other.getPause());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -281,6 +379,10 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getTurnphoneoff().hashCode();
     hash = (37 * hash) + CONNECTSPEAKER_FIELD_NUMBER;
     hash = (53 * hash) + getConnectspeaker().hashCode();
+    hash = (37 * hash) + BLUETOOTH_FIELD_NUMBER;
+    hash = (53 * hash) + getBluetooth().hashCode();
+    hash = (37 * hash) + PAUSE_FIELD_NUMBER;
+    hash = (53 * hash) + getPause().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -424,6 +526,10 @@ private static final long serialVersionUID = 0L;
 
       connectspeaker_ = "";
 
+      bluetooth_ = "";
+
+      pause_ = "";
+
       return this;
     }
 
@@ -453,6 +559,8 @@ private static final long serialVersionUID = 0L;
       result.turnphoneon_ = turnphoneon_;
       result.turnphoneoff_ = turnphoneoff_;
       result.connectspeaker_ = connectspeaker_;
+      result.bluetooth_ = bluetooth_;
+      result.pause_ = pause_;
       onBuilt();
       return result;
     }
@@ -511,6 +619,14 @@ private static final long serialVersionUID = 0L;
       }
       if (!other.getConnectspeaker().isEmpty()) {
         connectspeaker_ = other.connectspeaker_;
+        onChanged();
+      }
+      if (!other.getBluetooth().isEmpty()) {
+        bluetooth_ = other.bluetooth_;
+        onChanged();
+      }
+      if (!other.getPause().isEmpty()) {
+        pause_ = other.pause_;
         onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
@@ -745,6 +861,144 @@ private static final long serialVersionUID = 0L;
   checkByteStringIsUtf8(value);
       
       connectspeaker_ = value;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object bluetooth_ = "";
+    /**
+     * <code>string bluetooth = 4;</code>
+     */
+    public java.lang.String getBluetooth() {
+      java.lang.Object ref = bluetooth_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        bluetooth_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string bluetooth = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getBluetoothBytes() {
+      java.lang.Object ref = bluetooth_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        bluetooth_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string bluetooth = 4;</code>
+     */
+    public Builder setBluetooth(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      bluetooth_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string bluetooth = 4;</code>
+     */
+    public Builder clearBluetooth() {
+      
+      bluetooth_ = getDefaultInstance().getBluetooth();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string bluetooth = 4;</code>
+     */
+    public Builder setBluetoothBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      bluetooth_ = value;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object pause_ = "";
+    /**
+     * <code>string pause = 5;</code>
+     */
+    public java.lang.String getPause() {
+      java.lang.Object ref = pause_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        pause_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string pause = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getPauseBytes() {
+      java.lang.Object ref = pause_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        pause_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string pause = 5;</code>
+     */
+    public Builder setPause(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      pause_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string pause = 5;</code>
+     */
+    public Builder clearPause() {
+      
+      pause_ = getDefaultInstance().getPause();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string pause = 5;</code>
+     */
+    public Builder setPauseBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      pause_ = value;
       onChanged();
       return this;
     }

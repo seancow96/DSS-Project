@@ -1,19 +1,19 @@
+
+/*
+
+Author:Sean Cowley--x14484252
+*/
 package client;
 
-import javax.swing.JPanel;
-import clientui.PhoneClientGUI;
+
 import clientui.MilageGUI;
-import com.google.protobuf.Empty;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.example.milage.AverageMilesResponse;
 import org.example.milage.CostResponse;
@@ -71,7 +71,7 @@ public class MilageClient implements ServiceObserver {
     }
 
     public void serviceAdded(ServiceDescription service) {
-        
+        System.out.println("Milage Service added");
         channel = ManagedChannelBuilder.forAddress(service.getAddress(), service.getPort())
         .usePlaintext(true)
         .build();
@@ -144,8 +144,8 @@ public class MilageClient implements ServiceObserver {
 
         TotalResponse response = stub.totalMiles(req);
         
-        System.out.println("The total miles per day are " + req.getMonday() + " and " + req.getTuesday() + " and " + req.getWednesday() + " and " + req.getThursday());
-        System.out.println(req.getMonday() + " + " + req.getMonday()  + " + " + req.getTuesday() + " + " + req.getWednesday() + " = " + response.getResult());
+        System.out.println("The total miles travelled this week where ");
+        System.out.println(req.getMonday() + " + " + req.getTuesday()  + " + " + req.getWednesday() + " + " + req.getThursday() + "+" + req.getFriday()+ "+" + req.getSaturday()+"+" + req.getSunday()+ " = " + response.getResult());
 
     }
 
@@ -173,41 +173,43 @@ public class MilageClient implements ServiceObserver {
 
             @Override
             public void onCompleted() {
-                System.out.println("That is alot of driving");
+                System.out.println("Average Miles completed");
          
                 
                  latch.countDown();
             }
         });
+        
+        //setting the value of the miles travelled per day
        
         requestObserver.onNext(DaysRequest.newBuilder()
-        .setMonday(69)
+        .setMonday(12.4)
         .build());
         
               
         requestObserver.onNext(DaysRequest.newBuilder()
-        .setTuesday(12)
+        .setTuesday(22.4)
         .build());
         
               
         requestObserver.onNext(DaysRequest.newBuilder()
-        .setWednesday(89)
+        .setWednesday(14.12)
         .build());
         
           requestObserver.onNext(DaysRequest.newBuilder()
-        .setThursday(34)
+        .setThursday(29.78)
         .build());
           
             requestObserver.onNext(DaysRequest.newBuilder()
-        .setFriday(45)
+        .setFriday(15.12)
         .build());
             
               requestObserver.onNext(DaysRequest.newBuilder()
-        .setSaturday(37)
+        .setSaturday(27.12)
         .build());
               
          requestObserver.onNext(DaysRequest.newBuilder()
-        .setSunday(56)
+        .setSunday(26.45)
         .build());
               
 
@@ -237,14 +239,16 @@ public class MilageClient implements ServiceObserver {
                 .setSaturday(27.12)
                 .setSunday(26.45)
                 .setMpg(35)
+                .setPrice(2.83)
     
 
                 .build();
 
         CostResponse response = stub.calculateCost(req);
         
-        System.out.println("The total miles per day are " + req.getMonday() + " and " + req.getTuesday() + " and " + req.getWednesday() + " and " + req.getThursday());
-        System.out.println(req.getMonday() + " + " + req.getMonday()  + " + " + req.getTuesday() + " + " + req.getWednesday() + " = " + response.getCost());
+        System.out.println("Your cars mpg is 35 ");
+        System.out.println("The cost of fuel is currently 2.83 litres per gallon");
+        System.out.println("The total cost in dollars is " + response.getCost());
 
     }
     

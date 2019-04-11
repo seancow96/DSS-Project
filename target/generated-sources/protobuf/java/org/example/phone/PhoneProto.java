@@ -15,6 +15,16 @@ public final class PhoneProto {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_phone_VolumeUpRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_phone_VolumeUpRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_phone_VolumeUpResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_phone_VolumeUpResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_phone_Phone_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -40,6 +50,16 @@ public final class PhoneProto {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_phone_DeviceResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_phone_BluetoothRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_phone_BluetoothRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_phone_BluetoothResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_phone_BluetoothResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_phone_PlaylistSongs_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -49,26 +69,6 @@ public final class PhoneProto {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_phone_Song_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_phone_AverageRequest_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_phone_AverageRequest_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_phone_AverageResponse_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_phone_AverageResponse_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_phone_FindMaximumRequest_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_phone_FindMaximumRequest_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_phone_FindMaximumResponse_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_phone_FindMaximumResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -79,31 +79,32 @@ public final class PhoneProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\013phone.proto\022\005phone\032\033google/protobuf/em" +
-      "pty.proto\"J\n\005Phone\022\023\n\013turnphoneon\030\001 \001(\t\022" +
-      "\024\n\014turnphoneoff\030\002 \001(\t\022\026\n\016connectspeaker\030" +
-      "\003 \001(\t\"+\n\014PhoneRequest\022\033\n\005phone\030\001 \001(\0132\014.p" +
-      "hone.Phone\"#\n\rPhoneResponse\022\022\n\nphonestat" +
-      "e\030\001 \001(\t\",\n\rDeviceRequest\022\033\n\005phone\030\001 \001(\0132" +
-      "\014.phone.Phone\"#\n\016DeviceResponse\022\021\n\tconne" +
-      "cted\030\001 \001(\t\"+\n\rPlaylistSongs\022\032\n\005songs\030\001 \003" +
-      "(\0132\013.phone.Song\"%\n\004Song\022\016\n\006artist\030\001 \001(\t\022" +
-      "\r\n\005genre\030\002 \001(\t\"M\n\016AverageRequest\022\022\n\nfirs" +
-      "t_song\030\001 \001(\005\022\023\n\013second_song\030\002 \001(\005\022\022\n\nthi" +
-      "rd_song\030\003 \001(\005\"\"\n\017AverageResponse\022\017\n\007aver" +
-      "age\030\001 \001(\001\"$\n\022FindMaximumRequest\022\016\n\006numbe" +
-      "r\030\001 \001(\005\"&\n\023FindMaximumResponse\022\017\n\007maximu" +
-      "m\030\001 \001(\0052\224\003\n\014PhoneService\0226\n\007PhoneOn\022\023.ph" +
-      "one.PhoneRequest\032\024.phone.PhoneResponse\"\000" +
-      "\0227\n\010PhoneOff\022\023.phone.PhoneRequest\032\024.phon" +
-      "e.PhoneResponse\"\000\022@\n\rConnectDevice\022\024.pho" +
-      "ne.DeviceRequest\032\025.phone.DeviceResponse\"" +
-      "\000(\001\022=\n\013getAllSongs\022\026.google.protobuf.Emp" +
-      "ty\032\024.phone.PlaylistSongs\"\000\022A\n\014AverageVie" +
-      "ws\022\025.phone.AverageRequest\032\026.phone.Averag" +
-      "eResponse\"\000(\001\022O\n\020FindMaximumViews\022\031.phon" +
-      "e.FindMaximumRequest\032\032.phone.FindMaximum" +
-      "Response\"\000(\0010\001B!\n\021org.example.phoneB\nPho" +
-      "neProtoP\001b\006proto3"
+      "pty.proto\"0\n\017VolumeUpRequest\022\014\n\004temp\030\001 \001" +
+      "(\005\022\017\n\007maxtemp\030\002 \001(\005\"\'\n\020VolumeUpResponse\022" +
+      "\023\n\013currenttemp\030\001 \001(\005\"l\n\005Phone\022\023\n\013turnpho" +
+      "neon\030\001 \001(\t\022\024\n\014turnphoneoff\030\002 \001(\t\022\026\n\016conn" +
+      "ectspeaker\030\003 \001(\t\022\021\n\tbluetooth\030\004 \001(\t\022\r\n\005p" +
+      "ause\030\005 \001(\t\"+\n\014PhoneRequest\022\033\n\005phone\030\001 \001(" +
+      "\0132\014.phone.Phone\"$\n\rPhoneResponse\022\023\n\013phon" +
+      "estatus\030\001 \001(\t\",\n\rDeviceRequest\022\033\n\005phone\030" +
+      "\001 \001(\0132\014.phone.Phone\"#\n\016DeviceResponse\022\021\n" +
+      "\tconnected\030\001 \001(\t\"/\n\020BluetoothRequest\022\033\n\005" +
+      "phone\030\001 \001(\0132\014.phone.Phone\"(\n\021BluetoothRe" +
+      "sponse\022\023\n\013bluetoothon\030\001 \001(\t\"+\n\rPlaylistS" +
+      "ongs\022\032\n\005songs\030\001 \003(\0132\013.phone.Song\"%\n\004Song" +
+      "\022\016\n\006artist\030\001 \001(\t\022\r\n\005genre\030\002 \001(\t2\271\003\n\014Phon" +
+      "eService\0226\n\007PhoneOn\022\023.phone.PhoneRequest" +
+      "\032\024.phone.PhoneResponse\"\000\0227\n\010PhoneOff\022\023.p" +
+      "hone.PhoneRequest\032\024.phone.PhoneResponse\"" +
+      "\000\0224\n\005Pause\022\023.phone.PhoneRequest\032\024.phone." +
+      "PhoneResponse\"\000\022B\n\tBluetooth\022\027.phone.Blu" +
+      "etoothRequest\032\030.phone.BluetoothResponse\"" +
+      "\000(\001\022@\n\rConnectDevice\022\024.phone.DeviceReque" +
+      "st\032\025.phone.DeviceResponse\"\000(\001\022=\n\013getAllS" +
+      "ongs\022\026.google.protobuf.Empty\032\024.phone.Pla" +
+      "ylistSongs\"\000\022=\n\010VolumeUp\022\026.phone.VolumeU" +
+      "pRequest\032\027.phone.VolumeUpResponse\"\000B!\n\021o" +
+      "rg.example.phoneB\nPhoneProtoP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -118,72 +119,72 @@ public final class PhoneProto {
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.google.protobuf.EmptyProto.getDescriptor(),
         }, assigner);
-    internal_static_phone_Phone_descriptor =
+    internal_static_phone_VolumeUpRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
+    internal_static_phone_VolumeUpRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_phone_VolumeUpRequest_descriptor,
+        new java.lang.String[] { "Temp", "Maxtemp", });
+    internal_static_phone_VolumeUpResponse_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_phone_VolumeUpResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_phone_VolumeUpResponse_descriptor,
+        new java.lang.String[] { "Currenttemp", });
+    internal_static_phone_Phone_descriptor =
+      getDescriptor().getMessageTypes().get(2);
     internal_static_phone_Phone_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_phone_Phone_descriptor,
-        new java.lang.String[] { "Turnphoneon", "Turnphoneoff", "Connectspeaker", });
+        new java.lang.String[] { "Turnphoneon", "Turnphoneoff", "Connectspeaker", "Bluetooth", "Pause", });
     internal_static_phone_PhoneRequest_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_phone_PhoneRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_phone_PhoneRequest_descriptor,
         new java.lang.String[] { "Phone", });
     internal_static_phone_PhoneResponse_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_phone_PhoneResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_phone_PhoneResponse_descriptor,
-        new java.lang.String[] { "Phonestate", });
+        new java.lang.String[] { "Phonestatus", });
     internal_static_phone_DeviceRequest_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_phone_DeviceRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_phone_DeviceRequest_descriptor,
         new java.lang.String[] { "Phone", });
     internal_static_phone_DeviceResponse_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_phone_DeviceResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_phone_DeviceResponse_descriptor,
         new java.lang.String[] { "Connected", });
+    internal_static_phone_BluetoothRequest_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_phone_BluetoothRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_phone_BluetoothRequest_descriptor,
+        new java.lang.String[] { "Phone", });
+    internal_static_phone_BluetoothResponse_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_phone_BluetoothResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_phone_BluetoothResponse_descriptor,
+        new java.lang.String[] { "Bluetoothon", });
     internal_static_phone_PlaylistSongs_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_phone_PlaylistSongs_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_phone_PlaylistSongs_descriptor,
         new java.lang.String[] { "Songs", });
     internal_static_phone_Song_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_phone_Song_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_phone_Song_descriptor,
         new java.lang.String[] { "Artist", "Genre", });
-    internal_static_phone_AverageRequest_descriptor =
-      getDescriptor().getMessageTypes().get(7);
-    internal_static_phone_AverageRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_phone_AverageRequest_descriptor,
-        new java.lang.String[] { "FirstSong", "SecondSong", "ThirdSong", });
-    internal_static_phone_AverageResponse_descriptor =
-      getDescriptor().getMessageTypes().get(8);
-    internal_static_phone_AverageResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_phone_AverageResponse_descriptor,
-        new java.lang.String[] { "Average", });
-    internal_static_phone_FindMaximumRequest_descriptor =
-      getDescriptor().getMessageTypes().get(9);
-    internal_static_phone_FindMaximumRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_phone_FindMaximumRequest_descriptor,
-        new java.lang.String[] { "Number", });
-    internal_static_phone_FindMaximumResponse_descriptor =
-      getDescriptor().getMessageTypes().get(10);
-    internal_static_phone_FindMaximumResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_phone_FindMaximumResponse_descriptor,
-        new java.lang.String[] { "Maximum", });
     com.google.protobuf.EmptyProto.getDescriptor();
   }
 

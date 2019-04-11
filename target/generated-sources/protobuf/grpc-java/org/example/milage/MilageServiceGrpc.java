@@ -17,7 +17,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
- * The speaker service definition.
+ * The milage service definition.
  * </pre>
  */
 @javax.annotation.Generated(
@@ -215,7 +215,7 @@ public final class MilageServiceGrpc {
 
   /**
    * <pre>
-   * The speaker service definition.
+   * The milage service definition.
    * </pre>
    */
   public static abstract class MilageServiceImplBase implements io.grpc.BindableService {
@@ -258,6 +258,9 @@ public final class MilageServiceGrpc {
     }
 
     /**
+     * <pre>
+     *uranary
+     * </pre>
      */
     public void calculateCost(org.example.milage.DaysRequest request,
         io.grpc.stub.StreamObserver<org.example.milage.CostResponse> responseObserver) {
@@ -307,7 +310,7 @@ public final class MilageServiceGrpc {
 
   /**
    * <pre>
-   * The speaker service definition.
+   * The milage service definition.
    * </pre>
    */
   public static final class MilageServiceStub extends io.grpc.stub.AbstractStub<MilageServiceStub> {
@@ -368,6 +371,9 @@ public final class MilageServiceGrpc {
     }
 
     /**
+     * <pre>
+     *uranary
+     * </pre>
      */
     public void calculateCost(org.example.milage.DaysRequest request,
         io.grpc.stub.StreamObserver<org.example.milage.CostResponse> responseObserver) {
@@ -378,7 +384,7 @@ public final class MilageServiceGrpc {
 
   /**
    * <pre>
-   * The speaker service definition.
+   * The milage service definition.
    * </pre>
    */
   public static final class MilageServiceBlockingStub extends io.grpc.stub.AbstractStub<MilageServiceBlockingStub> {
@@ -415,6 +421,9 @@ public final class MilageServiceGrpc {
     }
 
     /**
+     * <pre>
+     *uranary
+     * </pre>
      */
     public org.example.milage.CostResponse calculateCost(org.example.milage.DaysRequest request) {
       return blockingUnaryCall(
@@ -424,7 +433,7 @@ public final class MilageServiceGrpc {
 
   /**
    * <pre>
-   * The speaker service definition.
+   * The milage service definition.
    * </pre>
    */
   public static final class MilageServiceFutureStub extends io.grpc.stub.AbstractStub<MilageServiceFutureStub> {
@@ -463,6 +472,9 @@ public final class MilageServiceGrpc {
     }
 
     /**
+     * <pre>
+     *uranary
+     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<org.example.milage.CostResponse> calculateCost(
         org.example.milage.DaysRequest request) {

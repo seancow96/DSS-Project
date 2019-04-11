@@ -15,17 +15,26 @@ service PhoneService {
 //uranary
     rpc PhoneOn(PhoneRequest) returns (PhoneResponse) {};
     rpc PhoneOff(PhoneRequest) returns (PhoneResponse) {};
+    rpc Pause(PhoneRequest) returns (PhoneResponse) {};
+    rpc Bluetooth(stream BluetoothRequest) returns (BluetoothResponse) {};
+
     rpc ConnectDevice(stream DeviceRequest) returns (DeviceResponse){};
     rpc getAllSongs(google.protobuf.Empty) returns (PlaylistSongs) {}
-//client streaming
-   rpc AverageViews(stream AverageRequest) returns (AverageResponse){};
-
-    //server streaming
-rpc FindMaximumViews(stream FindMaximumRequest) returns (stream FindMaximumResponse) {};
-
+    rpc VolumeUp(VolumeUpRequest) returns (VolumeUpResponse){}
 
 
  }
+
+
+message VolumeUpRequest {
+    int32 temp = 1;
+    int32 maxtemp =2;
+
+}
+
+message VolumeUpResponse {
+    int32 currenttemp = 1;
+}
 
 
 
@@ -34,6 +43,8 @@ message Phone {
     string turnphoneon = 1;
     string turnphoneoff = 2;
     string connectspeaker = 3;
+    string bluetooth = 4;
+    string pause =5;
 
 }
 
@@ -42,8 +53,12 @@ message PhoneRequest {
 }
 
 message PhoneResponse {
-    string phonestate = 1;
+    string phonestatus = 1;
 }
+
+
+
+
 
 
 message DeviceRequest {
@@ -54,6 +69,18 @@ message DeviceResponse {
     string connected = 1;
 }
 
+message BluetoothRequest {
+    Phone phone = 1;
+}
+
+message BluetoothResponse {
+    string bluetoothon = 1;
+}
+
+
+
+
+
 message PlaylistSongs {
   repeated Song songs = 1;
 }
@@ -63,22 +90,3 @@ message Song {
     string genre = 2;
 }
 
-// Clientstream average
-
-message AverageRequest {
-    int32 first_song = 1;
-    int32 second_song = 2;
-    int32 third_song = 3;
-}
-
-message AverageResponse {
-    double average = 1;
-}
-
-message FindMaximumRequest {
-    int32 number = 1;
-}
-
-message FindMaximumResponse {
-    int32 maximum = 1;
-}

@@ -16,7 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private PhoneResponse() {
-    phonestate_ = "";
+    phonestatus_ = "";
   }
 
   @java.lang.Override
@@ -46,7 +46,7 @@ private static final long serialVersionUID = 0L;
           case 10: {
             java.lang.String s = input.readStringRequireUtf8();
 
-            phonestate_ = s;
+            phonestatus_ = s;
             break;
           }
           default: {
@@ -81,34 +81,34 @@ private static final long serialVersionUID = 0L;
             org.example.phone.PhoneResponse.class, org.example.phone.PhoneResponse.Builder.class);
   }
 
-  public static final int PHONESTATE_FIELD_NUMBER = 1;
-  private volatile java.lang.Object phonestate_;
+  public static final int PHONESTATUS_FIELD_NUMBER = 1;
+  private volatile java.lang.Object phonestatus_;
   /**
-   * <code>string phonestate = 1;</code>
+   * <code>string phonestatus = 1;</code>
    */
-  public java.lang.String getPhonestate() {
-    java.lang.Object ref = phonestate_;
+  public java.lang.String getPhonestatus() {
+    java.lang.Object ref = phonestatus_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      phonestate_ = s;
+      phonestatus_ = s;
       return s;
     }
   }
   /**
-   * <code>string phonestate = 1;</code>
+   * <code>string phonestatus = 1;</code>
    */
   public com.google.protobuf.ByteString
-      getPhonestateBytes() {
-    java.lang.Object ref = phonestate_;
+      getPhonestatusBytes() {
+    java.lang.Object ref = phonestatus_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      phonestate_ = b;
+      phonestatus_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
@@ -129,8 +129,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getPhonestateBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, phonestate_);
+    if (!getPhonestatusBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, phonestatus_);
     }
     unknownFields.writeTo(output);
   }
@@ -141,8 +141,8 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getPhonestateBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, phonestate_);
+    if (!getPhonestatusBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, phonestatus_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -160,8 +160,8 @@ private static final long serialVersionUID = 0L;
     org.example.phone.PhoneResponse other = (org.example.phone.PhoneResponse) obj;
 
     boolean result = true;
-    result = result && getPhonestate()
-        .equals(other.getPhonestate());
+    result = result && getPhonestatus()
+        .equals(other.getPhonestatus());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -173,8 +173,8 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + PHONESTATE_FIELD_NUMBER;
-    hash = (53 * hash) + getPhonestate().hashCode();
+    hash = (37 * hash) + PHONESTATUS_FIELD_NUMBER;
+    hash = (53 * hash) + getPhonestatus().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -308,7 +308,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      phonestate_ = "";
+      phonestatus_ = "";
 
       return this;
     }
@@ -336,7 +336,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public org.example.phone.PhoneResponse buildPartial() {
       org.example.phone.PhoneResponse result = new org.example.phone.PhoneResponse(this);
-      result.phonestate_ = phonestate_;
+      result.phonestatus_ = phonestatus_;
       onBuilt();
       return result;
     }
@@ -385,8 +385,8 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(org.example.phone.PhoneResponse other) {
       if (other == org.example.phone.PhoneResponse.getDefaultInstance()) return this;
-      if (!other.getPhonestate().isEmpty()) {
-        phonestate_ = other.phonestate_;
+      if (!other.getPhonestatus().isEmpty()) {
+        phonestatus_ = other.phonestatus_;
         onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
@@ -418,71 +418,71 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object phonestate_ = "";
+    private java.lang.Object phonestatus_ = "";
     /**
-     * <code>string phonestate = 1;</code>
+     * <code>string phonestatus = 1;</code>
      */
-    public java.lang.String getPhonestate() {
-      java.lang.Object ref = phonestate_;
+    public java.lang.String getPhonestatus() {
+      java.lang.Object ref = phonestatus_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        phonestate_ = s;
+        phonestatus_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string phonestate = 1;</code>
+     * <code>string phonestatus = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getPhonestateBytes() {
-      java.lang.Object ref = phonestate_;
+        getPhonestatusBytes() {
+      java.lang.Object ref = phonestatus_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        phonestate_ = b;
+        phonestatus_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string phonestate = 1;</code>
+     * <code>string phonestatus = 1;</code>
      */
-    public Builder setPhonestate(
+    public Builder setPhonestatus(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      phonestate_ = value;
+      phonestatus_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string phonestate = 1;</code>
+     * <code>string phonestatus = 1;</code>
      */
-    public Builder clearPhonestate() {
+    public Builder clearPhonestatus() {
       
-      phonestate_ = getDefaultInstance().getPhonestate();
+      phonestatus_ = getDefaultInstance().getPhonestatus();
       onChanged();
       return this;
     }
     /**
-     * <code>string phonestate = 1;</code>
+     * <code>string phonestatus = 1;</code>
      */
-    public Builder setPhonestateBytes(
+    public Builder setPhonestatusBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      phonestate_ = value;
+      phonestatus_ = value;
       onChanged();
       return this;
     }

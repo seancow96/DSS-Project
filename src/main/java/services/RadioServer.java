@@ -8,6 +8,8 @@ import io.grpc.stub.StreamObserver;
 
 import org.example.radio.RadioServiceGrpc;
 import java.util.logging.Logger;
+import org.example.radio.ChannelRequest;
+import org.example.radio.ChannelResponse;
 import org.example.radio.Radio;
 import org.example.radio.RadioRequest;
 import org.example.radio.RadioResponse;
@@ -32,7 +34,7 @@ public class RadioServer {
                 .addService(new RadioServiceImpl())
                 .build()
                 .start();
-        JmDNSRegistrationHelper helper = new JmDNSRegistrationHelper("Phone", "_phone._udp.local.", "", port);
+        JmDNSRegistrationHelper helper = new JmDNSRegistrationHelper("Radio", "_radio._udp.local.", "", port);
         
 
 
@@ -85,8 +87,7 @@ public class RadioServer {
          
             String name = "Seans";
             String serviceType = "_radio._udp.local.";
-            ui = new ServiceUI(name + serviceType);
-           
+            ui = new ServiceUI(name + serviceType); 
 
         }
 
@@ -132,6 +133,147 @@ public class RadioServer {
     }
     
    
+    
+       @Override
+    public StreamObserver<ChannelRequest> channel1(StreamObserver<ChannelResponse> responseObserver) {
+        // we create the requestObserver that we'll return in this function
+        StreamObserver<ChannelRequest> requestObserver = new StreamObserver<ChannelRequest>() {
+
+            String channel = "";
+
+            @Override
+            public void onNext(ChannelRequest value) {
+                // client sends a message
+                channel += "The current channel is " + value.getChannel().getChannel1() + "!";
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                // client sends an error
+            }
+
+            @Override
+            public void onCompleted() {
+                // client is done
+                responseObserver.onNext(
+                        ChannelResponse.newBuilder()
+                                .setChannel(channel)
+                                .build()
+                );
+                responseObserver.onCompleted();
+            }
+        };
+
+
+        return requestObserver;
+    }
+    
+    
+       @Override
+    public StreamObserver<ChannelRequest> channel2(StreamObserver<ChannelResponse> responseObserver) {
+        // we create the requestObserver that we'll return in this function
+        StreamObserver<ChannelRequest> requestObserver = new StreamObserver<ChannelRequest>() {
+
+            String channel = "";
+
+            @Override
+            public void onNext(ChannelRequest value) {
+                // client sends a message
+                channel += "The current channel is " + value.getChannel().getChannel2() + "!";
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                // client sends an error
+            }
+
+            @Override
+            public void onCompleted() {
+                // client is done
+                responseObserver.onNext(
+                        ChannelResponse.newBuilder()
+                                .setChannel(channel)
+                                .build()
+                );
+                responseObserver.onCompleted();
+            }
+        };
+
+
+        return requestObserver;
+    }
+    
+    
+        @Override
+    public StreamObserver<ChannelRequest> channel3(StreamObserver<ChannelResponse> responseObserver) {
+        // we create the requestObserver that we'll return in this function
+        StreamObserver<ChannelRequest> requestObserver = new StreamObserver<ChannelRequest>() {
+
+            String channel = "";
+
+            @Override
+            public void onNext(ChannelRequest value) {
+                // client sends a message
+                channel += "The current channel is " + value.getChannel().getChannel3() + "!";
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                // client sends an error
+            }
+
+            @Override
+            public void onCompleted() {
+                // client is done
+                responseObserver.onNext(
+                        ChannelResponse.newBuilder()
+                                .setChannel(channel)
+                                .build()
+                );
+                responseObserver.onCompleted();
+            }
+        };
+
+
+        return requestObserver;
+    }
+    
+    
+    
+           @Override
+    public StreamObserver<ChannelRequest> channel4(StreamObserver<ChannelResponse> responseObserver) {
+        // we create the requestObserver that we'll return in this function
+        StreamObserver<ChannelRequest> requestObserver = new StreamObserver<ChannelRequest>() {
+
+            String channel = "";
+
+            @Override
+            public void onNext(ChannelRequest value) {
+                // client sends a message
+                channel += "The current channel is " + value.getChannel().getChannel4() + "!";
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                // client sends an error
+            }
+
+            @Override
+            public void onCompleted() {
+                // client is done
+                responseObserver.onNext(
+                        ChannelResponse.newBuilder()
+                                .setChannel(channel)
+                                .build()
+                );
+                responseObserver.onCompleted();
+            }
+        };
+
+
+        return requestObserver;
+    }
+ 
  
 
    

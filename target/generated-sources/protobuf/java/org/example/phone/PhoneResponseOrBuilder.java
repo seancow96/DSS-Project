@@ -8,12 +8,12 @@ public interface PhoneResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string phonestate = 1;</code>
+   * <code>string phonestatus = 1;</code>
    */
-  java.lang.String getPhonestate();
+  java.lang.String getPhonestatus();
   /**
-   * <code>string phonestate = 1;</code>
+   * <code>string phonestatus = 1;</code>
    */
   com.google.protobuf.ByteString
-      getPhonestateBytes();
+      getPhonestatusBytes();
 }

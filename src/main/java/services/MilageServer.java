@@ -1,3 +1,8 @@
+/*
+
+Author:Sean Cowley--x14484252
+*/
+
 package services;
 
 import com.google.protobuf.Empty;
@@ -133,13 +138,13 @@ public class MilageServer {
         TotalResponse totalResponse = TotalResponse.newBuilder()
         // Gets the sum of all the miles driven per week by the car
                 .setResult(req.getMonday() + req.getTuesday() + req.getWednesday() + req.getThursday()
-                          + req.getFriday())
+                          + req.getFriday() + req.getSaturday() + req.getSunday())
                 .build();
         
         //sends the response
 
         responseObserver.onNext(totalResponse);
-         ui.append(totalResponse.toString());
+         ui.append("the total miles travelled per day was "+totalResponse.toString());
         // rpc call is completed
         responseObserver.onCompleted();
 
@@ -198,8 +203,7 @@ public class MilageServer {
     }
     
     
-    
-    
+   
     
     //uranary
    @Override
@@ -209,13 +213,13 @@ public class MilageServer {
         CostResponse costResponse = CostResponse.newBuilder()
         // Gets the sum of all the miles driven per week by the car
                 .setCost(req.getMonday() + req.getTuesday() + req.getWednesday() + req.getThursday()
-                          + req.getFriday() / req.getMpg())
+                          + req.getFriday() + req.getSaturday() + req.getSunday() / req.getMpg() * req.getPrice())
                 .build();
         
         //sends the response
 
         responseObserver.onNext(costResponse);
-        ui.append(costResponse.toString());
+        ui.append("The total cost in dollars is "+costResponse.toString());
 
         // rpc call is completed
         responseObserver.onCompleted();

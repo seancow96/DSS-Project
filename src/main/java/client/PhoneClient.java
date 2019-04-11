@@ -14,18 +14,18 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.example.phone.AverageRequest;
-import org.example.phone.AverageResponse;
+import org.example.phone.BluetoothRequest;
+import org.example.phone.BluetoothResponse;
 import org.example.phone.DeviceRequest;
 import org.example.phone.DeviceResponse;
-import org.example.phone.FindMaximumRequest;
-import org.example.phone.FindMaximumResponse;
 import org.example.phone.Phone;
 import org.example.phone.PhoneRequest;
 import org.example.phone.PhoneResponse;
 import org.example.phone.PhoneServiceGrpc;
 import org.example.phone.PlaylistSongs;
 import org.example.phone.Song;
+import org.example.phone.VolumeUpRequest;
+import org.example.phone.VolumeUpResponse;
 import org.example.radio.Radio;
 import org.example.radio.RadioRequest;
 import org.example.radio.RadioResponse;
@@ -82,16 +82,13 @@ public class PhoneClient implements ServiceObserver {
     }
 
     public void serviceAdded(ServiceDescription service) {
+        System.out.println("Found phone service");
         channel = ManagedChannelBuilder.forAddress(service.getAddress(), service.getPort())
                 .usePlaintext(true)
                 .build();
-        blockingStub = RadioServiceGrpc.newBlockingStub(channel);
-        
-        channel = ManagedChannelBuilder.forAddress(service.getAddress(), service.getPort())
-        .usePlaintext(true)
-        .build();
-        blockingStub2 = PhoneServiceGrpc.newBlockingStub(channel);
-        getAllSongs();
+         blockingStub2 = PhoneServiceGrpc.newBlockingStub(channel);
+
+      
     }
     public boolean interested(String type) {
         return serviceType.equals(type);
@@ -110,7 +107,8 @@ public class PhoneClient implements ServiceObserver {
     public void getAllSongs() {
       
             Empty request = Empty.newBuilder().build();
-            System.out.println("Playing song");
+            System.out.println("Playing song through internal speakers");
+            ui.append("Playing song through internal speakers");
             PlaylistSongs usermusic = blockingStub2.getAllSongs(request);
             List<Song> usermusicSongs = usermusic.getSongsList();
             for (Song son : usermusicSongs) {
@@ -138,8 +136,8 @@ public class PhoneClient implements ServiceObserver {
             PhoneResponse phoneResponse = blockingStub2.phoneOn(phoneRequest);
         // call the RPC and get back a GreetResponse (protocol buffers)
         
-        System.out.println(phoneResponse.getPhonestate());
-        ui.append(phoneResponse.getPhonestate());
+        System.out.println(phoneResponse.getPhonestatus());
+        ui.append(phoneResponse.getPhonestatus());
 
 
     }
@@ -163,60 +161,67 @@ public class PhoneClient implements ServiceObserver {
             PhoneResponse phoneResponse = blockingStub2.phoneOff(phoneRequest);
         // call the RPC and get back a GreetResponse (protocol buffers)
         
-        System.out.println(phoneResponse.getPhonestate());
-        ui.append(phoneResponse.getPhonestate());
+        System.out.println(phoneResponse.getPhonestatus());
+        ui.append(phoneResponse.getPhonestatus());
 
 
     }
- 
-        
-        
-       public void turnradioon() {
+           
+           
+           
+         public void volumeUp ( ){
+        // created a greet service client uranary
+//passing the channel
+        PhoneServiceGrpc.PhoneServiceBlockingStub stub = PhoneServiceGrpc.newBlockingStub(channel);
 
+
+        
+            VolumeUpRequest req = VolumeUpRequest.newBuilder()
+               // .setTemp(0)
+
+    
+
+                .build();
+
+        VolumeUpResponse response = stub.volumeUp(req);
+        
+        System.out.println(req.getTemp() + response.getCurrenttemp());
+
+    }
+           
+           
+           
+           
+           
+           
+           
+           
+       public void pause() {
+
+        // Unary
         // created a protocol buffer greeting message
-        Radio radio = Radio.newBuilder()
-                .setTurnradioon("On")
+        Phone phone = Phone.newBuilder()
+                .setPause("Paused")
                 .build();
 
         // do the same for a GreetRequest
-        RadioRequest radioRequest = RadioRequest.newBuilder()
-                .setRadio(radio)
+        PhoneRequest phoneRequest = PhoneRequest.newBuilder()
+                .setPhone(phone)
                 .build();
 
         // call the RPC and get back a GreetResponse (protocol buffers)
-            RadioResponse radioResponse = blockingStub.radioOn(radioRequest);
+         PhoneResponse phoneResponse = blockingStub2.pause(phoneRequest);
         // call the RPC and get back a GreetResponse (protocol buffers)
         
-        System.out.println(radioResponse.getRadiostate());
-        ui.append(radioResponse.getRadiostate());
+        System.out.println(phoneResponse.getPhonestatus());
+        ui.append(phoneResponse.getPhonestatus());
 
 
     }
-    
-    public void turntheradiooff() {
-
-          // Unary
-        // created a protocol buffer greeting message
-       Radio radio = Radio.newBuilder()
-                .setTurnradiooff("Off")
-                .build();
-
-        // do the same for a GreetRequest
-        RadioRequest radioRequest = RadioRequest.newBuilder()
-                .setRadio(radio)
-                .build();
-
-        // call the RPC and get back a GreetResponse (protocol buffers)
-            RadioResponse radioResponse = blockingStub.radioOff(radioRequest);
-        // call the RPC and get back a GreetResponse (protocol buffers)
         
-        System.out.println(radioResponse.getRadiostate());
-        ui.append(radioResponse.getRadiostate());
+           
 
-    }
- 
-    
-    
+    /*
        public void volumeUp(){
         RadioServiceGrpc.RadioServiceStub asyncClient = RadioServiceGrpc.newStub(channel);
 
@@ -263,7 +268,7 @@ public class PhoneClient implements ServiceObserver {
 
        
     }
-    
+    */
     
     
      public void connectdevice() {
@@ -293,7 +298,6 @@ public class PhoneClient implements ServiceObserver {
             public void onCompleted() {
                 // the server is done sending us data
                 // onCompleted will be called right after onNext()
-                 ui.append("Connected!");
                 latch.countDown();
             }
         });
@@ -303,7 +307,6 @@ public class PhoneClient implements ServiceObserver {
                         .setConnectspeaker("")
                         .build())
                         .build());
-                         ui.append("Preparing to Connect ");
 
         // we tell the server that the client is done sending data
         requestObserver.onCompleted();
@@ -315,11 +318,59 @@ public class PhoneClient implements ServiceObserver {
                     }
     }
 
-    
-        
+     
+     
+        public void bluetooth() {
+        // create an asynchronous client
+        PhoneServiceGrpc.PhoneServiceStub asyncClient = PhoneServiceGrpc.newStub(channel);
+
+        final CountDownLatch latch = new CountDownLatch(1);
+
+        StreamObserver<BluetoothRequest> requestObserver = asyncClient.bluetooth(new StreamObserver<BluetoothResponse>() {
+            @Override
+            public void onNext(BluetoothResponse value) {
+                // we get a response from the server
+                System.out.println("Preparing to connect device");
+                System.out.println(value.getBluetoothon());
+                ui.append("Preparing to connect device ");
+
+
+                // onNext will be called only once
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                // we get an error from the server
+            }
+
+            @Override
+            public void onCompleted() {
+                // the server is done sending us data
+                // onCompleted will be called right after onNext()
+                latch.countDown();
+            }
+        });
+
+        requestObserver.onNext(BluetoothRequest.newBuilder()
+                .setPhone(Phone.newBuilder()
+                        .setBluetooth("")
+                        .build())
+                        .build());
+
+        // we tell the server that the client is done sending data
+        requestObserver.onCompleted();
+
+   try {
+                         Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+    }
+
+ 
     
     public void switchService(String name) {
-        // TODO
+
     }
 
     public static void main(String[] args) {

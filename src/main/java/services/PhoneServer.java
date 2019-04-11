@@ -13,23 +13,18 @@ import java.util.TimerTask;
 
 import org.example.radio.RadioServiceGrpc;
 import java.util.logging.Logger;
-import org.example.phone.AverageRequest;
-import org.example.phone.AverageResponse;
+import org.example.phone.BluetoothRequest;
+import org.example.phone.BluetoothResponse;
 import org.example.phone.DeviceRequest;
 import org.example.phone.DeviceResponse;
-import org.example.phone.FindMaximumRequest;
-import org.example.phone.FindMaximumResponse;
 import org.example.phone.Phone;
 import org.example.phone.PhoneRequest;
 import org.example.phone.PhoneResponse;
 import org.example.phone.PhoneServiceGrpc;
 import org.example.phone.PlaylistSongs;
 import org.example.phone.Song;
-import org.example.radio.Radio;
-import org.example.radio.RadioRequest;
-import org.example.radio.RadioResponse;
-import org.example.radio.VolumeRequest;
-import org.example.radio.VolumeResponse;
+import org.example.phone.VolumeUpRequest;
+import org.example.phone.VolumeUpResponse;
 import serviceui.Printer;
 import serviceui.ServiceUI;
 
@@ -49,7 +44,7 @@ public class PhoneServer {
                 .addService(new PhoneServiceImpl())
                 .build()
                 .start();
-        JmDNSRegistrationHelper helper2 = new JmDNSRegistrationHelper("Seans", "_phone._udp.local.", "", port);
+       JmDNSRegistrationHelper helper2 = new JmDNSRegistrationHelper("Seans", "_phone._udp.local.", "", port);
       // JmDNSRegistrationHelper helper2 = new JmDNSRegistrationHelper("Seans", "_radio._udp.local.", "", port);
 
 
@@ -105,27 +100,53 @@ public class PhoneServer {
             String serviceType = "_phone._udp.local.";
             ui = new ServiceUI(name + serviceType);
            
-            
              
             songs = new ArrayList<Song>();
             Song welcometothejungle = Song.newBuilder().setArtist("Guns N Roses").setGenre("Rock").build();
-            Song lovegun = Song.newBuilder().setArtist("Kiss").setGenre("Glam rock").build();
-            Song entersandman = Song.newBuilder().setArtist("Metallica").setGenre("Heavy Metal").build();
             songs.add(welcometothejungle);
-            songs.add(lovegun);
-            songs.add(entersandman);
+            
+
+          
  }
+          
+            @Override
+    public void volumeUp(VolumeUpRequest req, StreamObserver<VolumeUpResponse> responseObserver) {
+        
+         int Temp = 15;
+         int MaxTemp =20;
+        // Gets the sum of all the miles driven per week by the car
+       
+        if(Temp < MaxTemp){
+            Temp ++;
+        }else if(Temp>MaxTemp){
+         System.out.println("We have hit the max");
+
+        }
+       
+        VolumeUpResponse volumeupResponse = VolumeUpResponse.newBuilder()
+                .setCurrenttemp(Temp)
+                .build();
+        
+        //sends the response
+
+        responseObserver.onNext(volumeupResponse);
+        // rpc call is completed
+        responseObserver.onCompleted();
+
+    }
+          
 
          @Override
     public void phoneOn(PhoneRequest request, StreamObserver<PhoneResponse> responseObserver) {
         // extract the fields we need
-        Phone phone = request.getPhone(); 
+      Phone phone = request.getPhone(); 
         String TurnPhoneOn = phone.getTurnphoneon();
 
+       
         // create the response
-        String phonestate = "The phone is " + TurnPhoneOn;
+        String phonestatus = "The phone is " + TurnPhoneOn;
         PhoneResponse response = PhoneResponse.newBuilder()
-                .setPhonestate(phonestate)
+                .setPhonestatus(phonestatus)
                 .build();
                  ui.append(response.toString());
 
@@ -143,10 +164,12 @@ public class PhoneServer {
         Phone phone = request.getPhone(); 
         String TurnPhoneOff = phone.getTurnphoneoff();
 
-        // create the response
-        String phonestate = "The phone is " + TurnPhoneOff;
+
+
+         // create the response
+        String phonestatus = "The phone is " + TurnPhoneOff;
         PhoneResponse response = PhoneResponse.newBuilder()
-                .setPhonestate(phonestate)
+                .setPhonestatus(phonestatus)
                 .build();
                  ui.append(response.toString());
 
@@ -156,6 +179,73 @@ public class PhoneServer {
         // complete the RPC call
         responseObserver.onCompleted();
     }
+
+    
+           @Override
+    public void pause(PhoneRequest request, StreamObserver<PhoneResponse> responseObserver) {
+        // extract the fields we need
+        Phone phone = request.getPhone(); 
+        String Pause = phone.getPause();
+        
+
+
+        // create the response
+        String phonestatus = "The song has been " + Pause;
+        PhoneResponse response = PhoneResponse.newBuilder()
+                .setPhonestatus(phonestatus)
+                .build();
+                 ui.append(response.toString());
+
+        // send the response
+        responseObserver.onNext(response);
+
+        // complete the RPC call
+        responseObserver.onCompleted();
+    }
+    
+    
+    
+    
+    
+      @Override
+     public StreamObserver<BluetoothRequest> bluetooth(final StreamObserver<BluetoothResponse> responseObserver) {
+        // we create the requestObserver that we'll return in this function
+       StreamObserver<BluetoothRequest> requestObserver = new StreamObserver<BluetoothRequest>() {
+
+            String connected = "";
+
+           @Override
+           public void onNext(BluetoothRequest value) {
+                // client sends a message
+               connected += "Preparing to turn on bluetooth " + value.getPhone().getBluetooth();
+
+               
+           }
+
+           @Override
+          public void onError(Throwable t) {
+                // client sends an error
+          }
+
+         @Override
+          public void onCompleted() {
+                // client is done
+             responseObserver.onNext(
+                       BluetoothResponse.newBuilder()
+                              .setBluetoothon(connected)
+                              .build()
+
+               );
+                 ui.append(connected.toString());
+
+                responseObserver.onCompleted();
+           }
+       };
+
+
+       return requestObserver;
+    }
+    
     
     
         @Override
