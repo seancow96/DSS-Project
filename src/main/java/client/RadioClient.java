@@ -148,7 +148,9 @@ public class RadioClient implements ServiceObserver {
             public void onNext(ChannelResponse value) {
                 // we get a response from the server
                 System.out.println("Channel is changing");
+                 ui.append("Channel is changing");
                 System.out.println(value.getChannel());
+
                 // onNext will be called only once
             }
 
@@ -160,12 +162,14 @@ public class RadioClient implements ServiceObserver {
             @Override
             public void onCompleted() {
                 
-                System.out.println("");
+                System.out.println("FM 104");
+                ui.append("FM 104");
                 latch.countDown();
             }
         });
 
         System.out.println("Preparing to change channel");
+        ui.append("Preparing to change channel");
         requestObserver.onNext(ChannelRequest.newBuilder()
                 .setChannel(Channel.newBuilder()
                         .setChannel1("FM 104")
@@ -174,11 +178,6 @@ public class RadioClient implements ServiceObserver {
 
         requestObserver.onCompleted();
 
-        try {
-            latch.await(3L, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
     
      
@@ -194,6 +193,7 @@ public class RadioClient implements ServiceObserver {
             public void onNext(ChannelResponse value) {
                 // we get a response from the server
                 System.out.println("Channel is changing");
+                ui.append("Channel is changing");
                 System.out.println(value.getChannel());
                 // onNext will be called only once
             }
@@ -206,12 +206,14 @@ public class RadioClient implements ServiceObserver {
             @Override
             public void onCompleted() {
                 
-                System.out.println("");
+                System.out.println("Radio Nova");
+                ui.append("Radio Nova");
                 latch.countDown();
             }
         });
 
         System.out.println("Preparing to change channel");
+        ui.append("Preparing to change channel");
         requestObserver.onNext(ChannelRequest.newBuilder()
                 .setChannel(Channel.newBuilder()
                         .setChannel2("Radio Nova")
@@ -220,11 +222,6 @@ public class RadioClient implements ServiceObserver {
 
         requestObserver.onCompleted();
 
-        try {
-            latch.await(3L, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
          
          
@@ -251,12 +248,14 @@ public class RadioClient implements ServiceObserver {
             @Override
             public void onCompleted() {
                 
-                System.out.println("");
+                System.out.println("Near FM");
+                ui.append("Near FM");
                 latch.countDown();
             }
         });
 
         System.out.println("Preparing to change channel");
+        ui.append("Preparing to change channel");
         requestObserver.onNext(ChannelRequest.newBuilder()
                 .setChannel(Channel.newBuilder()
                         .setChannel3("Near FM")
@@ -280,6 +279,7 @@ public class RadioClient implements ServiceObserver {
             public void onNext(ChannelResponse value) {
                 // we get a response from the server
                 System.out.println("Channel is changing");
+                ui.append("Channel is changing");
                 System.out.println(value.getChannel());
                 // onNext will be called only once
             }
@@ -292,12 +292,14 @@ public class RadioClient implements ServiceObserver {
             @Override
             public void onCompleted() {
                 
-                System.out.println("");
+                System.out.println("98FM");
+                ui.append("98FM");
                 latch.countDown();
             }
         });
 
         System.out.println("Preparing to change channel");
+        ui.append("Preparing to change channel");
         requestObserver.onNext(ChannelRequest.newBuilder()
                 .setChannel(Channel.newBuilder()
                         .setChannel4("98FM")

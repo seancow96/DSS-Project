@@ -94,38 +94,6 @@ public final class RadioServiceGrpc {
      return getRadioOffMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<org.example.radio.VolumeRequest,
-      org.example.radio.VolumeResponse> getVolumeUpMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "VolumeUp",
-      requestType = org.example.radio.VolumeRequest.class,
-      responseType = org.example.radio.VolumeResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
-  public static io.grpc.MethodDescriptor<org.example.radio.VolumeRequest,
-      org.example.radio.VolumeResponse> getVolumeUpMethod() {
-    io.grpc.MethodDescriptor<org.example.radio.VolumeRequest, org.example.radio.VolumeResponse> getVolumeUpMethod;
-    if ((getVolumeUpMethod = RadioServiceGrpc.getVolumeUpMethod) == null) {
-      synchronized (RadioServiceGrpc.class) {
-        if ((getVolumeUpMethod = RadioServiceGrpc.getVolumeUpMethod) == null) {
-          RadioServiceGrpc.getVolumeUpMethod = getVolumeUpMethod = 
-              io.grpc.MethodDescriptor.<org.example.radio.VolumeRequest, org.example.radio.VolumeResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
-              .setFullMethodName(generateFullMethodName(
-                  "radio.RadioService", "VolumeUp"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.example.radio.VolumeRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.example.radio.VolumeResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new RadioServiceMethodDescriptorSupplier("VolumeUp"))
-                  .build();
-          }
-        }
-     }
-     return getVolumeUpMethod;
-  }
-
   private static volatile io.grpc.MethodDescriptor<org.example.radio.ChannelRequest,
       org.example.radio.ChannelResponse> getChannel1Method;
 
@@ -303,13 +271,6 @@ public final class RadioServiceGrpc {
 
     /**
      */
-    public io.grpc.stub.StreamObserver<org.example.radio.VolumeRequest> volumeUp(
-        io.grpc.stub.StreamObserver<org.example.radio.VolumeResponse> responseObserver) {
-      return asyncUnimplementedStreamingCall(getVolumeUpMethod(), responseObserver);
-    }
-
-    /**
-     */
     public io.grpc.stub.StreamObserver<org.example.radio.ChannelRequest> channel1(
         io.grpc.stub.StreamObserver<org.example.radio.ChannelResponse> responseObserver) {
       return asyncUnimplementedStreamingCall(getChannel1Method(), responseObserver);
@@ -352,13 +313,6 @@ public final class RadioServiceGrpc {
                 org.example.radio.RadioRequest,
                 org.example.radio.RadioResponse>(
                   this, METHODID_RADIO_OFF)))
-          .addMethod(
-            getVolumeUpMethod(),
-            asyncClientStreamingCall(
-              new MethodHandlers<
-                org.example.radio.VolumeRequest,
-                org.example.radio.VolumeResponse>(
-                  this, METHODID_VOLUME_UP)))
           .addMethod(
             getChannel1Method(),
             asyncClientStreamingCall(
@@ -429,14 +383,6 @@ public final class RadioServiceGrpc {
         io.grpc.stub.StreamObserver<org.example.radio.RadioResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getRadioOffMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     */
-    public io.grpc.stub.StreamObserver<org.example.radio.VolumeRequest> volumeUp(
-        io.grpc.stub.StreamObserver<org.example.radio.VolumeResponse> responseObserver) {
-      return asyncClientStreamingCall(
-          getChannel().newCall(getVolumeUpMethod(), getCallOptions()), responseObserver);
     }
 
     /**
@@ -554,11 +500,10 @@ public final class RadioServiceGrpc {
 
   private static final int METHODID_RADIO_ON = 0;
   private static final int METHODID_RADIO_OFF = 1;
-  private static final int METHODID_VOLUME_UP = 2;
-  private static final int METHODID_CHANNEL1 = 3;
-  private static final int METHODID_CHANNEL2 = 4;
-  private static final int METHODID_CHANNEL3 = 5;
-  private static final int METHODID_CHANNEL4 = 6;
+  private static final int METHODID_CHANNEL1 = 2;
+  private static final int METHODID_CHANNEL2 = 3;
+  private static final int METHODID_CHANNEL3 = 4;
+  private static final int METHODID_CHANNEL4 = 5;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -595,9 +540,6 @@ public final class RadioServiceGrpc {
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_VOLUME_UP:
-          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.volumeUp(
-              (io.grpc.stub.StreamObserver<org.example.radio.VolumeResponse>) responseObserver);
         case METHODID_CHANNEL1:
           return (io.grpc.stub.StreamObserver<Req>) serviceImpl.channel1(
               (io.grpc.stub.StreamObserver<org.example.radio.ChannelResponse>) responseObserver);
@@ -663,7 +605,6 @@ public final class RadioServiceGrpc {
               .setSchemaDescriptor(new RadioServiceFileDescriptorSupplier())
               .addMethod(getRadioOnMethod())
               .addMethod(getRadioOffMethod())
-              .addMethod(getVolumeUpMethod())
               .addMethod(getChannel1Method())
               .addMethod(getChannel2Method())
               .addMethod(getChannel3Method())

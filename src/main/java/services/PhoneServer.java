@@ -150,6 +150,7 @@ public class PhoneServer {
                 .build();
                  ui.append(response.toString());
 
+
         // send the response
         responseObserver.onNext(response);
 

@@ -117,7 +117,11 @@ public class MilageClient implements ServiceObserver {
         
         System.out.println(welcomeResponse.getGreeteduser());
 
-
+     try {
+                      Thread.sleep(4000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
     }
     
     
@@ -138,15 +142,19 @@ public class MilageClient implements ServiceObserver {
                 .setFriday(15.12)
                 .setSaturday(27.12)
                 .setSunday(26.45)
-    
-
                 .build();
 
         TotalResponse response = stub.totalMiles(req);
         
         System.out.println("The total miles travelled this week where ");
-        System.out.println(req.getMonday() + " + " + req.getTuesday()  + " + " + req.getWednesday() + " + " + req.getThursday() + "+" + req.getFriday()+ "+" + req.getSaturday()+"+" + req.getSunday()+ " = " + response.getResult());
-
+        System.out.println(req.getMonday() + " + " + req.getTuesday()  + " + " + req.getWednesday() + " + " + req.getThursday() + " + " + req.getFriday()+ " + " + req.getSaturday()+" + " + req.getSunday()+ " = " + response.getResult());
+             try {
+                      Thread.sleep(4000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+        
+        
     }
 
      
@@ -160,7 +168,7 @@ public class MilageClient implements ServiceObserver {
             @Override
             public void onNext(AverageMilesResponse value) {
                 System.out.println("Checking the average miles");
-                System.out.println("The average number of miles travelled over 7 days is" );
+                System.out.println("The average number of miles travelled per day is" );
                 System.out.println( value.getAverage());
                
                 

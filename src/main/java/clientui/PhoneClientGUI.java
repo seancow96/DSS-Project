@@ -184,6 +184,12 @@ public class PhoneClientGUI extends javax.swing.JFrame implements Printer {
         client.turnphoneoff();
         PhoneOff.setEnabled(false);
         PlaySong.setEnabled(false);
+         PhoneOn.setEnabled(true);
+        PhoneOff.setEnabled(false);
+        PlaySong.setEnabled(false);
+        Pause.setEnabled(false);
+        VolumeUp.setEnabled(false);
+        VolumeDown.setEnabled(false);
       
         // TODO add your handling code here:
     }//GEN-LAST:event_PhoneOffActionPerformed
@@ -192,6 +198,7 @@ public class PhoneClientGUI extends javax.swing.JFrame implements Printer {
       client.getAllSongs();
        PhoneOff.setEnabled(false);
         PlaySong.setEnabled(false);
+        Pause.setEnabled(true);
         
     }//GEN-LAST:event_PlaySongActionPerformed
 

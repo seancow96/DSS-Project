@@ -13,7 +13,6 @@ service RadioService {
 //uranary
     rpc RadioOn(RadioRequest) returns (RadioResponse) {};
     rpc RadioOff(RadioRequest) returns (RadioResponse) {};
-    rpc VolumeUp(stream VolumeRequest) returns (VolumeResponse){};
     rpc Channel1(stream ChannelRequest) returns (ChannelResponse){};
     rpc Channel2(stream ChannelRequest) returns (ChannelResponse){};
     rpc Channel3(stream ChannelRequest) returns (ChannelResponse){};
@@ -36,18 +35,6 @@ message ChannelRequest {
 message ChannelResponse {
     string channel = 1;
 }
-
-
- message VolumeRequest {
-   int32 number = 1;
-}
-
-message VolumeResponse {
-    double currentvolume = 1;
-}
-
-
-
 
 
 //uranary Turn speaker on and off

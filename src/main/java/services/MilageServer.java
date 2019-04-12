@@ -219,7 +219,7 @@ public class MilageServer {
         //sends the response
 
         responseObserver.onNext(costResponse);
-        ui.append("The total cost in dollars is "+costResponse.toString());
+        ui.append("The total cost in dollars is "+ "$"+costResponse.toString());
 
         // rpc call is completed
         responseObserver.onCompleted();

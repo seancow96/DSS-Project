@@ -13,8 +13,6 @@ import org.example.radio.ChannelResponse;
 import org.example.radio.Radio;
 import org.example.radio.RadioRequest;
 import org.example.radio.RadioResponse;
-import org.example.radio.VolumeRequest;
-import org.example.radio.VolumeResponse;
 import serviceui.Printer;
 import serviceui.ServiceUI;
 
@@ -145,6 +143,7 @@ public class RadioServer {
             public void onNext(ChannelRequest value) {
                 // client sends a message
                 channel += "The current channel is " + value.getChannel().getChannel1() + "!";
+                ui.append("The current channel is"+value.getChannel().getChannel1());
             }
 
             @Override
@@ -159,6 +158,7 @@ public class RadioServer {
                         ChannelResponse.newBuilder()
                                 .setChannel(channel)
                                 .build()
+                        
                 );
                 responseObserver.onCompleted();
             }
@@ -180,6 +180,8 @@ public class RadioServer {
             public void onNext(ChannelRequest value) {
                 // client sends a message
                 channel += "The current channel is " + value.getChannel().getChannel2() + "!";
+                ui.append("The current channel is"+value.getChannel().getChannel2());
+
             }
 
             @Override
@@ -215,6 +217,8 @@ public class RadioServer {
             public void onNext(ChannelRequest value) {
                 // client sends a message
                 channel += "The current channel is " + value.getChannel().getChannel3() + "!";
+                ui.append("The current channel is"+value.getChannel().getChannel3());
+
             }
 
             @Override
@@ -251,6 +255,8 @@ public class RadioServer {
             public void onNext(ChannelRequest value) {
                 // client sends a message
                 channel += "The current channel is " + value.getChannel().getChannel4() + "!";
+                channel += "The current channel is " + value.getChannel().getChannel4() + "!";
+
             }
 
             @Override

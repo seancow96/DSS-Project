@@ -178,7 +178,6 @@ public class RadioClientGUI extends javax.swing.JFrame implements Printer {
 
     private void RadioOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioOffActionPerformed
         client.turntheradiooff();
-        client.turnradioon();
         RadioOn.setEnabled(true);
         RadioOff.setEnabled(false);
         Channel1.setEnabled(false);

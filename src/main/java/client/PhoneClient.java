@@ -26,14 +26,6 @@ import org.example.phone.PlaylistSongs;
 import org.example.phone.Song;
 import org.example.phone.VolumeUpRequest;
 import org.example.phone.VolumeUpResponse;
-import org.example.radio.Radio;
-import org.example.radio.RadioRequest;
-import org.example.radio.RadioResponse;
-import org.example.radio.RadioServiceGrpc;
-import org.example.radio.VolumeRequest;
-import org.example.radio.VolumeResponse;
-import org.example.radio.VolumeRequest;
-import org.example.radio.VolumeResponse;
 
 
 
@@ -46,7 +38,6 @@ public class PhoneClient implements ServiceObserver {
     private final String name;
     private static final Logger logger = Logger.getLogger(PhoneClient.class.getName());
     private ManagedChannel channel;
-    private RadioServiceGrpc.RadioServiceBlockingStub blockingStub;
     private PhoneServiceGrpc.PhoneServiceBlockingStub blockingStub2;
 
 
@@ -218,57 +209,7 @@ public class PhoneClient implements ServiceObserver {
 
 
     }
-        
-           
-
-    /*
-       public void volumeUp(){
-        RadioServiceGrpc.RadioServiceStub asyncClient = RadioServiceGrpc.newStub(channel);
-
-        final CountDownLatch latch = new CountDownLatch(1);
-
-        StreamObserver<VolumeRequest> requestObserver = asyncClient.volumeUp(new StreamObserver<VolumeResponse>() {
-            @Override
-            public void onNext(VolumeResponse value) {
-                System.out.println("Incease volume");
-                System.out.println("The volume is now" );
-                System.out.println( value.getCurrentvolume());
-                ui.append("Received a response from the server");
-                ui.append("The average number of views 67,12,38 is");
-                ui.append(value.toString());
-
-
-
-                
-            }
-
-            @Override
-            public void onError(Throwable t) {
-
-            }
-
-            @Override
-            public void onCompleted() {
-                System.out.println("Server has completed sending us data");
-                ui.append("Server has completed sending us data");
-
-                
-                 latch.countDown();
-            }
-        });
        
-        requestObserver.onNext(VolumeRequest.newBuilder()
-        .setNumber(3)
-        .build());
-        
-              
-    
-
-        requestObserver.onCompleted();
-
-       
-    }
-    */
     
     
      public void connectdevice() {
