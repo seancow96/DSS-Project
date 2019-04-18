@@ -3,8 +3,8 @@
 
 package org.example.milage;
 
-public interface FindMaximumRequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:milage.FindMaximumRequest)
+public interface MaxMilesRequestOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:milage.MaxMilesRequest)
     com.google.protobuf.MessageOrBuilder {
 
   /**

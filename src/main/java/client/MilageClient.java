@@ -20,9 +20,9 @@ import java.util.logging.Logger;
 import org.example.milage.AverageMilesResponse;
 import org.example.milage.CostResponse;
 import org.example.milage.DaysRequest;
-import org.example.milage.FindMaximumRequest;
-import org.example.milage.FindMaximumResponse;
 import org.example.milage.FuelLevelResponse;
+import org.example.milage.MaxMilesRequest;
+import org.example.milage.MaxMilesResponse;
 import org.example.milage.MilageServiceGrpc;
 import org.example.milage.TirePressureResponse;
 import org.example.milage.TotalResponse;
@@ -56,8 +56,7 @@ public class MilageClient implements ServiceObserver {
         clientManager.register(this);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-             //   ui = new TestServerGUI(TestClient.this);
-              //  ui.setVisible(true);
+             
             }
         });
     }
@@ -85,11 +84,12 @@ public class MilageClient implements ServiceObserver {
         //runs the channels
         welcome();
         totalMiles();
+        maximum();
         averageMiles();
         calculateCost();
         checkTirePressure();
         checkFuelLevel();
-        maximum();
+      
       
     }
     public boolean interested(String type) {
@@ -132,8 +132,7 @@ public class MilageClient implements ServiceObserver {
                         e.printStackTrace();
                     }
     }
-    
-    
+   
     
     
       public void totalMiles ( ){
@@ -155,7 +154,7 @@ public class MilageClient implements ServiceObserver {
 
         TotalResponse response = stub.totalMiles(req);
         
-        System.out.println("The total miles travelled this week where "+response.getResult());
+        System.out.println("The total miles travelled over 7 days was "+response.getResult());
         
              try {
                       Thread.sleep(4000);
@@ -175,11 +174,11 @@ public class MilageClient implements ServiceObserver {
 
 
 
-        StreamObserver<FindMaximumRequest> requestObserver = asyncClient.findMaximum(new StreamObserver<FindMaximumResponse>() {
+        StreamObserver<MaxMilesRequest> requestObserver = asyncClient.maxMilesDriven(new StreamObserver<MaxMilesResponse>() {
             @Override    //anytime we receieve a response from the client we say
-            public void onNext(FindMaximumResponse value) {
+            public void onNext(MaxMilesResponse value) {
                 //gets new maximum from server
-                System.out.println("Got new Maximum miles: " + value.getMaximum());
+                System.out.println("Got new value for maximum miles per day over 7 days" + value.getMaxmiles());
             }
 
             @Override
@@ -195,15 +194,19 @@ public class MilageClient implements ServiceObserver {
         });
 
 //sending data to the request observer
+//lamdasfunction
+
 
         Arrays.asList(12.4, 22.4, 14.12, 29.78, 15.12, 27.12, 26.45).forEach(
                 number -> {
-                    System.out.println("Sending miles : " + number);
-                    requestObserver.onNext(FindMaximumRequest.newBuilder()
+                    System.out.println("Sending miles per day : " + number);
+                    requestObserver.onNext(MaxMilesRequest.newBuilder()
                             .setNumber(number)
                             .build());
+                    
+                    
                     try {
-                        Thread.sleep(5000);
+                        Thread.sleep(4000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -211,23 +214,11 @@ public class MilageClient implements ServiceObserver {
         );
 
         requestObserver.onCompleted();
-
-        try {
-            latch.await(3, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
       
       
      
-     
-     
-     
-     
-     
-     
-         
+         //client streaming
      public void averageMiles(){
         MilageServiceGrpc.MilageServiceStub asyncClient = MilageServiceGrpc.newStub(channel);
 
@@ -300,7 +291,7 @@ public class MilageClient implements ServiceObserver {
                     }
     }
      
-     
+     //unary
     public void calculateCost ( ){
         // created a greet service client uranary
 //passing the channel
@@ -328,16 +319,24 @@ public class MilageClient implements ServiceObserver {
         System.out.println("The cost of fuel is currently 2.83 litres per gallon");
         System.out.println("The total cost in dollars is " + response.getCost() / req.getMpg() *req.getPrice());
 
+        
+          try {
+                      Thread.sleep(4000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+        
     }
     
 
     
     
-          
+          //unary
         public void checkTirePressure ( ){
         MilageServiceGrpc.MilageServiceBlockingStub stub = MilageServiceGrpc.newBlockingStub(channel);
         
         Empty request = Empty.newBuilder().build();
+        //normal pressure for tires is 35
         int normalpressure=35;
         int tirepressure = 35;
 
@@ -352,10 +351,17 @@ public class MilageClient implements ServiceObserver {
         TirePressureResponse response = stub.checkTirePressure(request);
         
         System.out.println("The current pressure is "+ response.getCurrentpressure());
+        
+        
+          try {
+                      Thread.sleep(4000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
 
     }
            
-  
+   //unary
         public void checkFuelLevel ( ){
         MilageServiceGrpc.MilageServiceBlockingStub stub = MilageServiceGrpc.newBlockingStub(channel);
         
@@ -363,7 +369,7 @@ public class MilageClient implements ServiceObserver {
         double fuellevel = 4.5; 
         double normalfuellevel = 8.0;
         
-
+   /// Fuelchecks
     
         if(fuellevel<normalfuellevel){
           System.out.println("Fuel is below normal");
@@ -377,6 +383,9 @@ public class MilageClient implements ServiceObserver {
         
         System.out.println("The current fuel is "+ response.getCurrentfuellevel());
 
+        
+        
+        
     }
         
     

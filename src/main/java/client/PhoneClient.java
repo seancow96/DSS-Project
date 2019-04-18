@@ -1,23 +1,15 @@
 package client;
 
-import javax.swing.JPanel;
 import clientui.PhoneClientGUI;
 import com.google.protobuf.Empty;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import io.grpc.stub.StreamObserver;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.example.phone.BluetoothRequest;
-import org.example.phone.BluetoothResponse;
-import org.example.phone.DeviceRequest;
-import org.example.phone.DeviceResponse;
+import org.example.phone.Contact;
+import org.example.phone.ContactResponse;
 import org.example.phone.Phone;
 import org.example.phone.PhoneRequest;
 import org.example.phone.PhoneResponse;
@@ -95,12 +87,12 @@ public class PhoneClient implements ServiceObserver {
 
     
     
-    public void getSong() {
+    public void playSong() {
       
             Empty request = Empty.newBuilder().build();
             System.out.println("Playing song through internal speakers");
             ui.append("Playing song through internal speakers");
-            PlaylistSongs usermusic = blockingStub2.getSong(request);
+            PlaylistSongs usermusic = blockingStub2.playSong(request);
             List<Song> usermusicSongs = usermusic.getSongsList();
             for (Song son : usermusicSongs) {
                 ui.append(son.toString());
@@ -109,6 +101,21 @@ public class PhoneClient implements ServiceObserver {
             }
     }
        
+    
+      public void showcontacts() {
+      
+            Empty request = Empty.newBuilder().build();
+            System.out.println("ListingContacts");
+            ui.append("Listing Contacts");
+            ContactResponse contactslist = blockingStub2.showcontacts(request);
+            List<Contact> contactslistContacts = contactslist.getContactsList();
+            for (Contact con : contactslistContacts) {
+                ui.append(con.toString());
+                System.out.println(con);
+
+            }
+    }
+     
    
     
     
@@ -174,7 +181,9 @@ public class PhoneClient implements ServiceObserver {
     
 
         VolumeUpResponse response = stub.volumeUp(request);
-        
+        ui.append("Increasing Volume");
+        System.out.println("Increasing Volume");
+
         System.out.println("The current volume is "+ response.getCurrentvolume()+ " decibels ");
         ui.append("The current volume is "+response.getCurrentvolume() + " decibels");
 
@@ -193,6 +202,8 @@ public class PhoneClient implements ServiceObserver {
 
         VolumeDownResponse response = stub.volumeDown(request);
         
+        System.out.println("Decreasing Volume");
+        ui.append("Decreasing Volume");
         System.out.println("The current volume is "+ response.getCurrentvolume() + " decibels ");
         ui.append("The current volume is "+response.getCurrentvolume() + " decibels ");
 

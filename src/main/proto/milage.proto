@@ -19,7 +19,8 @@ service MilageService {
    rpc AverageMiles(stream DaysRequest) returns (AverageMilesResponse){};
   //bidi streaming
 
-   rpc FindMaximum(stream FindMaximumRequest) returns (stream FindMaximumResponse) {};
+   rpc MaxMilesDriven(stream MaxMilesRequest) returns (stream MaxMilesResponse) {};
+
 
 
 //uranary
@@ -81,15 +82,13 @@ message TotalResponse {
 }
 
 
-message FindMaximumRequest {
+message MaxMilesRequest {
     double number = 1;
 }
 
-message FindMaximumResponse {
-    double maximum = 1;
+message MaxMilesResponse {
+    double maxmiles = 1;
 }
-
-
 
 
 message CostResponse{

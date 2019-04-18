@@ -274,7 +274,7 @@ public class RadioClient implements ServiceObserver {
 
         CountDownLatch latch = new CountDownLatch(1);
 
-        StreamObserver<ChannelRequest> requestObserver = asyncClient.channel3(new StreamObserver<ChannelResponse>() {
+        StreamObserver<ChannelRequest> requestObserver = asyncClient.channel4(new StreamObserver<ChannelResponse>() {
             @Override
             public void onNext(ChannelResponse value) {
                 // we get a response from the server

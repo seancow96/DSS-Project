@@ -4,12 +4,14 @@ package carheating;
 option go_package="carheatingpb";
 
 service HeatService{
-
+//unary
   rpc Welcome(WelcomeRequest) returns (WelcomeResponse) {};
+//server streaming
   rpc HeatSeat1(HeatingRequest) returns (stream HeatingResponse) {};
   rpc HeatSeat2(HeatingRequest) returns (stream HeatingResponse) {};
   rpc HeatSeat3(HeatingRequest) returns (stream HeatingResponse) {};
   rpc HeatSeat4(HeatingRequest) returns (stream HeatingResponse) {};
+//unary
   rpc Complete(CompleteRequest) returns (CompleteResponse) {};
 
 }
@@ -27,7 +29,7 @@ message WelcomeResponse {
     string result = 1;
 }
 
-
+/// heating seats message
 
 message Heating {
     string seat = 1;
@@ -39,13 +41,13 @@ message Heating {
 message HeatingRequest {
     Heating heating = 1;
 }
-
+//heating seats results
 message HeatingResponse {
     string result = 1;
 }
 
 
-//welcomes user
+//completed message
 message Complete {
     string final = 1;
 }

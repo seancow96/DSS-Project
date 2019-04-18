@@ -1,18 +1,20 @@
+
+/*
+
+Author:Sean Cowley--x14484252
+*/
+
 package services;
 
 import com.google.protobuf.Empty;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 import io.grpc.stub.StreamObserver;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import java.util.logging.Logger;
+import org.example.phone.Contact;
+import org.example.phone.ContactResponse;
 import org.example.phone.Phone;
 import org.example.phone.PhoneRequest;
 import org.example.phone.PhoneResponse;
@@ -32,7 +34,7 @@ public class PhoneServer {
     private static final Logger logger = Logger.getLogger(PhoneServer.class.getName());
 
     /* The port on which the server should run */
-    private int port = 50056;
+    private int port = 50054;
     private Server server;
 
     private void start() throws Exception {
@@ -41,7 +43,6 @@ public class PhoneServer {
                 .build()
                 .start();
        JmDNSRegistrationHelper helper2 = new JmDNSRegistrationHelper("Seans", "_phone._udp.local.", "", port);
-      // JmDNSRegistrationHelper helper2 = new JmDNSRegistrationHelper("Seans", "_radio._udp.local.", "", port);
 
 
 
@@ -87,7 +88,7 @@ public class PhoneServer {
         private class PhoneServiceImpl extends PhoneServiceGrpc.PhoneServiceImplBase {
             
             
-   
+        private List<Contact> contacts;
         private List<Song> songs;
         private Printer ui;
         int Vol =0;
@@ -103,13 +104,54 @@ public class PhoneServer {
             String serviceType = "_phone._udp.local.";
             ui = new ServiceUI(name + serviceType);
            
-             
+             //playlingsong
             songs = new ArrayList<Song>();
             Song welcometothejungle = Song.newBuilder().setArtist("Guns N Roses").setGenre("Rock").build();
             songs.add(welcometothejungle);
             
             
-               
+            ///arralist of contacts
+            contacts = new ArrayList<Contact>();
+            Contact peter = Contact.newBuilder()
+                    .setName("Peter")
+                    .setLastname("House")
+                    .setAddress("123 OakMount Avenue")
+                    .setPhonenumber("085,689,2384")
+                    .build();
+                   contacts.add(peter);
+            
+              Contact jack = Contact.newBuilder()
+                    .setName("Jack")
+                    .setLastname("Doyle")
+                    .setAddress("345 Snowterrace Avenue")
+                    .setPhonenumber("085,567,2347")
+                    .build();
+                    contacts.add(jack);
+                    
+                    Contact eve = Contact.newBuilder()
+                    .setName("Eve")
+                    .setLastname("breslin")
+                    .setAddress("234 Terrace Avenue")
+                    .setPhonenumber("085,567,3454")
+                    .build();
+                    contacts.add(eve);
+                    
+                    Contact tim = Contact.newBuilder()
+                    .setName("Tim")
+                    .setLastname("groves")
+                    .setAddress("15 Wigwam way")
+                    .setPhonenumber("086,124,4562")
+                    .build();
+                    contacts.add(tim);
+                    
+                    Contact linda = Contact.newBuilder()
+                    .setName("Linda")
+                    .setLastname("Carrol")
+                    .setAddress("33 ridgeway Avenue")
+                    .setPhonenumber("087,563,2371")
+                    .build();
+                    contacts.add(linda);
+
  }
           
     @Override
@@ -119,8 +161,7 @@ public class PhoneServer {
         if(Vol < MaxVol){
             Vol +=1;
         }else if(Vol>MaxVol){
-          System.out.println("You have reached the max volume"+Vol);
-          ui.append("You have reached the max volume");
+          ui.append("You have reached the max volume"+Vol);
 
         }
        
@@ -145,8 +186,7 @@ public class PhoneServer {
         if(Vol > MinVol){
             Vol -=1;
         }else if(Vol == MinVol){
-          System.out.println("You have reached the min volume"+ MinVol);
-          ui.append("You have reached the min volume");
+          ui.append("You have reached the min volume"+MinVol);
 
 
         }
@@ -167,7 +207,6 @@ public class PhoneServer {
     
   
           
- 
           
     
          @Override
@@ -241,10 +280,26 @@ public class PhoneServer {
         responseObserver.onCompleted();
     }
     
+    
+        
+        
+         @Override
+        public void showcontacts(Empty request,
+                StreamObserver<ContactResponse> responseObserver) {
+            ContactResponse all = ContactResponse.newBuilder().addAllContacts(contacts).build();
+            responseObserver.onNext(all);
+            ui.append(all.toString());
+            responseObserver.onCompleted();
+            
+        }
+    
+    
+    
+    
 
     
          @Override
-        public void getSong(Empty request,
+        public void playSong(Empty request,
                 StreamObserver<PlaylistSongs> responseObserver) {
             PlaylistSongs all = PlaylistSongs.newBuilder().addAllSongs(songs).build();
             responseObserver.onNext(all);

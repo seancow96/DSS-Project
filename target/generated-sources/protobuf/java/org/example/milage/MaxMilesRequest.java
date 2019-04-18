@@ -4,19 +4,19 @@
 package org.example.milage;
 
 /**
- * Protobuf type {@code milage.FindMaximumResponse}
+ * Protobuf type {@code milage.MaxMilesRequest}
  */
-public  final class FindMaximumResponse extends
+public  final class MaxMilesRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:milage.FindMaximumResponse)
-    FindMaximumResponseOrBuilder {
+    // @@protoc_insertion_point(message_implements:milage.MaxMilesRequest)
+    MaxMilesRequestOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use FindMaximumResponse.newBuilder() to construct.
-  private FindMaximumResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use MaxMilesRequest.newBuilder() to construct.
+  private MaxMilesRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private FindMaximumResponse() {
-    maximum_ = 0D;
+  private MaxMilesRequest() {
+    number_ = 0D;
   }
 
   @java.lang.Override
@@ -24,7 +24,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private FindMaximumResponse(
+  private MaxMilesRequest(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -45,7 +45,7 @@ private static final long serialVersionUID = 0L;
             break;
           case 9: {
 
-            maximum_ = input.readDouble();
+            number_ = input.readDouble();
             break;
           }
           default: {
@@ -69,24 +69,24 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return org.example.milage.MilageProto.internal_static_milage_FindMaximumResponse_descriptor;
+    return org.example.milage.MilageProto.internal_static_milage_MaxMilesRequest_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return org.example.milage.MilageProto.internal_static_milage_FindMaximumResponse_fieldAccessorTable
+    return org.example.milage.MilageProto.internal_static_milage_MaxMilesRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            org.example.milage.FindMaximumResponse.class, org.example.milage.FindMaximumResponse.Builder.class);
+            org.example.milage.MaxMilesRequest.class, org.example.milage.MaxMilesRequest.Builder.class);
   }
 
-  public static final int MAXIMUM_FIELD_NUMBER = 1;
-  private double maximum_;
+  public static final int NUMBER_FIELD_NUMBER = 1;
+  private double number_;
   /**
-   * <code>double maximum = 1;</code>
+   * <code>double number = 1;</code>
    */
-  public double getMaximum() {
-    return maximum_;
+  public double getNumber() {
+    return number_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -103,8 +103,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (maximum_ != 0D) {
-      output.writeDouble(1, maximum_);
+    if (number_ != 0D) {
+      output.writeDouble(1, number_);
     }
     unknownFields.writeTo(output);
   }
@@ -115,9 +115,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (maximum_ != 0D) {
+    if (number_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(1, maximum_);
+        .computeDoubleSize(1, number_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -129,16 +129,16 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof org.example.milage.FindMaximumResponse)) {
+    if (!(obj instanceof org.example.milage.MaxMilesRequest)) {
       return super.equals(obj);
     }
-    org.example.milage.FindMaximumResponse other = (org.example.milage.FindMaximumResponse) obj;
+    org.example.milage.MaxMilesRequest other = (org.example.milage.MaxMilesRequest) obj;
 
     boolean result = true;
     result = result && (
-        java.lang.Double.doubleToLongBits(getMaximum())
+        java.lang.Double.doubleToLongBits(getNumber())
         == java.lang.Double.doubleToLongBits(
-            other.getMaximum()));
+            other.getNumber()));
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -150,77 +150,77 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + MAXIMUM_FIELD_NUMBER;
+    hash = (37 * hash) + NUMBER_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getMaximum()));
+        java.lang.Double.doubleToLongBits(getNumber()));
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static org.example.milage.FindMaximumResponse parseFrom(
+  public static org.example.milage.MaxMilesRequest parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static org.example.milage.FindMaximumResponse parseFrom(
+  public static org.example.milage.MaxMilesRequest parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static org.example.milage.FindMaximumResponse parseFrom(
+  public static org.example.milage.MaxMilesRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static org.example.milage.FindMaximumResponse parseFrom(
+  public static org.example.milage.MaxMilesRequest parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static org.example.milage.FindMaximumResponse parseFrom(byte[] data)
+  public static org.example.milage.MaxMilesRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static org.example.milage.FindMaximumResponse parseFrom(
+  public static org.example.milage.MaxMilesRequest parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static org.example.milage.FindMaximumResponse parseFrom(java.io.InputStream input)
+  public static org.example.milage.MaxMilesRequest parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static org.example.milage.FindMaximumResponse parseFrom(
+  public static org.example.milage.MaxMilesRequest parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static org.example.milage.FindMaximumResponse parseDelimitedFrom(java.io.InputStream input)
+  public static org.example.milage.MaxMilesRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static org.example.milage.FindMaximumResponse parseDelimitedFrom(
+  public static org.example.milage.MaxMilesRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static org.example.milage.FindMaximumResponse parseFrom(
+  public static org.example.milage.MaxMilesRequest parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static org.example.milage.FindMaximumResponse parseFrom(
+  public static org.example.milage.MaxMilesRequest parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -233,7 +233,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(org.example.milage.FindMaximumResponse prototype) {
+  public static Builder newBuilder(org.example.milage.MaxMilesRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -249,26 +249,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code milage.FindMaximumResponse}
+   * Protobuf type {@code milage.MaxMilesRequest}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:milage.FindMaximumResponse)
-      org.example.milage.FindMaximumResponseOrBuilder {
+      // @@protoc_insertion_point(builder_implements:milage.MaxMilesRequest)
+      org.example.milage.MaxMilesRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.example.milage.MilageProto.internal_static_milage_FindMaximumResponse_descriptor;
+      return org.example.milage.MilageProto.internal_static_milage_MaxMilesRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.example.milage.MilageProto.internal_static_milage_FindMaximumResponse_fieldAccessorTable
+      return org.example.milage.MilageProto.internal_static_milage_MaxMilesRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              org.example.milage.FindMaximumResponse.class, org.example.milage.FindMaximumResponse.Builder.class);
+              org.example.milage.MaxMilesRequest.class, org.example.milage.MaxMilesRequest.Builder.class);
     }
 
-    // Construct using org.example.milage.FindMaximumResponse.newBuilder()
+    // Construct using org.example.milage.MaxMilesRequest.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -286,7 +286,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      maximum_ = 0D;
+      number_ = 0D;
 
       return this;
     }
@@ -294,17 +294,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return org.example.milage.MilageProto.internal_static_milage_FindMaximumResponse_descriptor;
+      return org.example.milage.MilageProto.internal_static_milage_MaxMilesRequest_descriptor;
     }
 
     @java.lang.Override
-    public org.example.milage.FindMaximumResponse getDefaultInstanceForType() {
-      return org.example.milage.FindMaximumResponse.getDefaultInstance();
+    public org.example.milage.MaxMilesRequest getDefaultInstanceForType() {
+      return org.example.milage.MaxMilesRequest.getDefaultInstance();
     }
 
     @java.lang.Override
-    public org.example.milage.FindMaximumResponse build() {
-      org.example.milage.FindMaximumResponse result = buildPartial();
+    public org.example.milage.MaxMilesRequest build() {
+      org.example.milage.MaxMilesRequest result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -312,9 +312,9 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public org.example.milage.FindMaximumResponse buildPartial() {
-      org.example.milage.FindMaximumResponse result = new org.example.milage.FindMaximumResponse(this);
-      result.maximum_ = maximum_;
+    public org.example.milage.MaxMilesRequest buildPartial() {
+      org.example.milage.MaxMilesRequest result = new org.example.milage.MaxMilesRequest(this);
+      result.number_ = number_;
       onBuilt();
       return result;
     }
@@ -353,18 +353,18 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof org.example.milage.FindMaximumResponse) {
-        return mergeFrom((org.example.milage.FindMaximumResponse)other);
+      if (other instanceof org.example.milage.MaxMilesRequest) {
+        return mergeFrom((org.example.milage.MaxMilesRequest)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(org.example.milage.FindMaximumResponse other) {
-      if (other == org.example.milage.FindMaximumResponse.getDefaultInstance()) return this;
-      if (other.getMaximum() != 0D) {
-        setMaximum(other.getMaximum());
+    public Builder mergeFrom(org.example.milage.MaxMilesRequest other) {
+      if (other == org.example.milage.MaxMilesRequest.getDefaultInstance()) return this;
+      if (other.getNumber() != 0D) {
+        setNumber(other.getNumber());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -381,11 +381,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      org.example.milage.FindMaximumResponse parsedMessage = null;
+      org.example.milage.MaxMilesRequest parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (org.example.milage.FindMaximumResponse) e.getUnfinishedMessage();
+        parsedMessage = (org.example.milage.MaxMilesRequest) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -395,28 +395,28 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private double maximum_ ;
+    private double number_ ;
     /**
-     * <code>double maximum = 1;</code>
+     * <code>double number = 1;</code>
      */
-    public double getMaximum() {
-      return maximum_;
+    public double getNumber() {
+      return number_;
     }
     /**
-     * <code>double maximum = 1;</code>
+     * <code>double number = 1;</code>
      */
-    public Builder setMaximum(double value) {
+    public Builder setNumber(double value) {
       
-      maximum_ = value;
+      number_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>double maximum = 1;</code>
+     * <code>double number = 1;</code>
      */
-    public Builder clearMaximum() {
+    public Builder clearNumber() {
       
-      maximum_ = 0D;
+      number_ = 0D;
       onChanged();
       return this;
     }
@@ -433,41 +433,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:milage.FindMaximumResponse)
+    // @@protoc_insertion_point(builder_scope:milage.MaxMilesRequest)
   }
 
-  // @@protoc_insertion_point(class_scope:milage.FindMaximumResponse)
-  private static final org.example.milage.FindMaximumResponse DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:milage.MaxMilesRequest)
+  private static final org.example.milage.MaxMilesRequest DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new org.example.milage.FindMaximumResponse();
+    DEFAULT_INSTANCE = new org.example.milage.MaxMilesRequest();
   }
 
-  public static org.example.milage.FindMaximumResponse getDefaultInstance() {
+  public static org.example.milage.MaxMilesRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<FindMaximumResponse>
-      PARSER = new com.google.protobuf.AbstractParser<FindMaximumResponse>() {
+  private static final com.google.protobuf.Parser<MaxMilesRequest>
+      PARSER = new com.google.protobuf.AbstractParser<MaxMilesRequest>() {
     @java.lang.Override
-    public FindMaximumResponse parsePartialFrom(
+    public MaxMilesRequest parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new FindMaximumResponse(input, extensionRegistry);
+      return new MaxMilesRequest(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<FindMaximumResponse> parser() {
+  public static com.google.protobuf.Parser<MaxMilesRequest> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<FindMaximumResponse> getParserForType() {
+  public com.google.protobuf.Parser<MaxMilesRequest> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public org.example.milage.FindMaximumResponse getDefaultInstanceForType() {
+  public org.example.milage.MaxMilesRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

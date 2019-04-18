@@ -25,6 +25,7 @@ public class PhoneClientGUI extends javax.swing.JFrame implements Printer {
         Pause.setEnabled(false);
         VolumeUp.setEnabled(false);
         VolumeDown.setEnabled(false);
+        Contacts.setEnabled(false);
 
 
 
@@ -52,7 +53,7 @@ public class PhoneClientGUI extends javax.swing.JFrame implements Printer {
         Pause = new javax.swing.JButton();
         VolumeUp = new javax.swing.JButton();
         VolumeDown = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        Contacts = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,10 +114,10 @@ public class PhoneClientGUI extends javax.swing.JFrame implements Printer {
             }
         });
 
-        jButton1.setText("Contacts");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Contacts.setText("Contacts");
+        Contacts.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ContactsActionPerformed(evt);
             }
         });
 
@@ -128,7 +129,7 @@ public class PhoneClientGUI extends javax.swing.JFrame implements Printer {
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(Contacts)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -148,7 +149,7 @@ public class PhoneClientGUI extends javax.swing.JFrame implements Printer {
                                 .addComponent(PhoneOff)
                                 .addGap(18, 18, 18)
                                 .addComponent(PlaySong)))
-                        .addContainerGap(109, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,7 +169,7 @@ public class PhoneClientGUI extends javax.swing.JFrame implements Printer {
                             .addComponent(VolumeUp)
                             .addComponent(VolumeDown))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(Contacts)
                         .addGap(13, 13, 13))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -188,6 +189,8 @@ public class PhoneClientGUI extends javax.swing.JFrame implements Printer {
         Pause.setEnabled(false);
         VolumeUp.setEnabled(true);
         VolumeDown.setEnabled(true);
+        Contacts.setEnabled(true);
+
    
 
 
@@ -203,12 +206,14 @@ public class PhoneClientGUI extends javax.swing.JFrame implements Printer {
         Pause.setEnabled(false);
         VolumeUp.setEnabled(false);
         VolumeDown.setEnabled(false);
+        Contacts.setEnabled(false);
+
       
         // TODO add your handling code here:
     }//GEN-LAST:event_PhoneOffActionPerformed
 
     private void PlaySongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlaySongActionPerformed
-      client.getSong();
+      client.playSong();
         PlaySong.setEnabled(true);
         Pause.setEnabled(true);
     
@@ -232,9 +237,10 @@ client.volumeDown();
         // TODO add your handling code here:
     }//GEN-LAST:event_VolumeDownActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ContactsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContactsActionPerformed
+client.showcontacts();
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_ContactsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -287,13 +293,13 @@ client.volumeDown();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Contacts;
     private javax.swing.JButton Pause;
     private javax.swing.JButton PhoneOff;
     private javax.swing.JButton PhoneOn;
     private javax.swing.JButton PlaySong;
     private javax.swing.JButton VolumeDown;
     private javax.swing.JButton VolumeUp;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;

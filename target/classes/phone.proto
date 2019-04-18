@@ -16,11 +16,25 @@ service PhoneService {
     rpc PhoneOn(PhoneRequest) returns (PhoneResponse) {};
     rpc PhoneOff(PhoneRequest) returns (PhoneResponse) {};
     rpc Pause(PhoneRequest) returns (PhoneResponse) {};
-    rpc getSong(google.protobuf.Empty) returns (PlaylistSongs) {}
+    rpc playSong(google.protobuf.Empty) returns (PlaylistSongs) {}
     rpc VolumeUp(google.protobuf.Empty) returns (VolumeUpResponse){}
     rpc VolumeDown(google.protobuf.Empty) returns (VolumeDownResponse){}
+    rpc showcontacts(google.protobuf.Empty) returns (ContactResponse) {}
+
+
 
  }
+
+message ContactResponse{
+  repeated Contact contacts = 1;
+}
+
+message Contact {
+    string name = 1;
+    string lastname = 2;
+    string address =  3;
+    string phonenumber = 4;
+}
 
 
 

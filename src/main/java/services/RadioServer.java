@@ -1,9 +1,14 @@
+
+/*
+
+Author:Sean Cowley--x14484252
+*/
+
+
 package services;
 
-import com.google.protobuf.Empty;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 import io.grpc.stub.StreamObserver;
 
 import org.example.radio.RadioServiceGrpc;
@@ -24,7 +29,7 @@ public class RadioServer {
     private static final Logger logger = Logger.getLogger(RadioServer.class.getName());
 
     /* The port on which the server should run */
-    private int port = 50054;
+    private int port = 50055;
     private Server server;
 
     private void start() throws Exception {
@@ -143,7 +148,7 @@ public class RadioServer {
             public void onNext(ChannelRequest value) {
                 // client sends a message
                 channel += "The current channel is " + value.getChannel().getChannel1() + "!";
-                ui.append("The current channel is"+value.getChannel().getChannel1());
+                ui.append("The current channel is "+value.getChannel().getChannel1());
             }
 
             @Override
@@ -180,7 +185,7 @@ public class RadioServer {
             public void onNext(ChannelRequest value) {
                 // client sends a message
                 channel += "The current channel is " + value.getChannel().getChannel2() + "!";
-                ui.append("The current channel is"+value.getChannel().getChannel2());
+                ui.append("The current channel is "+value.getChannel().getChannel2());
 
             }
 
@@ -244,7 +249,7 @@ public class RadioServer {
     
     
     
-           @Override
+       @Override
     public StreamObserver<ChannelRequest> channel4(StreamObserver<ChannelResponse> responseObserver) {
         // we create the requestObserver that we'll return in this function
         StreamObserver<ChannelRequest> requestObserver = new StreamObserver<ChannelRequest>() {
@@ -255,7 +260,7 @@ public class RadioServer {
             public void onNext(ChannelRequest value) {
                 // client sends a message
                 channel += "The current channel is " + value.getChannel().getChannel4() + "!";
-                channel += "The current channel is " + value.getChannel().getChannel4(); 
+                ui.append("The current channel is "+value.getChannel().getChannel4());
 
             }
 
@@ -279,7 +284,7 @@ public class RadioServer {
 
         return requestObserver;
     }
- 
+    
  
 
    

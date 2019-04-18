@@ -8,21 +8,14 @@ package services;
 import com.google.protobuf.Empty;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 import io.grpc.stub.StreamObserver;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import java.util.logging.Logger;
 import org.example.milage.AverageMilesResponse;
 import org.example.milage.CostResponse;
 import org.example.milage.DaysRequest;
-import org.example.milage.FindMaximumRequest;
-import org.example.milage.FindMaximumResponse;
 import org.example.milage.FuelLevelResponse;
+import org.example.milage.MaxMilesRequest;
+import org.example.milage.MaxMilesResponse;
 import org.example.milage.MilageServiceGrpc;
 import org.example.milage.TirePressureResponse;
 import org.example.milage.TotalResponse;
@@ -96,7 +89,6 @@ public class MilageServer {
         private class MilageServiceImpl extends MilageServiceGrpc.MilageServiceImplBase {
             
             
-   //jdns
         private Printer ui;
         int tirepressure =35; 
         int normalpressure = 35;
@@ -104,13 +96,13 @@ public class MilageServer {
         double normalfuellevel = 8.0;
         
         
+           //jdns
+
           public MilageServiceImpl() {
           String name = "Seans";
             String serviceType = "_mile._udp.local.";
             ui = new ServiceUI(name + serviceType);
-           
-            
-             
+                     
  }
 
          
@@ -154,34 +146,41 @@ public class MilageServer {
         //sends the response
 
         responseObserver.onNext(totalResponse);
-         ui.append("the total miles travelled per day was "+totalResponse.toString());
+         ui.append("the total miles travelled this week over 7 days was "+totalResponse.toString());
         // rpc call is completed
         responseObserver.onCompleted();
 
     }
     
+    
+    
+    
          @Override
-       public  StreamObserver<FindMaximumRequest> findMaximum(StreamObserver<FindMaximumResponse> responseObserver) {
+       public  StreamObserver<MaxMilesRequest> maxMilesDriven(StreamObserver<MaxMilesResponse> responseObserver) {
 
-        return new StreamObserver<FindMaximumRequest>() {
-            // current maximum is zero - assumes the number is positive 
-            double currentMaximum = 0;
+        return new StreamObserver<MaxMilesRequest>() {
+             //assumes current maximum is zero
+            double currentmaxmiles = 0;
 
             @Override
-            public void onNext(FindMaximumRequest value) {
+            public void onNext(MaxMilesRequest value) {
                 double currentNumber = value.getNumber();
                  //if new number is great than current maxium
-                if (currentNumber > currentMaximum) {
+                if (currentNumber > currentmaxmiles) {
                     // current maxium has a new value
-                    currentMaximum = currentNumber;
+                    currentmaxmiles = currentNumber;
                     responseObserver.onNext(
-                            FindMaximumResponse.newBuilder()
-                                    .setMaximum(currentNumber)
+                            MaxMilesResponse.newBuilder()
+                                    .setMaxmiles(currentNumber)
                                     .build()
+                            
                                     // anytime we recieve a current number that is greater than current maximum
                                     //we will increase the current maximum and send back the response
                     );
-                } else {
+                    ui.append("The current maximum: "+currentNumber);
+
+                }
+                else {  
                 }
             }
 
@@ -192,19 +191,22 @@ public class MilageServer {
 
             @Override
             public void onCompleted() {
-                // send the current last maximum
                 responseObserver.onNext(
-                        FindMaximumResponse.newBuilder()
-                                .setMaximum(currentMaximum)
+                        MaxMilesResponse.newBuilder()
+                                .setMaxmiles(currentmaxmiles)
                                 .build());
+                               ui.append("The current max miles travelled this week is "+currentmaxmiles);
             
-                //send the last current maxium
-                // the server is done sending data
+               //completed
                 responseObserver.onCompleted();
             }
         };
        }
-    
+       
+       
+       
+       
+       
 
 //client streaming 
        
@@ -217,9 +219,7 @@ public class MilageServer {
             int sum = 0;
             int count = 0;
       //for every message we get, we get the sum and the count and increment it 
-            @Override
-                    
-
+            @Override      
             public void onNext(DaysRequest value) {
                 // increments the sum
 
@@ -232,7 +232,6 @@ public class MilageServer {
                sum += value.getSunday();
 
 
-
                 // increments the count
                 count += 1;
 
@@ -240,8 +239,6 @@ public class MilageServer {
 
             @Override
             public void onError(Throwable t) {
-                
-
             }
 
             @Override
@@ -265,6 +262,7 @@ public class MilageServer {
         return requestObserver;
     }
     
+   
    
     
     //uranary

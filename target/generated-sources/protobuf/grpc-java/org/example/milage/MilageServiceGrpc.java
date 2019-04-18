@@ -126,36 +126,36 @@ public final class MilageServiceGrpc {
      return getAverageMilesMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<org.example.milage.FindMaximumRequest,
-      org.example.milage.FindMaximumResponse> getFindMaximumMethod;
+  private static volatile io.grpc.MethodDescriptor<org.example.milage.MaxMilesRequest,
+      org.example.milage.MaxMilesResponse> getMaxMilesDrivenMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "FindMaximum",
-      requestType = org.example.milage.FindMaximumRequest.class,
-      responseType = org.example.milage.FindMaximumResponse.class,
+      fullMethodName = SERVICE_NAME + '/' + "MaxMilesDriven",
+      requestType = org.example.milage.MaxMilesRequest.class,
+      responseType = org.example.milage.MaxMilesResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
-  public static io.grpc.MethodDescriptor<org.example.milage.FindMaximumRequest,
-      org.example.milage.FindMaximumResponse> getFindMaximumMethod() {
-    io.grpc.MethodDescriptor<org.example.milage.FindMaximumRequest, org.example.milage.FindMaximumResponse> getFindMaximumMethod;
-    if ((getFindMaximumMethod = MilageServiceGrpc.getFindMaximumMethod) == null) {
+  public static io.grpc.MethodDescriptor<org.example.milage.MaxMilesRequest,
+      org.example.milage.MaxMilesResponse> getMaxMilesDrivenMethod() {
+    io.grpc.MethodDescriptor<org.example.milage.MaxMilesRequest, org.example.milage.MaxMilesResponse> getMaxMilesDrivenMethod;
+    if ((getMaxMilesDrivenMethod = MilageServiceGrpc.getMaxMilesDrivenMethod) == null) {
       synchronized (MilageServiceGrpc.class) {
-        if ((getFindMaximumMethod = MilageServiceGrpc.getFindMaximumMethod) == null) {
-          MilageServiceGrpc.getFindMaximumMethod = getFindMaximumMethod = 
-              io.grpc.MethodDescriptor.<org.example.milage.FindMaximumRequest, org.example.milage.FindMaximumResponse>newBuilder()
+        if ((getMaxMilesDrivenMethod = MilageServiceGrpc.getMaxMilesDrivenMethod) == null) {
+          MilageServiceGrpc.getMaxMilesDrivenMethod = getMaxMilesDrivenMethod = 
+              io.grpc.MethodDescriptor.<org.example.milage.MaxMilesRequest, org.example.milage.MaxMilesResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
               .setFullMethodName(generateFullMethodName(
-                  "milage.MilageService", "FindMaximum"))
+                  "milage.MilageService", "MaxMilesDriven"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.example.milage.FindMaximumRequest.getDefaultInstance()))
+                  org.example.milage.MaxMilesRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.example.milage.FindMaximumResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new MilageServiceMethodDescriptorSupplier("FindMaximum"))
+                  org.example.milage.MaxMilesResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new MilageServiceMethodDescriptorSupplier("MaxMilesDriven"))
                   .build();
           }
         }
      }
-     return getFindMaximumMethod;
+     return getMaxMilesDrivenMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<org.example.milage.DaysRequest,
@@ -313,9 +313,9 @@ public final class MilageServiceGrpc {
 
     /**
      */
-    public io.grpc.stub.StreamObserver<org.example.milage.FindMaximumRequest> findMaximum(
-        io.grpc.stub.StreamObserver<org.example.milage.FindMaximumResponse> responseObserver) {
-      return asyncUnimplementedStreamingCall(getFindMaximumMethod(), responseObserver);
+    public io.grpc.stub.StreamObserver<org.example.milage.MaxMilesRequest> maxMilesDriven(
+        io.grpc.stub.StreamObserver<org.example.milage.MaxMilesResponse> responseObserver) {
+      return asyncUnimplementedStreamingCall(getMaxMilesDrivenMethod(), responseObserver);
     }
 
     /**
@@ -366,12 +366,12 @@ public final class MilageServiceGrpc {
                 org.example.milage.AverageMilesResponse>(
                   this, METHODID_AVERAGE_MILES)))
           .addMethod(
-            getFindMaximumMethod(),
+            getMaxMilesDrivenMethod(),
             asyncBidiStreamingCall(
               new MethodHandlers<
-                org.example.milage.FindMaximumRequest,
-                org.example.milage.FindMaximumResponse>(
-                  this, METHODID_FIND_MAXIMUM)))
+                org.example.milage.MaxMilesRequest,
+                org.example.milage.MaxMilesResponse>(
+                  this, METHODID_MAX_MILES_DRIVEN)))
           .addMethod(
             getCalculateCostMethod(),
             asyncUnaryCall(
@@ -450,10 +450,10 @@ public final class MilageServiceGrpc {
 
     /**
      */
-    public io.grpc.stub.StreamObserver<org.example.milage.FindMaximumRequest> findMaximum(
-        io.grpc.stub.StreamObserver<org.example.milage.FindMaximumResponse> responseObserver) {
+    public io.grpc.stub.StreamObserver<org.example.milage.MaxMilesRequest> maxMilesDriven(
+        io.grpc.stub.StreamObserver<org.example.milage.MaxMilesResponse> responseObserver) {
       return asyncBidiStreamingCall(
-          getChannel().newCall(getFindMaximumMethod(), getCallOptions()), responseObserver);
+          getChannel().newCall(getMaxMilesDrivenMethod(), getCallOptions()), responseObserver);
     }
 
     /**
@@ -621,7 +621,7 @@ public final class MilageServiceGrpc {
   private static final int METHODID_CHECK_TIRE_PRESSURE = 3;
   private static final int METHODID_CHECK_FUEL_LEVEL = 4;
   private static final int METHODID_AVERAGE_MILES = 5;
-  private static final int METHODID_FIND_MAXIMUM = 6;
+  private static final int METHODID_MAX_MILES_DRIVEN = 6;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -673,9 +673,9 @@ public final class MilageServiceGrpc {
         case METHODID_AVERAGE_MILES:
           return (io.grpc.stub.StreamObserver<Req>) serviceImpl.averageMiles(
               (io.grpc.stub.StreamObserver<org.example.milage.AverageMilesResponse>) responseObserver);
-        case METHODID_FIND_MAXIMUM:
-          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.findMaximum(
-              (io.grpc.stub.StreamObserver<org.example.milage.FindMaximumResponse>) responseObserver);
+        case METHODID_MAX_MILES_DRIVEN:
+          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.maxMilesDriven(
+              (io.grpc.stub.StreamObserver<org.example.milage.MaxMilesResponse>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -730,7 +730,7 @@ public final class MilageServiceGrpc {
               .addMethod(getWelcomeMethod())
               .addMethod(getTotalMilesMethod())
               .addMethod(getAverageMilesMethod())
-              .addMethod(getFindMaximumMethod())
+              .addMethod(getMaxMilesDrivenMethod())
               .addMethod(getCalculateCostMethod())
               .addMethod(getCheckTirePressureMethod())
               .addMethod(getCheckFuelLevelMethod())

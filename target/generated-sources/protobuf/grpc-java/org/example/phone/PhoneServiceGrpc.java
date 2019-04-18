@@ -127,35 +127,35 @@ public final class PhoneServiceGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
-      org.example.phone.PlaylistSongs> getGetSongMethod;
+      org.example.phone.PlaylistSongs> getPlaySongMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "getSong",
+      fullMethodName = SERVICE_NAME + '/' + "playSong",
       requestType = com.google.protobuf.Empty.class,
       responseType = org.example.phone.PlaylistSongs.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
-      org.example.phone.PlaylistSongs> getGetSongMethod() {
-    io.grpc.MethodDescriptor<com.google.protobuf.Empty, org.example.phone.PlaylistSongs> getGetSongMethod;
-    if ((getGetSongMethod = PhoneServiceGrpc.getGetSongMethod) == null) {
+      org.example.phone.PlaylistSongs> getPlaySongMethod() {
+    io.grpc.MethodDescriptor<com.google.protobuf.Empty, org.example.phone.PlaylistSongs> getPlaySongMethod;
+    if ((getPlaySongMethod = PhoneServiceGrpc.getPlaySongMethod) == null) {
       synchronized (PhoneServiceGrpc.class) {
-        if ((getGetSongMethod = PhoneServiceGrpc.getGetSongMethod) == null) {
-          PhoneServiceGrpc.getGetSongMethod = getGetSongMethod = 
+        if ((getPlaySongMethod = PhoneServiceGrpc.getPlaySongMethod) == null) {
+          PhoneServiceGrpc.getPlaySongMethod = getPlaySongMethod = 
               io.grpc.MethodDescriptor.<com.google.protobuf.Empty, org.example.phone.PlaylistSongs>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "phone.PhoneService", "getSong"))
+                  "phone.PhoneService", "playSong"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   org.example.phone.PlaylistSongs.getDefaultInstance()))
-                  .setSchemaDescriptor(new PhoneServiceMethodDescriptorSupplier("getSong"))
+                  .setSchemaDescriptor(new PhoneServiceMethodDescriptorSupplier("playSong"))
                   .build();
           }
         }
      }
-     return getGetSongMethod;
+     return getPlaySongMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
@@ -222,6 +222,38 @@ public final class PhoneServiceGrpc {
      return getVolumeDownMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+      org.example.phone.ContactResponse> getShowcontactsMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "showcontacts",
+      requestType = com.google.protobuf.Empty.class,
+      responseType = org.example.phone.ContactResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+      org.example.phone.ContactResponse> getShowcontactsMethod() {
+    io.grpc.MethodDescriptor<com.google.protobuf.Empty, org.example.phone.ContactResponse> getShowcontactsMethod;
+    if ((getShowcontactsMethod = PhoneServiceGrpc.getShowcontactsMethod) == null) {
+      synchronized (PhoneServiceGrpc.class) {
+        if ((getShowcontactsMethod = PhoneServiceGrpc.getShowcontactsMethod) == null) {
+          PhoneServiceGrpc.getShowcontactsMethod = getShowcontactsMethod = 
+              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, org.example.phone.ContactResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "phone.PhoneService", "showcontacts"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.example.phone.ContactResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new PhoneServiceMethodDescriptorSupplier("showcontacts"))
+                  .build();
+          }
+        }
+     }
+     return getShowcontactsMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -278,9 +310,9 @@ public final class PhoneServiceGrpc {
 
     /**
      */
-    public void getSong(com.google.protobuf.Empty request,
+    public void playSong(com.google.protobuf.Empty request,
         io.grpc.stub.StreamObserver<org.example.phone.PlaylistSongs> responseObserver) {
-      asyncUnimplementedUnaryCall(getGetSongMethod(), responseObserver);
+      asyncUnimplementedUnaryCall(getPlaySongMethod(), responseObserver);
     }
 
     /**
@@ -295,6 +327,13 @@ public final class PhoneServiceGrpc {
     public void volumeDown(com.google.protobuf.Empty request,
         io.grpc.stub.StreamObserver<org.example.phone.VolumeDownResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getVolumeDownMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void showcontacts(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<org.example.phone.ContactResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getShowcontactsMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
@@ -321,12 +360,12 @@ public final class PhoneServiceGrpc {
                 org.example.phone.PhoneResponse>(
                   this, METHODID_PAUSE)))
           .addMethod(
-            getGetSongMethod(),
+            getPlaySongMethod(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.protobuf.Empty,
                 org.example.phone.PlaylistSongs>(
-                  this, METHODID_GET_SONG)))
+                  this, METHODID_PLAY_SONG)))
           .addMethod(
             getVolumeUpMethod(),
             asyncUnaryCall(
@@ -341,6 +380,13 @@ public final class PhoneServiceGrpc {
                 com.google.protobuf.Empty,
                 org.example.phone.VolumeDownResponse>(
                   this, METHODID_VOLUME_DOWN)))
+          .addMethod(
+            getShowcontactsMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.protobuf.Empty,
+                org.example.phone.ContactResponse>(
+                  this, METHODID_SHOWCONTACTS)))
           .build();
     }
   }
@@ -395,10 +441,10 @@ public final class PhoneServiceGrpc {
 
     /**
      */
-    public void getSong(com.google.protobuf.Empty request,
+    public void playSong(com.google.protobuf.Empty request,
         io.grpc.stub.StreamObserver<org.example.phone.PlaylistSongs> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getGetSongMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getPlaySongMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -415,6 +461,14 @@ public final class PhoneServiceGrpc {
         io.grpc.stub.StreamObserver<org.example.phone.VolumeDownResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getVolumeDownMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void showcontacts(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<org.example.phone.ContactResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getShowcontactsMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -465,9 +519,9 @@ public final class PhoneServiceGrpc {
 
     /**
      */
-    public org.example.phone.PlaylistSongs getSong(com.google.protobuf.Empty request) {
+    public org.example.phone.PlaylistSongs playSong(com.google.protobuf.Empty request) {
       return blockingUnaryCall(
-          getChannel(), getGetSongMethod(), getCallOptions(), request);
+          getChannel(), getPlaySongMethod(), getCallOptions(), request);
     }
 
     /**
@@ -482,6 +536,13 @@ public final class PhoneServiceGrpc {
     public org.example.phone.VolumeDownResponse volumeDown(com.google.protobuf.Empty request) {
       return blockingUnaryCall(
           getChannel(), getVolumeDownMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public org.example.phone.ContactResponse showcontacts(com.google.protobuf.Empty request) {
+      return blockingUnaryCall(
+          getChannel(), getShowcontactsMethod(), getCallOptions(), request);
     }
   }
 
@@ -535,10 +596,10 @@ public final class PhoneServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<org.example.phone.PlaylistSongs> getSong(
+    public com.google.common.util.concurrent.ListenableFuture<org.example.phone.PlaylistSongs> playSong(
         com.google.protobuf.Empty request) {
       return futureUnaryCall(
-          getChannel().newCall(getGetSongMethod(), getCallOptions()), request);
+          getChannel().newCall(getPlaySongMethod(), getCallOptions()), request);
     }
 
     /**
@@ -556,14 +617,23 @@ public final class PhoneServiceGrpc {
       return futureUnaryCall(
           getChannel().newCall(getVolumeDownMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<org.example.phone.ContactResponse> showcontacts(
+        com.google.protobuf.Empty request) {
+      return futureUnaryCall(
+          getChannel().newCall(getShowcontactsMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_PHONE_ON = 0;
   private static final int METHODID_PHONE_OFF = 1;
   private static final int METHODID_PAUSE = 2;
-  private static final int METHODID_GET_SONG = 3;
+  private static final int METHODID_PLAY_SONG = 3;
   private static final int METHODID_VOLUME_UP = 4;
   private static final int METHODID_VOLUME_DOWN = 5;
+  private static final int METHODID_SHOWCONTACTS = 6;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -594,8 +664,8 @@ public final class PhoneServiceGrpc {
           serviceImpl.pause((org.example.phone.PhoneRequest) request,
               (io.grpc.stub.StreamObserver<org.example.phone.PhoneResponse>) responseObserver);
           break;
-        case METHODID_GET_SONG:
-          serviceImpl.getSong((com.google.protobuf.Empty) request,
+        case METHODID_PLAY_SONG:
+          serviceImpl.playSong((com.google.protobuf.Empty) request,
               (io.grpc.stub.StreamObserver<org.example.phone.PlaylistSongs>) responseObserver);
           break;
         case METHODID_VOLUME_UP:
@@ -605,6 +675,10 @@ public final class PhoneServiceGrpc {
         case METHODID_VOLUME_DOWN:
           serviceImpl.volumeDown((com.google.protobuf.Empty) request,
               (io.grpc.stub.StreamObserver<org.example.phone.VolumeDownResponse>) responseObserver);
+          break;
+        case METHODID_SHOWCONTACTS:
+          serviceImpl.showcontacts((com.google.protobuf.Empty) request,
+              (io.grpc.stub.StreamObserver<org.example.phone.ContactResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -670,9 +744,10 @@ public final class PhoneServiceGrpc {
               .addMethod(getPhoneOnMethod())
               .addMethod(getPhoneOffMethod())
               .addMethod(getPauseMethod())
-              .addMethod(getGetSongMethod())
+              .addMethod(getPlaySongMethod())
               .addMethod(getVolumeUpMethod())
               .addMethod(getVolumeDownMethod())
+              .addMethod(getShowcontactsMethod())
               .build();
         }
       }
