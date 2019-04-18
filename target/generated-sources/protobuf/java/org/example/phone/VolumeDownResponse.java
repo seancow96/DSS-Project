@@ -4,20 +4,19 @@
 package org.example.phone;
 
 /**
- * Protobuf type {@code phone.VolumeUpRequest}
+ * Protobuf type {@code phone.VolumeDownResponse}
  */
-public  final class VolumeUpRequest extends
+public  final class VolumeDownResponse extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:phone.VolumeUpRequest)
-    VolumeUpRequestOrBuilder {
+    // @@protoc_insertion_point(message_implements:phone.VolumeDownResponse)
+    VolumeDownResponseOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use VolumeUpRequest.newBuilder() to construct.
-  private VolumeUpRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use VolumeDownResponse.newBuilder() to construct.
+  private VolumeDownResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private VolumeUpRequest() {
-    temp_ = 0;
-    maxtemp_ = 0;
+  private VolumeDownResponse() {
+    currentvolume_ = 0;
   }
 
   @java.lang.Override
@@ -25,7 +24,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private VolumeUpRequest(
+  private VolumeDownResponse(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -46,12 +45,7 @@ private static final long serialVersionUID = 0L;
             break;
           case 8: {
 
-            temp_ = input.readInt32();
-            break;
-          }
-          case 16: {
-
-            maxtemp_ = input.readInt32();
+            currentvolume_ = input.readInt32();
             break;
           }
           default: {
@@ -75,33 +69,24 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return org.example.phone.PhoneProto.internal_static_phone_VolumeUpRequest_descriptor;
+    return org.example.phone.PhoneProto.internal_static_phone_VolumeDownResponse_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return org.example.phone.PhoneProto.internal_static_phone_VolumeUpRequest_fieldAccessorTable
+    return org.example.phone.PhoneProto.internal_static_phone_VolumeDownResponse_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            org.example.phone.VolumeUpRequest.class, org.example.phone.VolumeUpRequest.Builder.class);
+            org.example.phone.VolumeDownResponse.class, org.example.phone.VolumeDownResponse.Builder.class);
   }
 
-  public static final int TEMP_FIELD_NUMBER = 1;
-  private int temp_;
+  public static final int CURRENTVOLUME_FIELD_NUMBER = 1;
+  private int currentvolume_;
   /**
-   * <code>int32 temp = 1;</code>
+   * <code>int32 currentvolume = 1;</code>
    */
-  public int getTemp() {
-    return temp_;
-  }
-
-  public static final int MAXTEMP_FIELD_NUMBER = 2;
-  private int maxtemp_;
-  /**
-   * <code>int32 maxtemp = 2;</code>
-   */
-  public int getMaxtemp() {
-    return maxtemp_;
+  public int getCurrentvolume() {
+    return currentvolume_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -118,11 +103,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (temp_ != 0) {
-      output.writeInt32(1, temp_);
-    }
-    if (maxtemp_ != 0) {
-      output.writeInt32(2, maxtemp_);
+    if (currentvolume_ != 0) {
+      output.writeInt32(1, currentvolume_);
     }
     unknownFields.writeTo(output);
   }
@@ -133,13 +115,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (temp_ != 0) {
+    if (currentvolume_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(1, temp_);
-    }
-    if (maxtemp_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(2, maxtemp_);
+        .computeInt32Size(1, currentvolume_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -151,16 +129,14 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof org.example.phone.VolumeUpRequest)) {
+    if (!(obj instanceof org.example.phone.VolumeDownResponse)) {
       return super.equals(obj);
     }
-    org.example.phone.VolumeUpRequest other = (org.example.phone.VolumeUpRequest) obj;
+    org.example.phone.VolumeDownResponse other = (org.example.phone.VolumeDownResponse) obj;
 
     boolean result = true;
-    result = result && (getTemp()
-        == other.getTemp());
-    result = result && (getMaxtemp()
-        == other.getMaxtemp());
+    result = result && (getCurrentvolume()
+        == other.getCurrentvolume());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -172,78 +148,76 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + TEMP_FIELD_NUMBER;
-    hash = (53 * hash) + getTemp();
-    hash = (37 * hash) + MAXTEMP_FIELD_NUMBER;
-    hash = (53 * hash) + getMaxtemp();
+    hash = (37 * hash) + CURRENTVOLUME_FIELD_NUMBER;
+    hash = (53 * hash) + getCurrentvolume();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static org.example.phone.VolumeUpRequest parseFrom(
+  public static org.example.phone.VolumeDownResponse parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static org.example.phone.VolumeUpRequest parseFrom(
+  public static org.example.phone.VolumeDownResponse parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static org.example.phone.VolumeUpRequest parseFrom(
+  public static org.example.phone.VolumeDownResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static org.example.phone.VolumeUpRequest parseFrom(
+  public static org.example.phone.VolumeDownResponse parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static org.example.phone.VolumeUpRequest parseFrom(byte[] data)
+  public static org.example.phone.VolumeDownResponse parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static org.example.phone.VolumeUpRequest parseFrom(
+  public static org.example.phone.VolumeDownResponse parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static org.example.phone.VolumeUpRequest parseFrom(java.io.InputStream input)
+  public static org.example.phone.VolumeDownResponse parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static org.example.phone.VolumeUpRequest parseFrom(
+  public static org.example.phone.VolumeDownResponse parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static org.example.phone.VolumeUpRequest parseDelimitedFrom(java.io.InputStream input)
+  public static org.example.phone.VolumeDownResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static org.example.phone.VolumeUpRequest parseDelimitedFrom(
+  public static org.example.phone.VolumeDownResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static org.example.phone.VolumeUpRequest parseFrom(
+  public static org.example.phone.VolumeDownResponse parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static org.example.phone.VolumeUpRequest parseFrom(
+  public static org.example.phone.VolumeDownResponse parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -256,7 +230,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(org.example.phone.VolumeUpRequest prototype) {
+  public static Builder newBuilder(org.example.phone.VolumeDownResponse prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -272,26 +246,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code phone.VolumeUpRequest}
+   * Protobuf type {@code phone.VolumeDownResponse}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:phone.VolumeUpRequest)
-      org.example.phone.VolumeUpRequestOrBuilder {
+      // @@protoc_insertion_point(builder_implements:phone.VolumeDownResponse)
+      org.example.phone.VolumeDownResponseOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.example.phone.PhoneProto.internal_static_phone_VolumeUpRequest_descriptor;
+      return org.example.phone.PhoneProto.internal_static_phone_VolumeDownResponse_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.example.phone.PhoneProto.internal_static_phone_VolumeUpRequest_fieldAccessorTable
+      return org.example.phone.PhoneProto.internal_static_phone_VolumeDownResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              org.example.phone.VolumeUpRequest.class, org.example.phone.VolumeUpRequest.Builder.class);
+              org.example.phone.VolumeDownResponse.class, org.example.phone.VolumeDownResponse.Builder.class);
     }
 
-    // Construct using org.example.phone.VolumeUpRequest.newBuilder()
+    // Construct using org.example.phone.VolumeDownResponse.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -309,9 +283,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      temp_ = 0;
-
-      maxtemp_ = 0;
+      currentvolume_ = 0;
 
       return this;
     }
@@ -319,17 +291,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return org.example.phone.PhoneProto.internal_static_phone_VolumeUpRequest_descriptor;
+      return org.example.phone.PhoneProto.internal_static_phone_VolumeDownResponse_descriptor;
     }
 
     @java.lang.Override
-    public org.example.phone.VolumeUpRequest getDefaultInstanceForType() {
-      return org.example.phone.VolumeUpRequest.getDefaultInstance();
+    public org.example.phone.VolumeDownResponse getDefaultInstanceForType() {
+      return org.example.phone.VolumeDownResponse.getDefaultInstance();
     }
 
     @java.lang.Override
-    public org.example.phone.VolumeUpRequest build() {
-      org.example.phone.VolumeUpRequest result = buildPartial();
+    public org.example.phone.VolumeDownResponse build() {
+      org.example.phone.VolumeDownResponse result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -337,10 +309,9 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public org.example.phone.VolumeUpRequest buildPartial() {
-      org.example.phone.VolumeUpRequest result = new org.example.phone.VolumeUpRequest(this);
-      result.temp_ = temp_;
-      result.maxtemp_ = maxtemp_;
+    public org.example.phone.VolumeDownResponse buildPartial() {
+      org.example.phone.VolumeDownResponse result = new org.example.phone.VolumeDownResponse(this);
+      result.currentvolume_ = currentvolume_;
       onBuilt();
       return result;
     }
@@ -379,21 +350,18 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof org.example.phone.VolumeUpRequest) {
-        return mergeFrom((org.example.phone.VolumeUpRequest)other);
+      if (other instanceof org.example.phone.VolumeDownResponse) {
+        return mergeFrom((org.example.phone.VolumeDownResponse)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(org.example.phone.VolumeUpRequest other) {
-      if (other == org.example.phone.VolumeUpRequest.getDefaultInstance()) return this;
-      if (other.getTemp() != 0) {
-        setTemp(other.getTemp());
-      }
-      if (other.getMaxtemp() != 0) {
-        setMaxtemp(other.getMaxtemp());
+    public Builder mergeFrom(org.example.phone.VolumeDownResponse other) {
+      if (other == org.example.phone.VolumeDownResponse.getDefaultInstance()) return this;
+      if (other.getCurrentvolume() != 0) {
+        setCurrentvolume(other.getCurrentvolume());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -410,11 +378,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      org.example.phone.VolumeUpRequest parsedMessage = null;
+      org.example.phone.VolumeDownResponse parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (org.example.phone.VolumeUpRequest) e.getUnfinishedMessage();
+        parsedMessage = (org.example.phone.VolumeDownResponse) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -424,54 +392,28 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int temp_ ;
+    private int currentvolume_ ;
     /**
-     * <code>int32 temp = 1;</code>
+     * <code>int32 currentvolume = 1;</code>
      */
-    public int getTemp() {
-      return temp_;
+    public int getCurrentvolume() {
+      return currentvolume_;
     }
     /**
-     * <code>int32 temp = 1;</code>
+     * <code>int32 currentvolume = 1;</code>
      */
-    public Builder setTemp(int value) {
+    public Builder setCurrentvolume(int value) {
       
-      temp_ = value;
+      currentvolume_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 temp = 1;</code>
+     * <code>int32 currentvolume = 1;</code>
      */
-    public Builder clearTemp() {
+    public Builder clearCurrentvolume() {
       
-      temp_ = 0;
-      onChanged();
-      return this;
-    }
-
-    private int maxtemp_ ;
-    /**
-     * <code>int32 maxtemp = 2;</code>
-     */
-    public int getMaxtemp() {
-      return maxtemp_;
-    }
-    /**
-     * <code>int32 maxtemp = 2;</code>
-     */
-    public Builder setMaxtemp(int value) {
-      
-      maxtemp_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>int32 maxtemp = 2;</code>
-     */
-    public Builder clearMaxtemp() {
-      
-      maxtemp_ = 0;
+      currentvolume_ = 0;
       onChanged();
       return this;
     }
@@ -488,41 +430,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:phone.VolumeUpRequest)
+    // @@protoc_insertion_point(builder_scope:phone.VolumeDownResponse)
   }
 
-  // @@protoc_insertion_point(class_scope:phone.VolumeUpRequest)
-  private static final org.example.phone.VolumeUpRequest DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:phone.VolumeDownResponse)
+  private static final org.example.phone.VolumeDownResponse DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new org.example.phone.VolumeUpRequest();
+    DEFAULT_INSTANCE = new org.example.phone.VolumeDownResponse();
   }
 
-  public static org.example.phone.VolumeUpRequest getDefaultInstance() {
+  public static org.example.phone.VolumeDownResponse getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<VolumeUpRequest>
-      PARSER = new com.google.protobuf.AbstractParser<VolumeUpRequest>() {
+  private static final com.google.protobuf.Parser<VolumeDownResponse>
+      PARSER = new com.google.protobuf.AbstractParser<VolumeDownResponse>() {
     @java.lang.Override
-    public VolumeUpRequest parsePartialFrom(
+    public VolumeDownResponse parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new VolumeUpRequest(input, extensionRegistry);
+      return new VolumeDownResponse(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<VolumeUpRequest> parser() {
+  public static com.google.protobuf.Parser<VolumeDownResponse> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<VolumeUpRequest> getParserForType() {
+  public com.google.protobuf.Parser<VolumeDownResponse> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public org.example.phone.VolumeUpRequest getDefaultInstanceForType() {
+  public org.example.phone.VolumeDownResponse getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

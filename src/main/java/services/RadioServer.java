@@ -217,7 +217,7 @@ public class RadioServer {
             public void onNext(ChannelRequest value) {
                 // client sends a message
                 channel += "The current channel is " + value.getChannel().getChannel3() + "!";
-                ui.append("The current channel is"+value.getChannel().getChannel3());
+                ui.append("The current channel is "+value.getChannel().getChannel3());
 
             }
 
@@ -255,7 +255,7 @@ public class RadioServer {
             public void onNext(ChannelRequest value) {
                 // client sends a message
                 channel += "The current channel is " + value.getChannel().getChannel4() + "!";
-                channel += "The current channel is " + value.getChannel().getChannel4() + "!";
+                channel += "The current channel is " + value.getChannel().getChannel4(); 
 
             }
 

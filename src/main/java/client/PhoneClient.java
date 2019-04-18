@@ -24,7 +24,7 @@ import org.example.phone.PhoneResponse;
 import org.example.phone.PhoneServiceGrpc;
 import org.example.phone.PlaylistSongs;
 import org.example.phone.Song;
-import org.example.phone.VolumeUpRequest;
+import org.example.phone.VolumeDownResponse;
 import org.example.phone.VolumeUpResponse;
 
 
@@ -95,19 +95,21 @@ public class PhoneClient implements ServiceObserver {
 
     
     
-    public void getAllSongs() {
+    public void getSong() {
       
             Empty request = Empty.newBuilder().build();
             System.out.println("Playing song through internal speakers");
             ui.append("Playing song through internal speakers");
-            PlaylistSongs usermusic = blockingStub2.getAllSongs(request);
+            PlaylistSongs usermusic = blockingStub2.getSong(request);
             List<Song> usermusicSongs = usermusic.getSongsList();
             for (Song son : usermusicSongs) {
                 ui.append(son.toString());
+                System.out.println(son);
 
             }
     }
        
+   
     
     
         public void turnphoneon() {
@@ -158,32 +160,45 @@ public class PhoneClient implements ServiceObserver {
 
     }
            
+
+
+           
            
            
          public void volumeUp ( ){
-        // created a greet service client uranary
-//passing the channel
         PhoneServiceGrpc.PhoneServiceBlockingStub stub = PhoneServiceGrpc.newBlockingStub(channel);
 
-
         
-            VolumeUpRequest req = VolumeUpRequest.newBuilder()
-               // .setTemp(0)
+            Empty request = Empty.newBuilder().build();
 
     
 
-                .build();
-
-        VolumeUpResponse response = stub.volumeUp(req);
+        VolumeUpResponse response = stub.volumeUp(request);
         
-        System.out.println(req.getTemp() + response.getCurrenttemp());
+        System.out.println("The current volume is "+ response.getCurrentvolume()+ " decibels ");
+        ui.append("The current volume is "+response.getCurrentvolume() + " decibels");
 
     }
            
            
            
+        public void volumeDown ( ){
+        PhoneServiceGrpc.PhoneServiceBlockingStub stub = PhoneServiceGrpc.newBlockingStub(channel);
+
+
+        
+            Empty request = Empty.newBuilder().build();
+
+    
+
+        VolumeDownResponse response = stub.volumeDown(request);
+        
+        System.out.println("The current volume is "+ response.getCurrentvolume() + " decibels ");
+        ui.append("The current volume is "+response.getCurrentvolume() + " decibels ");
+
+    }
            
-           
+ 
            
            
            
@@ -210,105 +225,9 @@ public class PhoneClient implements ServiceObserver {
 
     }
        
-    
-    
-     public void connectdevice() {
-        // create an asynchronous client
-        PhoneServiceGrpc.PhoneServiceStub asyncClient = PhoneServiceGrpc.newStub(channel);
-
-        final CountDownLatch latch = new CountDownLatch(1);
-
-        StreamObserver<DeviceRequest> requestObserver = asyncClient.connectDevice(new StreamObserver<DeviceResponse>() {
-            @Override
-            public void onNext(DeviceResponse value) {
-                // we get a response from the server
-                System.out.println("Preparing to connect device");
-                System.out.println(value.getConnected());
-                ui.append("Preparing to connect device ");
-
-
-                // onNext will be called only once
-            }
-
-            @Override
-            public void onError(Throwable t) {
-                // we get an error from the server
-            }
-
-            @Override
-            public void onCompleted() {
-                // the server is done sending us data
-                // onCompleted will be called right after onNext()
-                latch.countDown();
-            }
-        });
-
-        requestObserver.onNext(DeviceRequest.newBuilder()
-                .setPhone(Phone.newBuilder()
-                        .setConnectspeaker("")
-                        .build())
-                        .build());
-
-        // we tell the server that the client is done sending data
-        requestObserver.onCompleted();
-
-   try {
-                         Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-    }
 
      
-     
-        public void bluetooth() {
-        // create an asynchronous client
-        PhoneServiceGrpc.PhoneServiceStub asyncClient = PhoneServiceGrpc.newStub(channel);
-
-        final CountDownLatch latch = new CountDownLatch(1);
-
-        StreamObserver<BluetoothRequest> requestObserver = asyncClient.bluetooth(new StreamObserver<BluetoothResponse>() {
-            @Override
-            public void onNext(BluetoothResponse value) {
-                // we get a response from the server
-                System.out.println("Preparing to connect device");
-                System.out.println(value.getBluetoothon());
-                ui.append("Preparing to connect device ");
-
-
-                // onNext will be called only once
-            }
-
-            @Override
-            public void onError(Throwable t) {
-                // we get an error from the server
-            }
-
-            @Override
-            public void onCompleted() {
-                // the server is done sending us data
-                // onCompleted will be called right after onNext()
-                latch.countDown();
-            }
-        });
-
-        requestObserver.onNext(BluetoothRequest.newBuilder()
-                .setPhone(Phone.newBuilder()
-                        .setBluetooth("")
-                        .build())
-                        .build());
-
-        // we tell the server that the client is done sending data
-        requestObserver.onCompleted();
-
-   try {
-                         Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-    }
-
- 
+    
     
     public void switchService(String name) {
 

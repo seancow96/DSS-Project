@@ -126,124 +126,60 @@ public final class PhoneServiceGrpc {
      return getPauseMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<org.example.phone.BluetoothRequest,
-      org.example.phone.BluetoothResponse> getBluetoothMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "Bluetooth",
-      requestType = org.example.phone.BluetoothRequest.class,
-      responseType = org.example.phone.BluetoothResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
-  public static io.grpc.MethodDescriptor<org.example.phone.BluetoothRequest,
-      org.example.phone.BluetoothResponse> getBluetoothMethod() {
-    io.grpc.MethodDescriptor<org.example.phone.BluetoothRequest, org.example.phone.BluetoothResponse> getBluetoothMethod;
-    if ((getBluetoothMethod = PhoneServiceGrpc.getBluetoothMethod) == null) {
-      synchronized (PhoneServiceGrpc.class) {
-        if ((getBluetoothMethod = PhoneServiceGrpc.getBluetoothMethod) == null) {
-          PhoneServiceGrpc.getBluetoothMethod = getBluetoothMethod = 
-              io.grpc.MethodDescriptor.<org.example.phone.BluetoothRequest, org.example.phone.BluetoothResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
-              .setFullMethodName(generateFullMethodName(
-                  "phone.PhoneService", "Bluetooth"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.example.phone.BluetoothRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.example.phone.BluetoothResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new PhoneServiceMethodDescriptorSupplier("Bluetooth"))
-                  .build();
-          }
-        }
-     }
-     return getBluetoothMethod;
-  }
-
-  private static volatile io.grpc.MethodDescriptor<org.example.phone.DeviceRequest,
-      org.example.phone.DeviceResponse> getConnectDeviceMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "ConnectDevice",
-      requestType = org.example.phone.DeviceRequest.class,
-      responseType = org.example.phone.DeviceResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
-  public static io.grpc.MethodDescriptor<org.example.phone.DeviceRequest,
-      org.example.phone.DeviceResponse> getConnectDeviceMethod() {
-    io.grpc.MethodDescriptor<org.example.phone.DeviceRequest, org.example.phone.DeviceResponse> getConnectDeviceMethod;
-    if ((getConnectDeviceMethod = PhoneServiceGrpc.getConnectDeviceMethod) == null) {
-      synchronized (PhoneServiceGrpc.class) {
-        if ((getConnectDeviceMethod = PhoneServiceGrpc.getConnectDeviceMethod) == null) {
-          PhoneServiceGrpc.getConnectDeviceMethod = getConnectDeviceMethod = 
-              io.grpc.MethodDescriptor.<org.example.phone.DeviceRequest, org.example.phone.DeviceResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
-              .setFullMethodName(generateFullMethodName(
-                  "phone.PhoneService", "ConnectDevice"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.example.phone.DeviceRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.example.phone.DeviceResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new PhoneServiceMethodDescriptorSupplier("ConnectDevice"))
-                  .build();
-          }
-        }
-     }
-     return getConnectDeviceMethod;
-  }
-
   private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
-      org.example.phone.PlaylistSongs> getGetAllSongsMethod;
+      org.example.phone.PlaylistSongs> getGetSongMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "getAllSongs",
+      fullMethodName = SERVICE_NAME + '/' + "getSong",
       requestType = com.google.protobuf.Empty.class,
       responseType = org.example.phone.PlaylistSongs.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
-      org.example.phone.PlaylistSongs> getGetAllSongsMethod() {
-    io.grpc.MethodDescriptor<com.google.protobuf.Empty, org.example.phone.PlaylistSongs> getGetAllSongsMethod;
-    if ((getGetAllSongsMethod = PhoneServiceGrpc.getGetAllSongsMethod) == null) {
+      org.example.phone.PlaylistSongs> getGetSongMethod() {
+    io.grpc.MethodDescriptor<com.google.protobuf.Empty, org.example.phone.PlaylistSongs> getGetSongMethod;
+    if ((getGetSongMethod = PhoneServiceGrpc.getGetSongMethod) == null) {
       synchronized (PhoneServiceGrpc.class) {
-        if ((getGetAllSongsMethod = PhoneServiceGrpc.getGetAllSongsMethod) == null) {
-          PhoneServiceGrpc.getGetAllSongsMethod = getGetAllSongsMethod = 
+        if ((getGetSongMethod = PhoneServiceGrpc.getGetSongMethod) == null) {
+          PhoneServiceGrpc.getGetSongMethod = getGetSongMethod = 
               io.grpc.MethodDescriptor.<com.google.protobuf.Empty, org.example.phone.PlaylistSongs>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "phone.PhoneService", "getAllSongs"))
+                  "phone.PhoneService", "getSong"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   org.example.phone.PlaylistSongs.getDefaultInstance()))
-                  .setSchemaDescriptor(new PhoneServiceMethodDescriptorSupplier("getAllSongs"))
+                  .setSchemaDescriptor(new PhoneServiceMethodDescriptorSupplier("getSong"))
                   .build();
           }
         }
      }
-     return getGetAllSongsMethod;
+     return getGetSongMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<org.example.phone.VolumeUpRequest,
+  private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
       org.example.phone.VolumeUpResponse> getVolumeUpMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "VolumeUp",
-      requestType = org.example.phone.VolumeUpRequest.class,
+      requestType = com.google.protobuf.Empty.class,
       responseType = org.example.phone.VolumeUpResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<org.example.phone.VolumeUpRequest,
+  public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
       org.example.phone.VolumeUpResponse> getVolumeUpMethod() {
-    io.grpc.MethodDescriptor<org.example.phone.VolumeUpRequest, org.example.phone.VolumeUpResponse> getVolumeUpMethod;
+    io.grpc.MethodDescriptor<com.google.protobuf.Empty, org.example.phone.VolumeUpResponse> getVolumeUpMethod;
     if ((getVolumeUpMethod = PhoneServiceGrpc.getVolumeUpMethod) == null) {
       synchronized (PhoneServiceGrpc.class) {
         if ((getVolumeUpMethod = PhoneServiceGrpc.getVolumeUpMethod) == null) {
           PhoneServiceGrpc.getVolumeUpMethod = getVolumeUpMethod = 
-              io.grpc.MethodDescriptor.<org.example.phone.VolumeUpRequest, org.example.phone.VolumeUpResponse>newBuilder()
+              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, org.example.phone.VolumeUpResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "phone.PhoneService", "VolumeUp"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.example.phone.VolumeUpRequest.getDefaultInstance()))
+                  com.google.protobuf.Empty.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   org.example.phone.VolumeUpResponse.getDefaultInstance()))
                   .setSchemaDescriptor(new PhoneServiceMethodDescriptorSupplier("VolumeUp"))
@@ -252,6 +188,38 @@ public final class PhoneServiceGrpc {
         }
      }
      return getVolumeUpMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+      org.example.phone.VolumeDownResponse> getVolumeDownMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "VolumeDown",
+      requestType = com.google.protobuf.Empty.class,
+      responseType = org.example.phone.VolumeDownResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+      org.example.phone.VolumeDownResponse> getVolumeDownMethod() {
+    io.grpc.MethodDescriptor<com.google.protobuf.Empty, org.example.phone.VolumeDownResponse> getVolumeDownMethod;
+    if ((getVolumeDownMethod = PhoneServiceGrpc.getVolumeDownMethod) == null) {
+      synchronized (PhoneServiceGrpc.class) {
+        if ((getVolumeDownMethod = PhoneServiceGrpc.getVolumeDownMethod) == null) {
+          PhoneServiceGrpc.getVolumeDownMethod = getVolumeDownMethod = 
+              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, org.example.phone.VolumeDownResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "phone.PhoneService", "VolumeDown"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.example.phone.VolumeDownResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new PhoneServiceMethodDescriptorSupplier("VolumeDown"))
+                  .build();
+          }
+        }
+     }
+     return getVolumeDownMethod;
   }
 
   /**
@@ -310,30 +278,23 @@ public final class PhoneServiceGrpc {
 
     /**
      */
-    public io.grpc.stub.StreamObserver<org.example.phone.BluetoothRequest> bluetooth(
-        io.grpc.stub.StreamObserver<org.example.phone.BluetoothResponse> responseObserver) {
-      return asyncUnimplementedStreamingCall(getBluetoothMethod(), responseObserver);
-    }
-
-    /**
-     */
-    public io.grpc.stub.StreamObserver<org.example.phone.DeviceRequest> connectDevice(
-        io.grpc.stub.StreamObserver<org.example.phone.DeviceResponse> responseObserver) {
-      return asyncUnimplementedStreamingCall(getConnectDeviceMethod(), responseObserver);
-    }
-
-    /**
-     */
-    public void getAllSongs(com.google.protobuf.Empty request,
+    public void getSong(com.google.protobuf.Empty request,
         io.grpc.stub.StreamObserver<org.example.phone.PlaylistSongs> responseObserver) {
-      asyncUnimplementedUnaryCall(getGetAllSongsMethod(), responseObserver);
+      asyncUnimplementedUnaryCall(getGetSongMethod(), responseObserver);
     }
 
     /**
      */
-    public void volumeUp(org.example.phone.VolumeUpRequest request,
+    public void volumeUp(com.google.protobuf.Empty request,
         io.grpc.stub.StreamObserver<org.example.phone.VolumeUpResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getVolumeUpMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void volumeDown(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<org.example.phone.VolumeDownResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getVolumeDownMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
@@ -360,33 +321,26 @@ public final class PhoneServiceGrpc {
                 org.example.phone.PhoneResponse>(
                   this, METHODID_PAUSE)))
           .addMethod(
-            getBluetoothMethod(),
-            asyncClientStreamingCall(
-              new MethodHandlers<
-                org.example.phone.BluetoothRequest,
-                org.example.phone.BluetoothResponse>(
-                  this, METHODID_BLUETOOTH)))
-          .addMethod(
-            getConnectDeviceMethod(),
-            asyncClientStreamingCall(
-              new MethodHandlers<
-                org.example.phone.DeviceRequest,
-                org.example.phone.DeviceResponse>(
-                  this, METHODID_CONNECT_DEVICE)))
-          .addMethod(
-            getGetAllSongsMethod(),
+            getGetSongMethod(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.protobuf.Empty,
                 org.example.phone.PlaylistSongs>(
-                  this, METHODID_GET_ALL_SONGS)))
+                  this, METHODID_GET_SONG)))
           .addMethod(
             getVolumeUpMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                org.example.phone.VolumeUpRequest,
+                com.google.protobuf.Empty,
                 org.example.phone.VolumeUpResponse>(
                   this, METHODID_VOLUME_UP)))
+          .addMethod(
+            getVolumeDownMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.protobuf.Empty,
+                org.example.phone.VolumeDownResponse>(
+                  this, METHODID_VOLUME_DOWN)))
           .build();
     }
   }
@@ -441,34 +395,26 @@ public final class PhoneServiceGrpc {
 
     /**
      */
-    public io.grpc.stub.StreamObserver<org.example.phone.BluetoothRequest> bluetooth(
-        io.grpc.stub.StreamObserver<org.example.phone.BluetoothResponse> responseObserver) {
-      return asyncClientStreamingCall(
-          getChannel().newCall(getBluetoothMethod(), getCallOptions()), responseObserver);
-    }
-
-    /**
-     */
-    public io.grpc.stub.StreamObserver<org.example.phone.DeviceRequest> connectDevice(
-        io.grpc.stub.StreamObserver<org.example.phone.DeviceResponse> responseObserver) {
-      return asyncClientStreamingCall(
-          getChannel().newCall(getConnectDeviceMethod(), getCallOptions()), responseObserver);
-    }
-
-    /**
-     */
-    public void getAllSongs(com.google.protobuf.Empty request,
+    public void getSong(com.google.protobuf.Empty request,
         io.grpc.stub.StreamObserver<org.example.phone.PlaylistSongs> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getGetAllSongsMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetSongMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void volumeUp(org.example.phone.VolumeUpRequest request,
+    public void volumeUp(com.google.protobuf.Empty request,
         io.grpc.stub.StreamObserver<org.example.phone.VolumeUpResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getVolumeUpMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void volumeDown(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<org.example.phone.VolumeDownResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getVolumeDownMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -519,16 +465,23 @@ public final class PhoneServiceGrpc {
 
     /**
      */
-    public org.example.phone.PlaylistSongs getAllSongs(com.google.protobuf.Empty request) {
+    public org.example.phone.PlaylistSongs getSong(com.google.protobuf.Empty request) {
       return blockingUnaryCall(
-          getChannel(), getGetAllSongsMethod(), getCallOptions(), request);
+          getChannel(), getGetSongMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public org.example.phone.VolumeUpResponse volumeUp(org.example.phone.VolumeUpRequest request) {
+    public org.example.phone.VolumeUpResponse volumeUp(com.google.protobuf.Empty request) {
       return blockingUnaryCall(
           getChannel(), getVolumeUpMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public org.example.phone.VolumeDownResponse volumeDown(com.google.protobuf.Empty request) {
+      return blockingUnaryCall(
+          getChannel(), getVolumeDownMethod(), getCallOptions(), request);
     }
   }
 
@@ -582,28 +535,35 @@ public final class PhoneServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<org.example.phone.PlaylistSongs> getAllSongs(
+    public com.google.common.util.concurrent.ListenableFuture<org.example.phone.PlaylistSongs> getSong(
         com.google.protobuf.Empty request) {
       return futureUnaryCall(
-          getChannel().newCall(getGetAllSongsMethod(), getCallOptions()), request);
+          getChannel().newCall(getGetSongMethod(), getCallOptions()), request);
     }
 
     /**
      */
     public com.google.common.util.concurrent.ListenableFuture<org.example.phone.VolumeUpResponse> volumeUp(
-        org.example.phone.VolumeUpRequest request) {
+        com.google.protobuf.Empty request) {
       return futureUnaryCall(
           getChannel().newCall(getVolumeUpMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<org.example.phone.VolumeDownResponse> volumeDown(
+        com.google.protobuf.Empty request) {
+      return futureUnaryCall(
+          getChannel().newCall(getVolumeDownMethod(), getCallOptions()), request);
     }
   }
 
   private static final int METHODID_PHONE_ON = 0;
   private static final int METHODID_PHONE_OFF = 1;
   private static final int METHODID_PAUSE = 2;
-  private static final int METHODID_GET_ALL_SONGS = 3;
+  private static final int METHODID_GET_SONG = 3;
   private static final int METHODID_VOLUME_UP = 4;
-  private static final int METHODID_BLUETOOTH = 5;
-  private static final int METHODID_CONNECT_DEVICE = 6;
+  private static final int METHODID_VOLUME_DOWN = 5;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -634,13 +594,17 @@ public final class PhoneServiceGrpc {
           serviceImpl.pause((org.example.phone.PhoneRequest) request,
               (io.grpc.stub.StreamObserver<org.example.phone.PhoneResponse>) responseObserver);
           break;
-        case METHODID_GET_ALL_SONGS:
-          serviceImpl.getAllSongs((com.google.protobuf.Empty) request,
+        case METHODID_GET_SONG:
+          serviceImpl.getSong((com.google.protobuf.Empty) request,
               (io.grpc.stub.StreamObserver<org.example.phone.PlaylistSongs>) responseObserver);
           break;
         case METHODID_VOLUME_UP:
-          serviceImpl.volumeUp((org.example.phone.VolumeUpRequest) request,
+          serviceImpl.volumeUp((com.google.protobuf.Empty) request,
               (io.grpc.stub.StreamObserver<org.example.phone.VolumeUpResponse>) responseObserver);
+          break;
+        case METHODID_VOLUME_DOWN:
+          serviceImpl.volumeDown((com.google.protobuf.Empty) request,
+              (io.grpc.stub.StreamObserver<org.example.phone.VolumeDownResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -652,12 +616,6 @@ public final class PhoneServiceGrpc {
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_BLUETOOTH:
-          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.bluetooth(
-              (io.grpc.stub.StreamObserver<org.example.phone.BluetoothResponse>) responseObserver);
-        case METHODID_CONNECT_DEVICE:
-          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.connectDevice(
-              (io.grpc.stub.StreamObserver<org.example.phone.DeviceResponse>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -712,10 +670,9 @@ public final class PhoneServiceGrpc {
               .addMethod(getPhoneOnMethod())
               .addMethod(getPhoneOffMethod())
               .addMethod(getPauseMethod())
-              .addMethod(getBluetoothMethod())
-              .addMethod(getConnectDeviceMethod())
-              .addMethod(getGetAllSongsMethod())
+              .addMethod(getGetSongMethod())
               .addMethod(getVolumeUpMethod())
+              .addMethod(getVolumeDownMethod())
               .build();
         }
       }

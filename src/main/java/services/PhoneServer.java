@@ -6,24 +6,20 @@ import io.grpc.ServerBuilder;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 import io.grpc.stub.StreamObserver;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.example.radio.RadioServiceGrpc;
 import java.util.logging.Logger;
-import org.example.phone.BluetoothRequest;
-import org.example.phone.BluetoothResponse;
-import org.example.phone.DeviceRequest;
-import org.example.phone.DeviceResponse;
 import org.example.phone.Phone;
 import org.example.phone.PhoneRequest;
 import org.example.phone.PhoneResponse;
 import org.example.phone.PhoneServiceGrpc;
 import org.example.phone.PlaylistSongs;
 import org.example.phone.Song;
-import org.example.phone.VolumeUpRequest;
+import org.example.phone.VolumeDownResponse;
 import org.example.phone.VolumeUpResponse;
 import serviceui.Printer;
 import serviceui.ServiceUI;
@@ -94,6 +90,13 @@ public class PhoneServer {
    
         private List<Song> songs;
         private Printer ui;
+        int Vol =0;
+        int MaxVol =10;
+        int MinVol = 0;
+        int phoneStatus = 0;
+
+       
+
         
           public PhoneServiceImpl() {
           String name = "Seans";
@@ -105,27 +108,27 @@ public class PhoneServer {
             Song welcometothejungle = Song.newBuilder().setArtist("Guns N Roses").setGenre("Rock").build();
             songs.add(welcometothejungle);
             
-
-          
+            
+               
  }
           
-            @Override
-    public void volumeUp(VolumeUpRequest req, StreamObserver<VolumeUpResponse> responseObserver) {
-        
-         int Temp = 15;
-         int MaxTemp =20;
-        // Gets the sum of all the miles driven per week by the car
+    @Override
+    public void volumeUp(Empty Request, StreamObserver<VolumeUpResponse> responseObserver) {
+        //increase the volume by 1 decibel
        
-        if(Temp < MaxTemp){
-            Temp ++;
-        }else if(Temp>MaxTemp){
-         System.out.println("We have hit the max");
+        if(Vol < MaxVol){
+            Vol +=1;
+        }else if(Vol>MaxVol){
+          System.out.println("You have reached the max volume"+Vol);
+          ui.append("You have reached the max volume");
 
         }
        
+       
         VolumeUpResponse volumeupResponse = VolumeUpResponse.newBuilder()
-                .setCurrenttemp(Temp)
+                .setCurrentvolume(Vol)
                 .build();
+                 ui.append(volumeupResponse.toString());
         
         //sends the response
 
@@ -134,17 +137,50 @@ public class PhoneServer {
         responseObserver.onCompleted();
 
     }
-          
+                 
+            @Override
+    public void volumeDown(Empty Request, StreamObserver<VolumeDownResponse> responseObserver) {
+        
+       
+        if(Vol > MinVol){
+            Vol -=1;
+        }else if(Vol == MinVol){
+          System.out.println("You have reached the min volume"+ MinVol);
+          ui.append("You have reached the min volume");
 
+
+        }
+       
+       
+        VolumeDownResponse volumedownResponse = VolumeDownResponse.newBuilder()
+                .setCurrentvolume(Vol)
+                .build();
+                 ui.append(volumedownResponse.toString());
+        
+        //sends the response
+
+        responseObserver.onNext(volumedownResponse);
+        // rpc call is completed
+        responseObserver.onCompleted();
+
+    }  
+    
+  
+          
+ 
+          
+    
          @Override
     public void phoneOn(PhoneRequest request, StreamObserver<PhoneResponse> responseObserver) {
         // extract the fields we need
       Phone phone = request.getPhone(); 
         String TurnPhoneOn = phone.getTurnphoneon();
-
+        
+        
+      
        
         // create the response
-        String phonestatus = "The phone is " + TurnPhoneOn;
+         String phonestatus = "The phone is " + TurnPhoneOn;
         PhoneResponse response = PhoneResponse.newBuilder()
                 .setPhonestatus(phonestatus)
                 .build();
@@ -159,6 +195,7 @@ public class PhoneServer {
     }
     
     
+
           @Override
     public void phoneOff(PhoneRequest request, StreamObserver<PhoneResponse> responseObserver) {
         // extract the fields we need
@@ -204,96 +241,15 @@ public class PhoneServer {
         responseObserver.onCompleted();
     }
     
-    
-    
-    
-    
-      @Override
-     public StreamObserver<BluetoothRequest> bluetooth(final StreamObserver<BluetoothResponse> responseObserver) {
-        // we create the requestObserver that we'll return in this function
-       StreamObserver<BluetoothRequest> requestObserver = new StreamObserver<BluetoothRequest>() {
 
-            String connected = "";
-
-           @Override
-           public void onNext(BluetoothRequest value) {
-                // client sends a message
-               connected += "Preparing to turn on bluetooth " + value.getPhone().getBluetooth();
-
-               
-           }
-
-           @Override
-          public void onError(Throwable t) {
-                // client sends an error
-          }
-
-         @Override
-          public void onCompleted() {
-                // client is done
-             responseObserver.onNext(
-                       BluetoothResponse.newBuilder()
-                              .setBluetoothon(connected)
-                              .build()
-
-               );
-                 ui.append(connected.toString());
-
-                responseObserver.onCompleted();
-           }
-       };
-
-
-       return requestObserver;
-    }
-    
-    
-    
-        @Override
-     public StreamObserver<DeviceRequest> connectDevice(final StreamObserver<DeviceResponse> responseObserver) {
-        // we create the requestObserver that we'll return in this function
-       StreamObserver<DeviceRequest> requestObserver = new StreamObserver<DeviceRequest>() {
-
-            String connected = "";
-
-           @Override
-           public void onNext(DeviceRequest value) {
-                // client sends a message
-               connected += "Preparing to connect device " + value.getPhone().getConnectspeaker();
-               ui.append(value.getPhone().getConnectspeaker().toString());
-
-               
-           }
-
-           @Override
-          public void onError(Throwable t) {
-                // client sends an error
-          }
-
-         @Override
-          public void onCompleted() {
-                // client is done
-             responseObserver.onNext(
-                       DeviceResponse.newBuilder()
-                              .setConnected(connected)
-                              .build()
-
-               );
-                 ui.append(connected.toString());
-
-                responseObserver.onCompleted();
-           }
-       };
-
-
-       return requestObserver;
-    }
     
          @Override
-        public void getAllSongs(Empty request,
+        public void getSong(Empty request,
                 StreamObserver<PlaylistSongs> responseObserver) {
             PlaylistSongs all = PlaylistSongs.newBuilder().addAllSongs(songs).build();
             responseObserver.onNext(all);
+            ui.append("Playing Song");
+            ui.append(all.toString());
             responseObserver.onCompleted();
             
         }

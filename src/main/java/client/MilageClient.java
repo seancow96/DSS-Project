@@ -7,6 +7,7 @@ package client;
 
 
 import clientui.MilageGUI;
+import com.google.protobuf.Empty;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
@@ -18,7 +19,9 @@ import java.util.logging.Logger;
 import org.example.milage.AverageMilesResponse;
 import org.example.milage.CostResponse;
 import org.example.milage.DaysRequest;
+import org.example.milage.FuelLevelResponse;
 import org.example.milage.MilageServiceGrpc;
+import org.example.milage.TirePressureResponse;
 import org.example.milage.TotalResponse;
 import org.example.milage.Welcome;
 import org.example.milage.WelcomeRequest;
@@ -81,6 +84,8 @@ public class MilageClient implements ServiceObserver {
         totalMiles();
         averageMiles();
         calculateCost();
+        checkTirePressure();
+        checkFuelLevel();
       
     }
     public boolean interested(String type) {
@@ -148,6 +153,7 @@ public class MilageClient implements ServiceObserver {
         
         System.out.println("The total miles travelled this week where ");
         System.out.println(req.getMonday() + " + " + req.getTuesday()  + " + " + req.getWednesday() + " + " + req.getThursday() + " + " + req.getFriday()+ " + " + req.getSaturday()+" + " + req.getSunday()+ " = " + response.getResult());
+        
              try {
                       Thread.sleep(4000);
                     } catch (InterruptedException e) {
@@ -170,6 +176,7 @@ public class MilageClient implements ServiceObserver {
                 System.out.println("Checking the average miles");
                 System.out.println("The average number of miles travelled per day is" );
                 System.out.println( value.getAverage());
+                ui.append("The total cost in dollars is " + value.toString());
                
                 
             }
@@ -256,11 +263,62 @@ public class MilageClient implements ServiceObserver {
         
         System.out.println("Your cars mpg is 35 ");
         System.out.println("The cost of fuel is currently 2.83 litres per gallon");
-        System.out.println("The total cost in dollars is " + response.getCost());
+        System.out.println("The total cost in dollars is " + response.getCost() / req.getMpg() *req.getPrice());
 
     }
     
  
+    
+    
+          
+        public void checkTirePressure ( ){
+        MilageServiceGrpc.MilageServiceBlockingStub stub = MilageServiceGrpc.newBlockingStub(channel);
+        
+        Empty request = Empty.newBuilder().build();
+        int normalpressure=35;
+        int tirepressure = 35;
+
+    
+        if(tirepressure<normalpressure){
+          System.out.println("Tire pressure is below normal  ");
+        }
+        else if(tirepressure==normalpressure){
+            System.out.println("Tire pressure is normal  ");
+        }
+
+        TirePressureResponse response = stub.checkTirePressure(request);
+        
+        System.out.println("The current pressure is "+ response.getCurrentpressure());
+
+    }
+           
+  
+        public void checkFuelLevel ( ){
+        MilageServiceGrpc.MilageServiceBlockingStub stub = MilageServiceGrpc.newBlockingStub(channel);
+        
+        Empty request = Empty.newBuilder().build();
+        double fuellevel = 4.5; 
+        double normalfuellevel = 8.0;
+        
+
+    
+        if(fuellevel<normalfuellevel){
+          System.out.println("Fuel is below normal");
+
+        }
+        else if(fuellevel==normalfuellevel){
+            System.out.println("Fuel is normal");
+        }
+
+       FuelLevelResponse response = stub.checkFuelLevel(request);
+        
+        System.out.println("The current fuel is "+ response.getCurrentfuellevel());
+
+    }
+        
+    
+    
+    
         
  
     public void switchService(String name) {

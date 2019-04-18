@@ -3,8 +3,8 @@
 
 package org.example.phone;
 
-public interface VolumeUpResponseOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:phone.VolumeUpResponse)
+public interface VolumeDownResponseOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:phone.VolumeDownResponse)
     com.google.protobuf.MessageOrBuilder {
 
   /**

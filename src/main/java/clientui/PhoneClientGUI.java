@@ -52,6 +52,7 @@ public class PhoneClientGUI extends javax.swing.JFrame implements Printer {
         Pause = new javax.swing.JButton();
         VolumeUp = new javax.swing.JButton();
         VolumeDown = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,6 +113,13 @@ public class PhoneClientGUI extends javax.swing.JFrame implements Printer {
             }
         });
 
+        jButton1.setText("Contacts");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -119,6 +127,9 @@ public class PhoneClientGUI extends javax.swing.JFrame implements Printer {
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
@@ -137,7 +148,7 @@ public class PhoneClientGUI extends javax.swing.JFrame implements Printer {
                                 .addComponent(PhoneOff)
                                 .addGap(18, 18, 18)
                                 .addComponent(PlaySong)))
-                        .addContainerGap(102, Short.MAX_VALUE))))
+                        .addContainerGap(109, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,7 +167,9 @@ public class PhoneClientGUI extends javax.swing.JFrame implements Printer {
                             .addComponent(Pause)
                             .addComponent(VolumeUp)
                             .addComponent(VolumeDown))
-                        .addGap(48, 48, 48))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addGap(13, 13, 13))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -195,16 +208,16 @@ public class PhoneClientGUI extends javax.swing.JFrame implements Printer {
     }//GEN-LAST:event_PhoneOffActionPerformed
 
     private void PlaySongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlaySongActionPerformed
-      client.getAllSongs();
-       PhoneOff.setEnabled(false);
-        PlaySong.setEnabled(false);
+      client.getSong();
+        PlaySong.setEnabled(true);
         Pause.setEnabled(true);
+    
         
     }//GEN-LAST:event_PlaySongActionPerformed
 
     private void PauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PauseActionPerformed
    client.pause();
-   
+   PlaySong.setEnabled(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_PauseActionPerformed
 
@@ -214,9 +227,14 @@ public class PhoneClientGUI extends javax.swing.JFrame implements Printer {
     }//GEN-LAST:event_VolumeUpActionPerformed
 
     private void VolumeDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolumeDownActionPerformed
-
+client.volumeDown();
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_VolumeDownActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -275,6 +293,7 @@ public class PhoneClientGUI extends javax.swing.JFrame implements Printer {
     private javax.swing.JButton PlaySong;
     private javax.swing.JButton VolumeDown;
     private javax.swing.JButton VolumeUp;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;

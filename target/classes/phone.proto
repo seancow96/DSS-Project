@@ -16,25 +16,22 @@ service PhoneService {
     rpc PhoneOn(PhoneRequest) returns (PhoneResponse) {};
     rpc PhoneOff(PhoneRequest) returns (PhoneResponse) {};
     rpc Pause(PhoneRequest) returns (PhoneResponse) {};
-    rpc Bluetooth(stream BluetoothRequest) returns (BluetoothResponse) {};
-
-    rpc ConnectDevice(stream DeviceRequest) returns (DeviceResponse){};
-    rpc getAllSongs(google.protobuf.Empty) returns (PlaylistSongs) {}
-    rpc VolumeUp(VolumeUpRequest) returns (VolumeUpResponse){}
-
+    rpc getSong(google.protobuf.Empty) returns (PlaylistSongs) {}
+    rpc VolumeUp(google.protobuf.Empty) returns (VolumeUpResponse){}
+    rpc VolumeDown(google.protobuf.Empty) returns (VolumeDownResponse){}
 
  }
 
 
-message VolumeUpRequest {
-    int32 temp = 1;
-    int32 maxtemp =2;
-
-}
 
 message VolumeUpResponse {
-    int32 currenttemp = 1;
+    int32 currentvolume = 1;
 }
+
+message VolumeDownResponse {
+    int32 currentvolume = 1;
+}
+
 
 
 
@@ -55,9 +52,6 @@ message PhoneRequest {
 message PhoneResponse {
     string phonestatus = 1;
 }
-
-
-
 
 
 
@@ -89,4 +83,8 @@ message Song {
     string artist = 1;
     string genre = 2;
 }
+
+
+
+
 

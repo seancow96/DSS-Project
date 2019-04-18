@@ -190,6 +190,70 @@ public final class MilageServiceGrpc {
      return getCalculateCostMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+      org.example.milage.TirePressureResponse> getCheckTirePressureMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "CheckTirePressure",
+      requestType = com.google.protobuf.Empty.class,
+      responseType = org.example.milage.TirePressureResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+      org.example.milage.TirePressureResponse> getCheckTirePressureMethod() {
+    io.grpc.MethodDescriptor<com.google.protobuf.Empty, org.example.milage.TirePressureResponse> getCheckTirePressureMethod;
+    if ((getCheckTirePressureMethod = MilageServiceGrpc.getCheckTirePressureMethod) == null) {
+      synchronized (MilageServiceGrpc.class) {
+        if ((getCheckTirePressureMethod = MilageServiceGrpc.getCheckTirePressureMethod) == null) {
+          MilageServiceGrpc.getCheckTirePressureMethod = getCheckTirePressureMethod = 
+              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, org.example.milage.TirePressureResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "milage.MilageService", "CheckTirePressure"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.example.milage.TirePressureResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new MilageServiceMethodDescriptorSupplier("CheckTirePressure"))
+                  .build();
+          }
+        }
+     }
+     return getCheckTirePressureMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+      org.example.milage.FuelLevelResponse> getCheckFuelLevelMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "CheckFuelLevel",
+      requestType = com.google.protobuf.Empty.class,
+      responseType = org.example.milage.FuelLevelResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+      org.example.milage.FuelLevelResponse> getCheckFuelLevelMethod() {
+    io.grpc.MethodDescriptor<com.google.protobuf.Empty, org.example.milage.FuelLevelResponse> getCheckFuelLevelMethod;
+    if ((getCheckFuelLevelMethod = MilageServiceGrpc.getCheckFuelLevelMethod) == null) {
+      synchronized (MilageServiceGrpc.class) {
+        if ((getCheckFuelLevelMethod = MilageServiceGrpc.getCheckFuelLevelMethod) == null) {
+          MilageServiceGrpc.getCheckFuelLevelMethod = getCheckFuelLevelMethod = 
+              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, org.example.milage.FuelLevelResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "milage.MilageService", "CheckFuelLevel"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.example.milage.FuelLevelResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new MilageServiceMethodDescriptorSupplier("CheckFuelLevel"))
+                  .build();
+          }
+        }
+     }
+     return getCheckFuelLevelMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -267,6 +331,20 @@ public final class MilageServiceGrpc {
       asyncUnimplementedUnaryCall(getCalculateCostMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void checkTirePressure(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<org.example.milage.TirePressureResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getCheckTirePressureMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void checkFuelLevel(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<org.example.milage.FuelLevelResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getCheckFuelLevelMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -304,6 +382,20 @@ public final class MilageServiceGrpc {
                 org.example.milage.DaysRequest,
                 org.example.milage.CostResponse>(
                   this, METHODID_CALCULATE_COST)))
+          .addMethod(
+            getCheckTirePressureMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.protobuf.Empty,
+                org.example.milage.TirePressureResponse>(
+                  this, METHODID_CHECK_TIRE_PRESSURE)))
+          .addMethod(
+            getCheckFuelLevelMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.protobuf.Empty,
+                org.example.milage.FuelLevelResponse>(
+                  this, METHODID_CHECK_FUEL_LEVEL)))
           .build();
     }
   }
@@ -380,6 +472,22 @@ public final class MilageServiceGrpc {
       asyncUnaryCall(
           getChannel().newCall(getCalculateCostMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void checkTirePressure(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<org.example.milage.TirePressureResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getCheckTirePressureMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void checkFuelLevel(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<org.example.milage.FuelLevelResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getCheckFuelLevelMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -428,6 +536,20 @@ public final class MilageServiceGrpc {
     public org.example.milage.CostResponse calculateCost(org.example.milage.DaysRequest request) {
       return blockingUnaryCall(
           getChannel(), getCalculateCostMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public org.example.milage.TirePressureResponse checkTirePressure(com.google.protobuf.Empty request) {
+      return blockingUnaryCall(
+          getChannel(), getCheckTirePressureMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public org.example.milage.FuelLevelResponse checkFuelLevel(com.google.protobuf.Empty request) {
+      return blockingUnaryCall(
+          getChannel(), getCheckFuelLevelMethod(), getCallOptions(), request);
     }
   }
 
@@ -481,13 +603,31 @@ public final class MilageServiceGrpc {
       return futureUnaryCall(
           getChannel().newCall(getCalculateCostMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<org.example.milage.TirePressureResponse> checkTirePressure(
+        com.google.protobuf.Empty request) {
+      return futureUnaryCall(
+          getChannel().newCall(getCheckTirePressureMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<org.example.milage.FuelLevelResponse> checkFuelLevel(
+        com.google.protobuf.Empty request) {
+      return futureUnaryCall(
+          getChannel().newCall(getCheckFuelLevelMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_WELCOME = 0;
   private static final int METHODID_TOTAL_MILES = 1;
   private static final int METHODID_CALCULATE_COST = 2;
-  private static final int METHODID_AVERAGE_MILES = 3;
-  private static final int METHODID_FIND_MAX_MILES_TRAVELLED = 4;
+  private static final int METHODID_CHECK_TIRE_PRESSURE = 3;
+  private static final int METHODID_CHECK_FUEL_LEVEL = 4;
+  private static final int METHODID_AVERAGE_MILES = 5;
+  private static final int METHODID_FIND_MAX_MILES_TRAVELLED = 6;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -517,6 +657,14 @@ public final class MilageServiceGrpc {
         case METHODID_CALCULATE_COST:
           serviceImpl.calculateCost((org.example.milage.DaysRequest) request,
               (io.grpc.stub.StreamObserver<org.example.milage.CostResponse>) responseObserver);
+          break;
+        case METHODID_CHECK_TIRE_PRESSURE:
+          serviceImpl.checkTirePressure((com.google.protobuf.Empty) request,
+              (io.grpc.stub.StreamObserver<org.example.milage.TirePressureResponse>) responseObserver);
+          break;
+        case METHODID_CHECK_FUEL_LEVEL:
+          serviceImpl.checkFuelLevel((com.google.protobuf.Empty) request,
+              (io.grpc.stub.StreamObserver<org.example.milage.FuelLevelResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -590,6 +738,8 @@ public final class MilageServiceGrpc {
               .addMethod(getAverageMilesMethod())
               .addMethod(getFindMaxMilesTravelledMethod())
               .addMethod(getCalculateCostMethod())
+              .addMethod(getCheckTirePressureMethod())
+              .addMethod(getCheckFuelLevelMethod())
               .build();
         }
       }

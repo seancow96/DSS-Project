@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package carheating;
+option go_package="carheatingpb";
+
+service HeatService{
+
+  rpc Welcome(WelcomeRequest) returns (WelcomeResponse) {};
+  rpc HeatSeat1(HeatingRequest) returns (stream HeatingResponse) {};
+  rpc HeatSeat2(HeatingRequest) returns (stream HeatingResponse) {};
+  rpc HeatSeat3(HeatingRequest) returns (stream HeatingResponse) {};
+  rpc HeatSeat4(HeatingRequest) returns (stream HeatingResponse) {};
+  rpc Complete(CompleteRequest) returns (CompleteResponse) {};
+
+}
+
+//welcomes user
+message Welcome {
+    string name = 1;
+}
+
+message WelcomeRequest {
+    Welcome welcome = 1;
+}
+
+message WelcomeResponse {
+    string result = 1;
+}
+
+
+
+message Heating {
+    string seat = 1;
+    string seat2 = 2;
+    string seat3 = 3;
+    string seat4 = 4;
+}
+
+message HeatingRequest {
+    Heating heating = 1;
+}
+
+message HeatingResponse {
+    string result = 1;
+}
+
+
+//welcomes user
+message Complete {
+    string final = 1;
+}
+
+message CompleteRequest {
+    Complete complete = 1;
+}
+
+message CompleteResponse {
+    string finish = 1;
+}
+
+
+

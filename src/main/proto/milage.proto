@@ -6,6 +6,7 @@ package milage ;
 option java_multiple_files = true;
 option java_package = "org.example.milage";
 option java_outer_classname = "MilageProto";
+import "google/protobuf/empty.proto";
 
 
 
@@ -20,8 +21,24 @@ service MilageService {
    rpc FindMaxMilesTravelled(stream MaxMileRequest) returns (stream MaxMileResponse) {};
 //uranary
    rpc CalculateCost(DaysRequest) returns ( CostResponse) {};
-
+   rpc CheckTirePressure(google.protobuf.Empty) returns (TirePressureResponse){};
+   rpc CheckFuelLevel(google.protobuf.Empty) returns (FuelLevelResponse){};
  }
+
+
+
+
+message TirePressureResponse {
+    int32 currentpressure = 1;
+}
+
+message FuelLevelResponse {
+    double currentfuellevel = 1;
+}
+
+
+
+
 
 
 //uranary 
@@ -75,3 +92,4 @@ message MaxMileResponse {
 message CostResponse{
    double cost =1;
 }
+

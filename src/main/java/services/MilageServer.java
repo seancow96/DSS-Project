@@ -20,7 +20,9 @@ import java.util.logging.Logger;
 import org.example.milage.AverageMilesResponse;
 import org.example.milage.CostResponse;
 import org.example.milage.DaysRequest;
+import org.example.milage.FuelLevelResponse;
 import org.example.milage.MilageServiceGrpc;
+import org.example.milage.TirePressureResponse;
 import org.example.milage.TotalResponse;
 import org.example.milage.Welcome;
 import org.example.milage.WelcomeRequest;
@@ -94,6 +96,11 @@ public class MilageServer {
             
    //jdns
         private Printer ui;
+        int tirepressure =35; 
+        int normalpressure = 35;
+        double fuellevel = 4.5; 
+        double normalfuellevel = 8.0;
+        
         
           public MilageServiceImpl() {
           String name = "Seans";
@@ -141,6 +148,7 @@ public class MilageServer {
                           + req.getFriday() + req.getSaturday() + req.getSunday())
                 .build();
         
+        
         //sends the response
 
         responseObserver.onNext(totalResponse);
@@ -164,8 +172,11 @@ public class MilageServer {
             int count = 0;
       //for every message we get, we get the sum and the count and increment it 
             @Override
+                    
+
             public void onNext(DaysRequest value) {
                 // increments the sum
+
                sum += value.getMonday();
                sum += value.getTuesday();
                sum += value.getWednesday();
@@ -174,10 +185,11 @@ public class MilageServer {
                sum += value.getSaturday();
                sum += value.getSunday();
 
-          
+
 
                 // increments the count
                 count += 1;
+
             }
 
             @Override
@@ -194,6 +206,11 @@ public class MilageServer {
                 responseObserver.onNext(
                         AverageMilesResponse.newBuilder().setAverage(average)
                                 .build());
+                               ui.append("Checking the average  miles ");
+                               ui.append("The average number of miles travelled per day is "+average);
+
+
+
                                 //tells the client we are done 
                 responseObserver.onCompleted();
             }
@@ -202,30 +219,73 @@ public class MilageServer {
         return requestObserver;
     }
     
-    
    
     
     //uranary
    @Override
     public void calculateCost(DaysRequest req, StreamObserver<CostResponse> responseObserver) {
         
-
+           
+            
         CostResponse costResponse = CostResponse.newBuilder()
         // Gets the sum of all the miles driven per week by the car
                 .setCost(req.getMonday() + req.getTuesday() + req.getWednesday() + req.getThursday()
-                          + req.getFriday() + req.getSaturday() + req.getSunday() / req.getMpg() * req.getPrice())
+                          + req.getFriday() + req.getSaturday() + req.getSunday()) 
                 .build();
         
+                        
+        
         //sends the response
-
+        ui.append("Your cars mpg is 35");
         responseObserver.onNext(costResponse);
-        ui.append("The total cost in dollars is "+ "$"+costResponse.toString());
+        ui.append("The cost of fuel is currently 2.83 litres per gallon");
+        ui.append("The total cost in dollars is " + costResponse.toString());
+
 
         // rpc call is completed
         responseObserver.onCompleted();
 
     }
+    
+    
+    @Override
+    public void checkTirePressure(Empty Request, StreamObserver<TirePressureResponse> responseObserver) {
+      
+        
+       
+        TirePressureResponse tirepressureResponse = TirePressureResponse.newBuilder()
+                .setCurrentpressure(tirepressure)
+                .build();
+                 ui.append("The current tire pressure is "+tirepressureResponse.toString());
+        
+        //sends the response
 
+        responseObserver.onNext(tirepressureResponse);
+        // rpc call is completed
+        responseObserver.onCompleted();
+
+    }
+    
+    
+       
+    @Override
+    public void checkFuelLevel(Empty Request, StreamObserver<FuelLevelResponse> responseObserver) {
+      
+        
+       
+        FuelLevelResponse fuellevelResponse = FuelLevelResponse.newBuilder()
+                .setCurrentfuellevel(fuellevel)
+                .build();
+                 ui.append("The current fuel is  " +fuellevelResponse.toString());
+        
+        //sends the response
+
+        responseObserver.onNext(fuellevelResponse);
+        // rpc call is completed
+        responseObserver.onCompleted();
+
+    }
+    
     
 }
 }
