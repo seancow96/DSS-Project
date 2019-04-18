@@ -20,6 +20,8 @@ import java.util.logging.Logger;
 import org.example.milage.AverageMilesResponse;
 import org.example.milage.CostResponse;
 import org.example.milage.DaysRequest;
+import org.example.milage.FindMaximumRequest;
+import org.example.milage.FindMaximumResponse;
 import org.example.milage.FuelLevelResponse;
 import org.example.milage.MilageServiceGrpc;
 import org.example.milage.TirePressureResponse;
@@ -158,8 +160,52 @@ public class MilageServer {
 
     }
     
+         @Override
+       public  StreamObserver<FindMaximumRequest> findMaximum(StreamObserver<FindMaximumResponse> responseObserver) {
+
+        return new StreamObserver<FindMaximumRequest>() {
+            // current maximum is zero - assumes the number is positive 
+            double currentMaximum = 0;
+
+            @Override
+            public void onNext(FindMaximumRequest value) {
+                double currentNumber = value.getNumber();
+                 //if new number is great than current maxium
+                if (currentNumber > currentMaximum) {
+                    // current maxium has a new value
+                    currentMaximum = currentNumber;
+                    responseObserver.onNext(
+                            FindMaximumResponse.newBuilder()
+                                    .setMaximum(currentNumber)
+                                    .build()
+                                    // anytime we recieve a current number that is greater than current maximum
+                                    //we will increase the current maximum and send back the response
+                    );
+                } else {
+                }
+            }
+
+            @Override //close request
+            public void onError(Throwable t) {
+                responseObserver.onCompleted();
+            }
+
+            @Override
+            public void onCompleted() {
+                // send the current last maximum
+                responseObserver.onNext(
+                        FindMaximumResponse.newBuilder()
+                                .setMaximum(currentMaximum)
+                                .build());
+            
+                //send the last current maxium
+                // the server is done sending data
+                responseObserver.onCompleted();
+            }
+        };
+       }
     
-    
+
 //client streaming 
        
              @Override

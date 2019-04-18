@@ -18,7 +18,10 @@ service MilageService {
 //client streaming
    rpc AverageMiles(stream DaysRequest) returns (AverageMilesResponse){};
   //bidi streaming
-   rpc FindMaxMilesTravelled(stream MaxMileRequest) returns (stream MaxMileResponse) {};
+
+   rpc FindMaximum(stream FindMaximumRequest) returns (stream FindMaximumResponse) {};
+
+
 //uranary
    rpc CalculateCost(DaysRequest) returns ( CostResponse) {};
    rpc CheckTirePressure(google.protobuf.Empty) returns (TirePressureResponse){};
@@ -35,9 +38,6 @@ message TirePressureResponse {
 message FuelLevelResponse {
     double currentfuellevel = 1;
 }
-
-
-
 
 
 
@@ -80,13 +80,16 @@ message TotalResponse {
    double result = 1;
 }
 
-message MaxMileRequest {
-    int32 number = 1;
+
+message FindMaximumRequest {
+    double number = 1;
 }
 
-message MaxMileResponse {
-    int32 maxmiles = 1;
+message FindMaximumResponse {
+    double maximum = 1;
 }
+
+
 
 
 message CostResponse{

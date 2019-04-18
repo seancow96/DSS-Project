@@ -12,6 +12,7 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
@@ -19,6 +20,8 @@ import java.util.logging.Logger;
 import org.example.milage.AverageMilesResponse;
 import org.example.milage.CostResponse;
 import org.example.milage.DaysRequest;
+import org.example.milage.FindMaximumRequest;
+import org.example.milage.FindMaximumResponse;
 import org.example.milage.FuelLevelResponse;
 import org.example.milage.MilageServiceGrpc;
 import org.example.milage.TirePressureResponse;
@@ -86,6 +89,7 @@ public class MilageClient implements ServiceObserver {
         calculateCost();
         checkTirePressure();
         checkFuelLevel();
+        maximum();
       
     }
     public boolean interested(String type) {
@@ -151,8 +155,7 @@ public class MilageClient implements ServiceObserver {
 
         TotalResponse response = stub.totalMiles(req);
         
-        System.out.println("The total miles travelled this week where ");
-        System.out.println(req.getMonday() + " + " + req.getTuesday()  + " + " + req.getWednesday() + " + " + req.getThursday() + " + " + req.getFriday()+ " + " + req.getSaturday()+" + " + req.getSunday()+ " = " + response.getResult());
+        System.out.println("The total miles travelled this week where "+response.getResult());
         
              try {
                       Thread.sleep(4000);
@@ -163,6 +166,66 @@ public class MilageClient implements ServiceObserver {
         
     }
 
+      
+       //does a bidirectional call  
+     public void maximum(){
+        MilageServiceGrpc.MilageServiceStub asyncClient = MilageServiceGrpc.newStub(channel);
+
+        CountDownLatch latch = new CountDownLatch(1);
+
+
+
+        StreamObserver<FindMaximumRequest> requestObserver = asyncClient.findMaximum(new StreamObserver<FindMaximumResponse>() {
+            @Override    //anytime we receieve a response from the client we say
+            public void onNext(FindMaximumResponse value) {
+                //gets new maximum from server
+                System.out.println("Got new Maximum miles: " + value.getMaximum());
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                latch.countDown();
+            }
+
+            @Override
+            //server completes sending messages
+            public void onCompleted() {
+                System.out.println("Max miles completed");
+            }
+        });
+
+//sending data to the request observer
+
+        Arrays.asList(12.4, 22.4, 14.12, 29.78, 15.12, 27.12, 26.45).forEach(
+                number -> {
+                    System.out.println("Sending miles : " + number);
+                    requestObserver.onNext(FindMaximumRequest.newBuilder()
+                            .setNumber(number)
+                            .build());
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+        );
+
+        requestObserver.onCompleted();
+
+        try {
+            latch.await(3, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+      
+      
+     
+     
+     
+     
+     
+     
      
          
      public void averageMiles(){
@@ -267,7 +330,7 @@ public class MilageClient implements ServiceObserver {
 
     }
     
- 
+
     
     
           

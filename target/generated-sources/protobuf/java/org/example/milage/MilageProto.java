@@ -55,15 +55,15 @@ public final class MilageProto {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_milage_TotalResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_milage_MaxMileRequest_descriptor;
+    internal_static_milage_FindMaximumRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_milage_MaxMileRequest_fieldAccessorTable;
+      internal_static_milage_FindMaximumRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_milage_MaxMileResponse_descriptor;
+    internal_static_milage_FindMaximumResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_milage_MaxMileResponse_fieldAccessorTable;
+      internal_static_milage_FindMaximumResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_milage_CostResponse_descriptor;
   static final 
@@ -90,23 +90,23 @@ public final class MilageProto {
       "riday\030\005 \001(\001\022\020\n\010saturday\030\006 \001(\001\022\016\n\006sunday\030" +
       "\007 \001(\001\022\013\n\003mpg\030\010 \001(\005\022\r\n\005price\030\t \001(\001\"\'\n\024Ave" +
       "rageMilesResponse\022\017\n\007average\030\001 \001(\001\"\037\n\rTo" +
-      "talResponse\022\016\n\006result\030\001 \001(\001\" \n\016MaxMileRe" +
-      "quest\022\016\n\006number\030\001 \001(\005\"#\n\017MaxMileResponse" +
-      "\022\020\n\010maxmiles\030\001 \001(\005\"\034\n\014CostResponse\022\014\n\004co" +
-      "st\030\001 \001(\0012\362\003\n\rMilageService\022<\n\007Welcome\022\026." +
-      "milage.WelcomeRequest\032\027.milage.WelcomeRe" +
-      "sponse\"\000\022:\n\nTotalMiles\022\023.milage.DaysRequ" +
-      "est\032\025.milage.TotalResponse\"\000\022E\n\014AverageM" +
-      "iles\022\023.milage.DaysRequest\032\034.milage.Avera" +
-      "geMilesResponse\"\000(\001\022N\n\025FindMaxMilesTrave" +
-      "lled\022\026.milage.MaxMileRequest\032\027.milage.Ma" +
-      "xMileResponse\"\000(\0010\001\022<\n\rCalculateCost\022\023.m" +
-      "ilage.DaysRequest\032\024.milage.CostResponse\"" +
-      "\000\022K\n\021CheckTirePressure\022\026.google.protobuf" +
-      ".Empty\032\034.milage.TirePressureResponse\"\000\022E" +
-      "\n\016CheckFuelLevel\022\026.google.protobuf.Empty" +
-      "\032\031.milage.FuelLevelResponse\"\000B#\n\022org.exa" +
-      "mple.milageB\013MilageProtoP\001b\006proto3"
+      "talResponse\022\016\n\006result\030\001 \001(\001\"$\n\022FindMaxim" +
+      "umRequest\022\016\n\006number\030\001 \001(\001\"&\n\023FindMaximum" +
+      "Response\022\017\n\007maximum\030\001 \001(\001\"\034\n\014CostRespons" +
+      "e\022\014\n\004cost\030\001 \001(\0012\360\003\n\rMilageService\022<\n\007Wel" +
+      "come\022\026.milage.WelcomeRequest\032\027.milage.We" +
+      "lcomeResponse\"\000\022:\n\nTotalMiles\022\023.milage.D" +
+      "aysRequest\032\025.milage.TotalResponse\"\000\022E\n\014A" +
+      "verageMiles\022\023.milage.DaysRequest\032\034.milag" +
+      "e.AverageMilesResponse\"\000(\001\022L\n\013FindMaximu" +
+      "m\022\032.milage.FindMaximumRequest\032\033.milage.F" +
+      "indMaximumResponse\"\000(\0010\001\022<\n\rCalculateCos" +
+      "t\022\023.milage.DaysRequest\032\024.milage.CostResp" +
+      "onse\"\000\022K\n\021CheckTirePressure\022\026.google.pro" +
+      "tobuf.Empty\032\034.milage.TirePressureRespons" +
+      "e\"\000\022E\n\016CheckFuelLevel\022\026.google.protobuf." +
+      "Empty\032\031.milage.FuelLevelResponse\"\000B#\n\022or" +
+      "g.example.milageB\013MilageProtoP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -169,18 +169,18 @@ public final class MilageProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_milage_TotalResponse_descriptor,
         new java.lang.String[] { "Result", });
-    internal_static_milage_MaxMileRequest_descriptor =
+    internal_static_milage_FindMaximumRequest_descriptor =
       getDescriptor().getMessageTypes().get(8);
-    internal_static_milage_MaxMileRequest_fieldAccessorTable = new
+    internal_static_milage_FindMaximumRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_milage_MaxMileRequest_descriptor,
+        internal_static_milage_FindMaximumRequest_descriptor,
         new java.lang.String[] { "Number", });
-    internal_static_milage_MaxMileResponse_descriptor =
+    internal_static_milage_FindMaximumResponse_descriptor =
       getDescriptor().getMessageTypes().get(9);
-    internal_static_milage_MaxMileResponse_fieldAccessorTable = new
+    internal_static_milage_FindMaximumResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_milage_MaxMileResponse_descriptor,
-        new java.lang.String[] { "Maxmiles", });
+        internal_static_milage_FindMaximumResponse_descriptor,
+        new java.lang.String[] { "Maximum", });
     internal_static_milage_CostResponse_descriptor =
       getDescriptor().getMessageTypes().get(10);
     internal_static_milage_CostResponse_fieldAccessorTable = new
