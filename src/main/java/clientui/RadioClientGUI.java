@@ -135,7 +135,7 @@ public class RadioClientGUI extends javax.swing.JFrame implements Printer {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Channel4)
                             .addComponent(Channel1))
-                        .addGap(34, 34, 34))))
+                        .addGap(75, 75, 75))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +157,7 @@ public class RadioClientGUI extends javax.swing.JFrame implements Printer {
                                 .addComponent(Channel2))
                             .addComponent(Channel4)))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 35, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();

@@ -42,7 +42,8 @@ public class PhoneServer {
                 .addService(new PhoneServiceImpl())
                 .build()
                 .start();
-       JmDNSRegistrationHelper helper2 = new JmDNSRegistrationHelper("Seans", "_phone._udp.local.", "", port);
+       JmDNSRegistrationHelper helper = new JmDNSRegistrationHelper("Seans", "_phone._udp.local.", "", port);
+
 
 
 
@@ -85,6 +86,7 @@ public class PhoneServer {
     }
     
     
+    
         private class PhoneServiceImpl extends PhoneServiceGrpc.PhoneServiceImplBase {
             
             
@@ -110,7 +112,7 @@ public class PhoneServer {
             songs.add(welcometothejungle);
             
             
-            ///arralist of contacts
+            ///arraylist of contacts
             contacts = new ArrayList<Contact>();
             Contact peter = Contact.newBuilder()
                     .setName("Peter")
@@ -154,14 +156,19 @@ public class PhoneServer {
 
  }
           
+          
+          
+          
+          
     @Override
     public void volumeUp(Empty Request, StreamObserver<VolumeUpResponse> responseObserver) {
         //increase the volume by 1 decibel
        
         if(Vol < MaxVol){
             Vol +=1;
-        }else if(Vol>MaxVol){
-          ui.append("You have reached the max volume"+Vol);
+        }else if(Vol == MaxVol){
+          ui.append("You have reached the max volume"+MaxVol);
+
 
         }
        
@@ -169,7 +176,9 @@ public class PhoneServer {
         VolumeUpResponse volumeupResponse = VolumeUpResponse.newBuilder()
                 .setCurrentvolume(Vol)
                 .build();
+                 ui.append("Increasing Volume");
                  ui.append(volumeupResponse.toString());
+                 
         
         //sends the response
 
@@ -178,7 +187,11 @@ public class PhoneServer {
         responseObserver.onCompleted();
 
     }
-                 
+          
+    
+    
+    
+    
             @Override
     public void volumeDown(Empty Request, StreamObserver<VolumeDownResponse> responseObserver) {
         
@@ -195,7 +208,9 @@ public class PhoneServer {
         VolumeDownResponse volumedownResponse = VolumeDownResponse.newBuilder()
                 .setCurrentvolume(Vol)
                 .build();
+                 ui.append("Decreasing Volume");
                  ui.append(volumedownResponse.toString());
+
         
         //sends the response
 
@@ -206,6 +221,8 @@ public class PhoneServer {
     }  
     
   
+    
+    
           
           
     
@@ -292,12 +309,7 @@ public class PhoneServer {
             responseObserver.onCompleted();
             
         }
-    
-    
-    
-    
 
-    
          @Override
         public void playSong(Empty request,
                 StreamObserver<PlaylistSongs> responseObserver) {

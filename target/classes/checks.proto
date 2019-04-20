@@ -1,0 +1,94 @@
+syntax = "proto3";
+
+
+package check ;
+
+option java_multiple_files = true;
+option java_package = "org.example.check";
+option java_outer_classname = "CheckProto";
+import "google/protobuf/empty.proto";
+
+
+
+// The milage service definition.
+service CheckService {    
+//unary
+   rpc  Welcome (WelcomeRequest) returns (WelcomeResponse){};
+   rpc TotalMiles (DaysRequest) returns (TotalResponse) {};
+//client streaming
+   rpc AverageMiles(stream DaysRequest) returns (AverageMilesResponse){};
+  //bidi streaming
+
+   rpc MaxMilesDriven(stream MaxMilesRequest) returns (stream MaxMilesResponse) {};
+
+
+//unary
+   rpc CalculateCost(DaysRequest) returns ( CostResponse) {};
+   rpc CheckTirePressure(google.protobuf.Empty) returns (TirePressureResponse){};
+   rpc CheckFuelLevel(google.protobuf.Empty) returns (FuelLevelResponse){};
+ }
+
+
+message TirePressureResponse {
+    int32 currentpressure = 1;
+}
+
+message FuelLevelResponse {
+    double currentfuellevel = 1;
+}
+
+
+
+//unary
+message Welcome {
+    string greetuser = 1;
+   
+}
+
+message WelcomeRequest {
+    Welcome welcome = 1;
+}
+
+message WelcomeResponse {
+    string greeteduser = 1;
+}
+
+
+
+// Clientstream average
+
+message DaysRequest {
+    double monday = 1;
+    double tuesday = 2;
+    double wednesday = 3;
+    double thursday = 4;
+    double friday = 5;
+    double saturday = 6;
+    double sunday = 7;
+    int32 mpg = 8;
+    double price = 9;
+
+}
+
+message AverageMilesResponse {
+    double average = 1;
+}
+
+message TotalResponse {
+   double result = 1;
+}
+
+
+message MaxMilesRequest {
+    double number = 1;
+}
+
+message MaxMilesResponse {
+    double maxmiles = 1;
+}
+
+
+message CostResponse{
+   double cost =1;
+}
+

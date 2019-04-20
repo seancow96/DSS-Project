@@ -22,6 +22,7 @@ import org.example.phone.VolumeUpResponse;
 
 
 
+
 public class PhoneClient implements ServiceObserver {
 
     protected PhoneClientGUI ui;
@@ -31,6 +32,7 @@ public class PhoneClient implements ServiceObserver {
     private static final Logger logger = Logger.getLogger(PhoneClient.class.getName());
     private ManagedChannel channel;
     private PhoneServiceGrpc.PhoneServiceBlockingStub blockingStub2;
+
 
 
 
@@ -70,6 +72,8 @@ public class PhoneClient implements ServiceObserver {
                 .usePlaintext(true)
                 .build();
          blockingStub2 = PhoneServiceGrpc.newBlockingStub(channel);
+         
+       
 
       
     }
@@ -116,8 +120,9 @@ public class PhoneClient implements ServiceObserver {
             }
     }
      
-   
-    
+          
+      
+      
     
         public void turnphoneon() {
 
@@ -207,6 +212,8 @@ public class PhoneClient implements ServiceObserver {
         System.out.println("The current volume is "+ response.getCurrentvolume() + " decibels ");
         ui.append("The current volume is "+response.getCurrentvolume() + " decibels ");
 
+        
+        
     }
            
  
