@@ -6,9 +6,10 @@ package radio;
 option java_multiple_files = true;
 option java_package = "org.example.radio";
 option java_outer_classname = "RadioProto";
+import "google/protobuf/empty.proto";
 
 
-// The speaker service definition.
+// The radio service definition.
 service RadioService {
 //uranary
     rpc RadioOn(RadioRequest) returns (RadioResponse) {};
@@ -17,6 +18,8 @@ service RadioService {
     rpc Channel2(stream ChannelRequest) returns (ChannelResponse){};
     rpc Channel3(stream ChannelRequest) returns (ChannelResponse){};
     rpc Channel4(stream ChannelRequest) returns (ChannelResponse){};
+    rpc VolumeUp(google.protobuf.Empty) returns (VolumeUpResponse){}
+    rpc VolumeDown(google.protobuf.Empty) returns (VolumeDownResponse){}
 
 }
 
@@ -50,4 +53,12 @@ message RadioRequest {
 
 message RadioResponse {
     string radiostate = 1;
+}
+
+message VolumeUpResponse {
+    int32 currentvolume = 1;
+}
+
+message VolumeDownResponse {
+    int32 currentvolume = 1;
 }

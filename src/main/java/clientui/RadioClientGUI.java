@@ -4,10 +4,7 @@ import client.RadioClient;
 import java.awt.Color;
 import serviceui.Printer;
 
-/**
- *
- * @author dominic
- */
+
 public class RadioClientGUI extends javax.swing.JFrame implements Printer {
 
     private RadioClient client;
@@ -25,6 +22,8 @@ public class RadioClientGUI extends javax.swing.JFrame implements Printer {
         Channel2.setEnabled(false);
         Channel3.setEnabled(false);
         Channel4.setEnabled(false);
+         VolumeUp.setEnabled(false);
+        VolumeDown.setEnabled(false);
      
 
     }
@@ -50,6 +49,8 @@ public class RadioClientGUI extends javax.swing.JFrame implements Printer {
         Channel4 = new javax.swing.JButton();
         Channel3 = new javax.swing.JButton();
         Channel2 = new javax.swing.JButton();
+        VolumeUp = new javax.swing.JButton();
+        VolumeDown = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -110,6 +111,20 @@ public class RadioClientGUI extends javax.swing.JFrame implements Printer {
             }
         });
 
+        VolumeUp.setText("VolumeUp");
+        VolumeUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VolumeUpActionPerformed(evt);
+            }
+        });
+
+        VolumeDown.setText("VolumeDown");
+        VolumeDown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VolumeDownActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,19 +138,25 @@ public class RadioClientGUI extends javax.swing.JFrame implements Printer {
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(RadioOn)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(VolumeUp)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(RadioOff))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(Channel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Channel3)))
-                        .addGap(45, 45, 45)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Channel4)
-                            .addComponent(Channel1))
-                        .addGap(75, 75, 75))))
+                                .addComponent(VolumeDown))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(RadioOn)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(RadioOff))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(Channel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Channel3)))
+                                .addGap(45, 45, 45)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Channel4)
+                                    .addComponent(Channel1))))
+                        .addGap(30, 30, 30))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +178,10 @@ public class RadioClientGUI extends javax.swing.JFrame implements Printer {
                                 .addComponent(Channel2))
                             .addComponent(Channel4)))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(VolumeUp)
+                    .addComponent(VolumeDown)))
         );
 
         pack();
@@ -171,6 +195,8 @@ public class RadioClientGUI extends javax.swing.JFrame implements Printer {
         Channel2.setEnabled(true);
         Channel3.setEnabled(true);
         Channel4.setEnabled(true);
+        VolumeUp.setEnabled(true);
+        VolumeDown.setEnabled(true);
      
 
         // TODO add your handling code here:
@@ -184,6 +210,8 @@ public class RadioClientGUI extends javax.swing.JFrame implements Printer {
         Channel2.setEnabled(false);
         Channel3.setEnabled(false);
         Channel4.setEnabled(false);
+         VolumeUp.setEnabled(false);
+        VolumeDown.setEnabled(false);
         
         // TODO add your handling code here:
     }//GEN-LAST:event_RadioOffActionPerformed
@@ -233,6 +261,17 @@ Channel1.setEnabled(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_Channel4ActionPerformed
+
+    private void VolumeUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolumeUpActionPerformed
+  client.volumeUp();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_VolumeUpActionPerformed
+
+    private void VolumeDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolumeDownActionPerformed
+  client.volumeDown();
+
+    }//GEN-LAST:event_VolumeDownActionPerformed
 
     /**
      * @param args the command line arguments
@@ -291,6 +330,8 @@ Channel1.setEnabled(true);
     private javax.swing.JButton Channel4;
     private javax.swing.JButton RadioOff;
     private javax.swing.JButton RadioOn;
+    private javax.swing.JButton VolumeDown;
+    private javax.swing.JButton VolumeUp;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;

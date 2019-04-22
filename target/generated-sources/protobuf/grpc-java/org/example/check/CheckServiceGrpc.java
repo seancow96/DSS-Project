@@ -17,7 +17,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
- * The milage service definition.
+ * The milage definition.
  * </pre>
  */
 @javax.annotation.Generated(
@@ -279,7 +279,7 @@ public final class CheckServiceGrpc {
 
   /**
    * <pre>
-   * The milage service definition.
+   * The milage definition.
    * </pre>
    */
   public static abstract class CheckServiceImplBase implements io.grpc.BindableService {
@@ -399,7 +399,7 @@ public final class CheckServiceGrpc {
 
   /**
    * <pre>
-   * The milage service definition.
+   * The milage definition.
    * </pre>
    */
   public static final class CheckServiceStub extends io.grpc.stub.AbstractStub<CheckServiceStub> {
@@ -486,7 +486,7 @@ public final class CheckServiceGrpc {
 
   /**
    * <pre>
-   * The milage service definition.
+   * The milage definition.
    * </pre>
    */
   public static final class CheckServiceBlockingStub extends io.grpc.stub.AbstractStub<CheckServiceBlockingStub> {
@@ -549,7 +549,7 @@ public final class CheckServiceGrpc {
 
   /**
    * <pre>
-   * The milage service definition.
+   * The milage definition.
    * </pre>
    */
   public static final class CheckServiceFutureStub extends io.grpc.stub.AbstractStub<CheckServiceFutureStub> {

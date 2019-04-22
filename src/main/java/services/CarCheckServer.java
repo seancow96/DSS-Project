@@ -1,5 +1,4 @@
 /*
-
 Author:Sean Cowley--x14484252
 */
 
@@ -42,7 +41,7 @@ public class CarCheckServer {
                 .build()
                 .start();
         //jdns
-        JmDNSRegistrationHelper helper2 = new JmDNSRegistrationHelper("Seans", "_mile._udp.local.", "", port);
+        JmDNSRegistrationHelper helper2 = new JmDNSRegistrationHelper("CarCheck", "_mile._udp.local.", "", port);
     
 
 
@@ -99,7 +98,7 @@ public class CarCheckServer {
            //jdns
 
           public CheckServiceImpl() {
-          String name = "Seans";
+          String name = "CarCheck";
             String serviceType = "_mile._udp.local.";
             ui = new ServiceUI(name + serviceType);
                      
@@ -263,7 +262,7 @@ public class CarCheckServer {
    
    
     
-    //uranary
+    //unary
    @Override
     public void calculateCost(DaysRequest req, StreamObserver<CostResponse> responseObserver) {
         
@@ -280,7 +279,7 @@ public class CarCheckServer {
         //sends the response
         ui.append("Your cars mpg is 35");
         responseObserver.onNext(costResponse);
-        ui.append("The cost of fuel is currently 2.83 litres per gallon");
+        ui.append("The cost of fuel is currently $2.83 per gallon");
         ui.append("The total cost in dollars is " + costResponse.toString());
 
 

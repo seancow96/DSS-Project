@@ -14,10 +14,6 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.example.phone.Phone;
-import org.example.phone.PhoneRequest;
-import org.example.phone.PhoneResponse;
-import org.example.phone.PhoneServiceGrpc;
 import org.example.radio.Channel;
 import org.example.radio.ChannelRequest;
 import org.example.radio.ChannelResponse;
@@ -25,6 +21,8 @@ import org.example.radio.Radio;
 import org.example.radio.RadioRequest;
 import org.example.radio.RadioResponse;
 import org.example.radio.RadioServiceGrpc;
+import org.example.radio.VolumeDownResponse;
+import org.example.radio.VolumeUpResponse;
 
 
 
@@ -47,7 +45,7 @@ public class RadioClient implements ServiceObserver {
      */
     public RadioClient() {
         serviceType = "_radio._udp.local.";
-        name = "Seans";
+        name = "Radio";
         jmDNSServiceTracker clientManager = jmDNSServiceTracker.getInstance();
         clientManager.register(this);
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -118,6 +116,8 @@ public class RadioClient implements ServiceObserver {
         
         System.out.println(radioResponse.getRadiostate());
         ui.append(radioResponse.getRadiostate());
+        
+     
 
 
     }
@@ -141,6 +141,9 @@ public class RadioClient implements ServiceObserver {
         
         System.out.println(radioResponse.getRadiostate());
         ui.append(radioResponse.getRadiostate());
+        
+        
+    
 
     }
  
@@ -321,6 +324,47 @@ public class RadioClient implements ServiceObserver {
     }
     
      
+             
+                  
+         public void volumeUp ( ){
+        RadioServiceGrpc.RadioServiceBlockingStub stub = RadioServiceGrpc.newBlockingStub(channel);
+
+        
+            Empty request = Empty.newBuilder().build();
+
+    
+
+        VolumeUpResponse response = stub.volumeUp(request);
+        ui.append("Increasing Volume");
+        System.out.println("Increasing Volume");
+
+        System.out.println("The current volume is "+ response.getCurrentvolume()+ " decibels ");
+        ui.append("The current volume is "+response.getCurrentvolume() + " decibels");
+
+    }
+           
+           
+           
+        public void volumeDown ( ){
+        RadioServiceGrpc.RadioServiceBlockingStub stub = RadioServiceGrpc.newBlockingStub(channel);
+
+
+        
+            Empty request = Empty.newBuilder().build();
+
+    
+
+        VolumeDownResponse response = stub.volumeDown(request);
+        
+        System.out.println("Decreasing Volume");
+        ui.append("Decreasing Volume");
+        System.out.println("The current volume is "+ response.getCurrentvolume() + " decibels ");
+        ui.append("The current volume is "+response.getCurrentvolume() + " decibels ");
+
+        
+        
+    }
+         
     
      
      

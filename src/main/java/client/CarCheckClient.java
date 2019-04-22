@@ -1,6 +1,4 @@
-
 /*
-
 Author:Sean Cowley--x14484252
 */
 package client;
@@ -49,7 +47,7 @@ public class CarCheckClient implements ServiceObserver {
      */
     public CarCheckClient() {
         serviceType = "_mile._udp.local.";
-        name = "Seans";
+        name = "CarCheck";
         jmDNSServiceTracker clientManager = jmDNSServiceTracker.getInstance();
         clientManager.register(this);
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -74,7 +72,7 @@ public class CarCheckClient implements ServiceObserver {
     }
 
     public void serviceAdded(ServiceDescription service) {
-        //jdns
+        //jmdns
         System.out.println("Car checking Service added");
         channel = ManagedChannelBuilder.forAddress(service.getAddress(), service.getPort())
         .usePlaintext(true)
@@ -318,7 +316,7 @@ public class CarCheckClient implements ServiceObserver {
         CostResponse response = stub.calculateCost(req);
         
         System.out.println("Your cars mpg is 35 ");
-        System.out.println("The cost of fuel is currently 2.83 litres per gallon ");
+        System.out.println("The cost of fuel is currently $2.83 per gallon ");
         System.out.println("The total cost in dollars for your journey this week was "
                 + response.getCost() / req.getMpg() *req.getPrice());
 

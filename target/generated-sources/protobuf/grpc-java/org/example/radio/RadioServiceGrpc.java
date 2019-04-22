@@ -17,7 +17,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
- * The speaker service definition.
+ * The radio service definition.
  * </pre>
  */
 @javax.annotation.Generated(
@@ -222,6 +222,70 @@ public final class RadioServiceGrpc {
      return getChannel4Method;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+      org.example.radio.VolumeUpResponse> getVolumeUpMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "VolumeUp",
+      requestType = com.google.protobuf.Empty.class,
+      responseType = org.example.radio.VolumeUpResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+      org.example.radio.VolumeUpResponse> getVolumeUpMethod() {
+    io.grpc.MethodDescriptor<com.google.protobuf.Empty, org.example.radio.VolumeUpResponse> getVolumeUpMethod;
+    if ((getVolumeUpMethod = RadioServiceGrpc.getVolumeUpMethod) == null) {
+      synchronized (RadioServiceGrpc.class) {
+        if ((getVolumeUpMethod = RadioServiceGrpc.getVolumeUpMethod) == null) {
+          RadioServiceGrpc.getVolumeUpMethod = getVolumeUpMethod = 
+              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, org.example.radio.VolumeUpResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "radio.RadioService", "VolumeUp"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.example.radio.VolumeUpResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new RadioServiceMethodDescriptorSupplier("VolumeUp"))
+                  .build();
+          }
+        }
+     }
+     return getVolumeUpMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+      org.example.radio.VolumeDownResponse> getVolumeDownMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "VolumeDown",
+      requestType = com.google.protobuf.Empty.class,
+      responseType = org.example.radio.VolumeDownResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+      org.example.radio.VolumeDownResponse> getVolumeDownMethod() {
+    io.grpc.MethodDescriptor<com.google.protobuf.Empty, org.example.radio.VolumeDownResponse> getVolumeDownMethod;
+    if ((getVolumeDownMethod = RadioServiceGrpc.getVolumeDownMethod) == null) {
+      synchronized (RadioServiceGrpc.class) {
+        if ((getVolumeDownMethod = RadioServiceGrpc.getVolumeDownMethod) == null) {
+          RadioServiceGrpc.getVolumeDownMethod = getVolumeDownMethod = 
+              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, org.example.radio.VolumeDownResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "radio.RadioService", "VolumeDown"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.example.radio.VolumeDownResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new RadioServiceMethodDescriptorSupplier("VolumeDown"))
+                  .build();
+          }
+        }
+     }
+     return getVolumeDownMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -247,7 +311,7 @@ public final class RadioServiceGrpc {
 
   /**
    * <pre>
-   * The speaker service definition.
+   * The radio service definition.
    * </pre>
    */
   public static abstract class RadioServiceImplBase implements io.grpc.BindableService {
@@ -297,6 +361,20 @@ public final class RadioServiceGrpc {
       return asyncUnimplementedStreamingCall(getChannel4Method(), responseObserver);
     }
 
+    /**
+     */
+    public void volumeUp(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<org.example.radio.VolumeUpResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getVolumeUpMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void volumeDown(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<org.example.radio.VolumeDownResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getVolumeDownMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -341,13 +419,27 @@ public final class RadioServiceGrpc {
                 org.example.radio.ChannelRequest,
                 org.example.radio.ChannelResponse>(
                   this, METHODID_CHANNEL4)))
+          .addMethod(
+            getVolumeUpMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.protobuf.Empty,
+                org.example.radio.VolumeUpResponse>(
+                  this, METHODID_VOLUME_UP)))
+          .addMethod(
+            getVolumeDownMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.protobuf.Empty,
+                org.example.radio.VolumeDownResponse>(
+                  this, METHODID_VOLUME_DOWN)))
           .build();
     }
   }
 
   /**
    * <pre>
-   * The speaker service definition.
+   * The radio service definition.
    * </pre>
    */
   public static final class RadioServiceStub extends io.grpc.stub.AbstractStub<RadioServiceStub> {
@@ -416,11 +508,27 @@ public final class RadioServiceGrpc {
       return asyncClientStreamingCall(
           getChannel().newCall(getChannel4Method(), getCallOptions()), responseObserver);
     }
+
+    /**
+     */
+    public void volumeUp(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<org.example.radio.VolumeUpResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getVolumeUpMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void volumeDown(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<org.example.radio.VolumeDownResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getVolumeDownMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
    * <pre>
-   * The speaker service definition.
+   * The radio service definition.
    * </pre>
    */
   public static final class RadioServiceBlockingStub extends io.grpc.stub.AbstractStub<RadioServiceBlockingStub> {
@@ -455,11 +563,25 @@ public final class RadioServiceGrpc {
       return blockingUnaryCall(
           getChannel(), getRadioOffMethod(), getCallOptions(), request);
     }
+
+    /**
+     */
+    public org.example.radio.VolumeUpResponse volumeUp(com.google.protobuf.Empty request) {
+      return blockingUnaryCall(
+          getChannel(), getVolumeUpMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public org.example.radio.VolumeDownResponse volumeDown(com.google.protobuf.Empty request) {
+      return blockingUnaryCall(
+          getChannel(), getVolumeDownMethod(), getCallOptions(), request);
+    }
   }
 
   /**
    * <pre>
-   * The speaker service definition.
+   * The radio service definition.
    * </pre>
    */
   public static final class RadioServiceFutureStub extends io.grpc.stub.AbstractStub<RadioServiceFutureStub> {
@@ -496,14 +618,32 @@ public final class RadioServiceGrpc {
       return futureUnaryCall(
           getChannel().newCall(getRadioOffMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<org.example.radio.VolumeUpResponse> volumeUp(
+        com.google.protobuf.Empty request) {
+      return futureUnaryCall(
+          getChannel().newCall(getVolumeUpMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<org.example.radio.VolumeDownResponse> volumeDown(
+        com.google.protobuf.Empty request) {
+      return futureUnaryCall(
+          getChannel().newCall(getVolumeDownMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_RADIO_ON = 0;
   private static final int METHODID_RADIO_OFF = 1;
-  private static final int METHODID_CHANNEL1 = 2;
-  private static final int METHODID_CHANNEL2 = 3;
-  private static final int METHODID_CHANNEL3 = 4;
-  private static final int METHODID_CHANNEL4 = 5;
+  private static final int METHODID_VOLUME_UP = 2;
+  private static final int METHODID_VOLUME_DOWN = 3;
+  private static final int METHODID_CHANNEL1 = 4;
+  private static final int METHODID_CHANNEL2 = 5;
+  private static final int METHODID_CHANNEL3 = 6;
+  private static final int METHODID_CHANNEL4 = 7;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -529,6 +669,14 @@ public final class RadioServiceGrpc {
         case METHODID_RADIO_OFF:
           serviceImpl.radioOff((org.example.radio.RadioRequest) request,
               (io.grpc.stub.StreamObserver<org.example.radio.RadioResponse>) responseObserver);
+          break;
+        case METHODID_VOLUME_UP:
+          serviceImpl.volumeUp((com.google.protobuf.Empty) request,
+              (io.grpc.stub.StreamObserver<org.example.radio.VolumeUpResponse>) responseObserver);
+          break;
+        case METHODID_VOLUME_DOWN:
+          serviceImpl.volumeDown((com.google.protobuf.Empty) request,
+              (io.grpc.stub.StreamObserver<org.example.radio.VolumeDownResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -609,6 +757,8 @@ public final class RadioServiceGrpc {
               .addMethod(getChannel2Method())
               .addMethod(getChannel3Method())
               .addMethod(getChannel4Method())
+              .addMethod(getVolumeUpMethod())
+              .addMethod(getVolumeDownMethod())
               .build();
         }
       }

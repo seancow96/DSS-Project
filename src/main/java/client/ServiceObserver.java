@@ -8,10 +8,7 @@ package client;
 import java.util.List;
 import javax.swing.JPanel;
 
-/**
- *
- * @author dominic
- */
+
 public interface ServiceObserver {
 
     public boolean interested(String type);

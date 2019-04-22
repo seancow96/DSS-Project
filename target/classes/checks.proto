@@ -10,7 +10,7 @@ import "google/protobuf/empty.proto";
 
 
 
-// The milage service definition.
+// The milage definition.
 service CheckService {    
 //unary
    rpc  Welcome (WelcomeRequest) returns (WelcomeResponse){};

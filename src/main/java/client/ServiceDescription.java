@@ -8,10 +8,7 @@ package client;
 import java.net.Inet4Address;
 import java.util.HashMap;
 
-/**
- *
- * @author dominic
- */
+
 public final class ServiceDescription {
 
     private final String address;

@@ -1,0 +1,111 @@
+syntax = "proto3";
+
+
+package parking;
+
+option java_multiple_files = true;
+option java_package = "org.example.parking";
+option java_outer_classname = "ParkingProto";
+import "google/protobuf/empty.proto";
+
+
+
+
+// The parking service definition.
+service ParkingService {
+//unary
+    rpc EngineOn(EngineRequest) returns (EngineResponse) {};
+    rpc EngineOff(EngineRequest) returns (EngineResponse) {};
+    rpc Stop(EngineRequest) returns (EngineResponse) {};
+//server stream
+    rpc Sensor(SensorRequest) returns (stream SensorResponse) {};
+    rpc Drive(google.protobuf.Empty) returns (DriveResponse) {};
+//server stream
+    rpc AutoPark(ParkRequest) returns (stream ParkResponse) {};
+//unary
+    rpc IncreaseSpeed(google.protobuf.Empty) returns (IncreaseResponse){}
+    rpc DecreaseSpeed(google.protobuf.Empty) returns (DecreaseResponse){}
+
+
+    rpc showdetails(google.protobuf.Empty) returns (DetailResponse) {}
+
+
+
+ }
+
+message DetailResponse{
+  repeated Detail details = 1;
+}
+
+message Detail {
+     string type = 1;
+    string wheelbase=2;
+    string length =3;
+    string height =4;
+}
+
+ 
+
+
+
+
+//uranary Turn engine on and off
+message Engine {
+    string turnengineon = 1;
+    string turnengineoff = 2;
+    string stop =3;
+
+}
+
+
+message EngineRequest {
+    Engine engine = 1;
+}
+
+message EngineResponse {
+    string enginestatus = 1;
+}
+
+
+//streaming
+message SensorRequest {
+    Sensors sensors = 1;
+}
+
+message SensorResponse {
+    string result = 1;
+}
+
+message Sensors {
+    string park = 1;
+}
+
+
+message DriveResponse {
+    int32 currentspeed = 1;
+}
+
+
+message IncreaseResponse {
+    int32 currentspeed = 1;
+}
+
+message DecreaseResponse {
+    int32 currentspeed = 1;
+}
+
+
+
+//streaming
+
+message ParkRequest {
+    Park park = 1;
+}
+
+message ParkResponse {
+    string result = 1;
+}
+
+message Park {
+    string parked = 1;
+}

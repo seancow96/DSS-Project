@@ -7,12 +7,15 @@ Author:Sean Cowley--x14484252
 
 package services;
 
+import com.google.protobuf.Empty;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 
 import org.example.radio.RadioServiceGrpc;
 import java.util.logging.Logger;
+import org.example.radio.VolumeDownResponse;
+import org.example.radio.VolumeUpResponse;
 import org.example.radio.ChannelRequest;
 import org.example.radio.ChannelResponse;
 import org.example.radio.Radio;
@@ -38,6 +41,7 @@ public class RadioServer {
                 .build()
                 .start();
         JmDNSRegistrationHelper helper = new JmDNSRegistrationHelper("Radio", "_radio._udp.local.", "", port);
+
 
 
 
@@ -83,14 +87,18 @@ public class RadioServer {
     private class RadioServiceImpl extends RadioServiceGrpc.RadioServiceImplBase {
 
         private Printer ui;
+        int Vol =0;
+            int MaxVol =10;
+            int MinVol = 0;
+
        
 
         public RadioServiceImpl() {
          
-            String name = "Seans";
+            String name = "Radio";
             String serviceType = "_radio._udp.local.";
             ui = new ServiceUI(name + serviceType); 
-
+            
         }
 
 
@@ -134,6 +142,75 @@ public class RadioServer {
         responseObserver.onCompleted();
     }
     
+    
+              
+          
+            
+          
+    @Override
+    public void volumeUp(Empty Request, StreamObserver<VolumeUpResponse> responseObserver) {
+        //increase the volume by 1 decibel
+       
+        if(Vol < MaxVol){
+            Vol +=1;
+        }else if(Vol == MaxVol){
+          ui.append("You have reached the max volume"+MaxVol);
+
+
+        }
+       
+       
+        VolumeUpResponse volumeupResponse = VolumeUpResponse.newBuilder()
+                .setCurrentvolume(Vol)
+                .build();
+                 ui.append("Increasing Volume");
+                 ui.append(volumeupResponse.toString());
+                 
+        
+        //sends the response
+
+        responseObserver.onNext(volumeupResponse);
+        // rpc call is completed
+        responseObserver.onCompleted();
+
+    }
+          
+    
+    
+    
+    
+            @Override
+    public void volumeDown(Empty Request, StreamObserver<VolumeDownResponse> responseObserver) {
+        
+       
+        if(Vol > MinVol){
+            Vol -=1;
+        }else if(Vol == MinVol){
+          ui.append("You have reached the min volume"+MinVol);
+
+
+        }
+       
+       
+        VolumeDownResponse volumedownResponse = VolumeDownResponse.newBuilder()
+                .setCurrentvolume(Vol)
+                .build();
+                 ui.append("Decreasing Volume");
+                 ui.append(volumedownResponse.toString());
+
+        
+        //sends the response
+
+        responseObserver.onNext(volumedownResponse);
+        // rpc call is completed
+        responseObserver.onCompleted();
+
+    }  
+    
+  
+    
+  
+    
    
     
        @Override
@@ -170,7 +247,10 @@ public class RadioServer {
 
 
         return requestObserver;
+        
+         
     }
+         
     
     
        @Override
